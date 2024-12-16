@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import logo from "../../assets/images/Shakthi_Logo.png";
+import { MdOutlineRestaurantMenu } from "react-icons/md";
 
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -52,7 +53,7 @@ const Header = () => {
           {/* Navbar */}
           <nav className={`navbar ${isNavOpen ? "active" : ""}`} data-navbar>
             <button className="close-btn" aria-label="Close menu" onClick={toggleNav}>
-              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+              <MdOutlineRestaurantMenu size={24} />
             </button>
 
             <a href="#" className="logo">
