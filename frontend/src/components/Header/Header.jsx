@@ -97,11 +97,31 @@ const Header = () => {
               <a href="tel:+94777240510" className="body-1 contact-number hover-underline">
                 +94-777-240510
               </a>
+
+              {/* Find A Table Button in Small Device Navigation */}
+              <Link
+                to="reservation"
+                smooth={true}
+                duration={500}
+                className="btn btn-secondary nav-btn"
+                style={{ cursor: "pointer", marginTop: "20px", display: "block", textAlign: "center", left: "40px", }}
+              >
+                <span className="text text-1">Find A Table</span>
+                <span className="text text-2" aria-hidden="true">
+                  Find A Table
+                </span>
+              </Link>
             </div>
           </nav>
 
           {/* Scroll to Reservation Section */}
-          <Link to="reservation" smooth={true} duration={500} className="btn btn-secondary">
+          <Link
+            to="reservation"
+            smooth={true}
+            duration={500}
+            className="btn btn-secondary"
+            style={{ cursor: "pointer" }}
+          >
             <span className="text text-1">Find A Table</span>
             <span className="text text-2" aria-hidden="true">
               Find A Table
