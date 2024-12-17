@@ -63,7 +63,7 @@ const Header = () => {
             <ul className="navbar-list">
               {[
                 { href: "#home", label: "Home" },
-                { href: "#menu", label: "Menus" },
+                { href: "#menu", label: "Special Menus" },
                 { href: "#about", label: "About Us" },
                 { href: "#service", label: "Services" },
               ].map(({ href, label }) => (
