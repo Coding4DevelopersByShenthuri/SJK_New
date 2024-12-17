@@ -666,7 +666,6 @@ body.nav-active { overflow: hidden; }
 
 .navbar::-webkit-scrollbar-thumb { background-color: var(--white-alpha-10); }
 
-
 .responsive-logo {
   width: 200px; /* Default desktop size */
   height: auto;
