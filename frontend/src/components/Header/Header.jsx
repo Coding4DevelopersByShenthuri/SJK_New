@@ -47,7 +47,7 @@ const Header = () => {
         <div className="container">
           {/* Logo */}
           <a href="#" className="logo" onClick={refreshHome}>
-            <img src={logo} width="180" height="50" alt="SJK - Home" />
+            <img src={logo} className="responsive-logo" alt="SJK - Home" />
           </a>
 
           {/* Navbar */}
@@ -57,7 +57,7 @@ const Header = () => {
             </button>
 
             <a href="#" className="logo">
-              <img src={logo} width="200" height="50" alt="SJK - Home" />
+              <img src={logo} className="responsive-logo" alt="SJK - Home" />
             </a>
 
             <ul className="navbar-list">
