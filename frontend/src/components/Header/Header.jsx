@@ -114,6 +114,11 @@ const Header = () => {
             </div>
           </nav>
 
+          {/* Sign In Button */}
+          <div className="topbar-item sign-in">
+            <button className="sign-in-btn">Sign In</button>
+          </div>
+
           {/* Scroll to Reservation Section */}
           <Link
             to="reservation"

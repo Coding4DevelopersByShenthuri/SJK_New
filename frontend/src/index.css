@@ -1712,78 +1712,6 @@ textarea.input-field {
     color: var(--gold-crayola);
   }
 
-  /* Sign In Button */
-  .sign-in-btn {
-    padding: 8px 20px;
-    background-color: #f5dd9c;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-align: center;
-    display: inline-block;
-    /* Ensures visibility */
-  }
-
-  /* Hover State */
-  .sign-in-btn:hover {
-    background-color: #0056b3;
-    /* Darker blue */
-    color: #fff;
-    transform: scale(1.05);
-    /* Slight scaling effect on hover */
-  }
-
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .sign-in-btn {
-      padding: 8px 16px;
-      font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .topbar .container {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      text-align: center;
-    }
-
-    .sign-in-btn {
-      padding: 6px 14px;
-      font-size: 0.9rem;
-      width: auto;
-      /* Ensures button doesn't shrink too much */
-    }
-  }
-
-  @media (max-width: 576px) {
-    .sign-in-btn {
-      padding: 5px 12px;
-      font-size: 0.85rem;
-      border-radius: 4px;
-      width: 100%;
-      /* Full width on small devices */
-      max-width: 200px;
-      /* Ensures it doesn't get too wide */
-      margin: 5px auto;
-      /* Center-align on small screens */
-    }
-
-    .topbar .container {
-      gap: 8px;
-      justify-content: center;
-    }
-  }
-
-  @media (max-width: 360px) {
-    .sign-in-btn {
-      padding: 4px 10px;
-      font-size: 0.8rem;
-    }
-  }
 
 
   /**
@@ -1803,6 +1731,29 @@ textarea.input-field {
     margin-inline-start: auto;
   }
 
+  /* Sign In Button */
+  .sign-in-btn {
+    padding: 12px 20px;
+    background-color: #f5dd9c;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    display: inline-block;
+    /* Ensures visibility */
+  }
+
+  /* Hover State */
+  .sign-in-btn:hover {
+    background-color: #0056b3;
+    /* Darker blue */
+    color: #fff;
+    transform: scale(1.05);
+    /* Slight scaling effect on hover */
+  }
+  
 
 
   /**
