@@ -66,6 +66,7 @@ const Header = () => {
                 { href: "#menu", label: "Special Dish" },
                 { href: "#about", label: "About Us" },
                 { href: "#service", label: "Services" },
+                { href: "#signin", label: "Sign In"},
               ].map(({ href, label }) => (
                 <li className="navbar-item" key={href}>
                   <a href={href} className="navbar-link hover-underline">
@@ -114,10 +115,6 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* Sign In Button */}
-          <div className="topbar-item sign-in">
-            <button className="sign-in-btn">Sign In</button>
-          </div>
 
           {/* Scroll to Reservation Section */}
           <Link
