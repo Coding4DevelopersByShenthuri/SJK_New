@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./SignInPopup.css";
+import googleIcon from "../../assets/images/icons8-google.svg";
 
 const SignInPopup = ({ isVisible, onClose }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [currState, setCurrState] = useState("Sign Up"); // Track current state
+    const [currState, setCurrState] = useState("Sign Up");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -68,6 +69,22 @@ const SignInPopup = ({ isVisible, onClose }) => {
                         </div>
                     )}
                 </form>
+
+                {/* Google Sign Up/Login buttons */}
+                <div className="google-auth-buttons">
+                    {currState === "Sign Up" ? (
+                        <button className="google-signup-button">
+                            <img src={googleIcon} alt="Google Icon" className="google-icon" />
+                            Sign Up with Google
+                        </button>
+                    ) : (
+                        <button className="google-login-button">
+                            <img src={googleIcon} alt="Google Icon" className="google-icon" />
+                            Login with Google
+                        </button>
+                    )}
+                </div>
+
                 <div className="signin-popup-footer">
                     {currState === "Sign Up" ? (
                         <p>
