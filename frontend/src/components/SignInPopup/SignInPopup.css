@@ -109,6 +109,7 @@ input[type="password"]::placeholder {
     margin-top: 1px;
     text-align: center;
     font-size: 15px;
+    cursor: pointer;
     padding-right: 60px;
     color: #e81c1c;
 }
@@ -131,3 +132,24 @@ input[type="password"]::placeholder {
 .signin-popup-footer button:hover {
     color: #0056b3;
 }
+
+.move-down-text {
+    padding-top: 100px;
+    color: #e81c1c;
+    cursor: pointer;
+    text-align: center;
+}
+
+.move-down-text button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.move-down-text button:hover {
+    color: #0056b3;
+}
+
