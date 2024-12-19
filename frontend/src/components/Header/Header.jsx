@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
+import SignInPopup from "../SignInPopup/SignInPopup.jsx";
 import logo from "../../assets/images/Shakthi_Logo.png";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 
@@ -8,6 +9,7 @@ const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [showBackTopBtn, setShowBackTopBtn] = useState(false);
+  const [isSignInPopupVisible, setSignInPopupVisible] = useState(false);
   let lastScrollPos = 0;
 
   useEffect(() => {
@@ -66,7 +68,6 @@ const Header = () => {
                 { href: "#menu", label: "Special Dish" },
                 { href: "#about", label: "About Us" },
                 { href: "#service", label: "Services" },
-                { href: "#signin", label: "Sign In"},
               ].map(({ href, label }) => (
                 <li className="navbar-item" key={href}>
                   <a href={href} className="navbar-link hover-underline">
@@ -75,7 +76,23 @@ const Header = () => {
                   </a>
                 </li>
               ))}
+
+              {/* Separate Sign In option */}
+              <li className="navbar-item">
+                <a
+                  href="#signin"
+                  className="navbar-link hover-underline"
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevent page jump
+                    setSignInPopupVisible(true); // Show Sign In popup
+                  }}
+                >
+                  <div className="separator"></div>
+                  <span className="span">Sign In</span>
+                </a>
+              </li>
             </ul>
+
 
             {/* Contact Info */}
             <div className="text-center">
@@ -140,6 +157,11 @@ const Header = () => {
           <div className={`overlay ${isNavOpen ? "active" : ""}`} onClick={toggleNav} data-overlay></div>
         </div>
       </header>
+
+      <SignInPopup
+        isVisible={isSignInPopupVisible}
+        onClose={() => setSignInPopupVisible(false)}
+      />
 
       {/* Back-to-top button */}
       <button

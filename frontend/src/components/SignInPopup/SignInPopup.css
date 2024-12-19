@@ -1,0 +1,133 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.signin-popup-container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    width: 350px;
+    height: 550px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-align: center;
+}
+
+.signin-popup-title {
+    display: block;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #020202;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.signin-popup-form {
+    margin-top: 10px;
+}
+
+.signin-popup-inputs,
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #020202;
+    text-align: left;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    font-size: 15px;
+}
+
+.signin-button {
+    width: 100%;
+    padding: 12px;
+    background: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.signin-button:hover {
+    background: #787a7c;
+}
+
+.signin-popup-condition {
+    margin-top: 15px;
+    display: block;
+    align-items: center;
+    font-size: 14px;
+    color: #020202;
+}
+
+.signin-popup-condition input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #007bff;
+    margin-left: -11px;
+    margin-bottom: -22px;
+    cursor: pointer;
+}
+
+.signin-popup-footer {
+    margin-top: 1px;
+    text-align: center;
+    font-size: 15px;
+    padding-right: 60px;
+    color: #e81c1c;
+}
+
+.signin-popup-footer p {
+    margin: 0;
+}
+
+.signin-popup-footer button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    font-weight: bold;
+    padding-left: 220px;
+    margin-top: -30px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.signin-popup-footer button:hover {
+    color: #0056b3;
+}
