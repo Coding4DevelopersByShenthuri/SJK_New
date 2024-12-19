@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import specialDishBanner from "../../assets/images/special-dish-banner.jpg";
 import badge from "../../assets/images/badge-1.png";
 import shape1 from "../../assets/images/shape-4.png";
@@ -49,12 +48,12 @@ const SpecialDish = () => {
             <span className="span body-1">$20.00</span>
           </div>
 
-          <Link to="/all-menu" className="btn btn-primary">
+          <a href="#" className="btn btn-primary">
             <span className="text text-1">View All Menu</span>
             <span className="text text-2" aria-hidden="true">
               View All Menu
             </span>
-          </Link>
+          </a>
         </div>
       </div>
 
