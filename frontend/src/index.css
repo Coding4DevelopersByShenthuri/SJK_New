@@ -2223,6 +2223,7 @@ textarea.input-field {
 
   .navbar-item {
     border-block-start: none;
+    margin: 0 10px;
   }
 
   .navbar .separator {
@@ -2250,6 +2251,80 @@ textarea.input-field {
   .header .btn {
     margin-inline-start: 0;
   }
+
+  /* Basket Icon Styling */
+  .basket-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    position: relative;
+    cursor: pointer;
+    margin-left: 0;
+    left: -40px;
+    /* Moves leftwards for desktop */
+    transition: right 0.3s ease;
+    /* Smooth transition for responsiveness */
+  }
+
+  /* Responsive Behavior for Tablets and Small Devices */
+  @media (max-width: 1024px) {
+    .basket-icon {
+      position: absolute;
+      top: 15px;
+      right: 30px;
+      /* Adjust to move right but not too close to other elements */
+      /* Moves rightwards for tablets */
+      margin: 0;
+    }
+
+    .nav-open-btn {
+      position: absolute;
+      top: 15px;
+      right: 80px;
+      /* Adjust menu button placement for better spacing */
+    }
+  }
+
+  /* Responsive Behavior for Mobile Devices (Less than 768px) */
+  @media (max-width: 768px) {
+    .basket-icon {
+      position: absolute;
+      top: 10px;
+      /* Adjust top position to align better on small screens */
+      right: 5px;
+      /* Move basket icon closer to the right edge */
+      /* Moves rightwards closer to the screen edge */
+      margin: 0;
+      font-size: 1.2rem;
+      /* Slightly smaller icon on mobile for better fit */
+    }
+
+    .nav-open-btn {
+      position: absolute;
+      top: 10px;
+      right: 50px;
+      /* Adjust menu button placement */
+    }
+  }
+
+  /* Extra Small Devices (Less than 480px) */
+  @media (max-width: 480px) {
+    .basket-icon {
+      right: 0px;
+      /* Position the icon at the very right */
+      top: 10px;
+      /* Align it nicely on very small screens */
+      font-size: 1rem;
+      /* Smaller icon size for ultra-small devices */
+    }
+
+    .nav-open-btn {
+      right: 45px;
+      /* Adjust button placement */
+    }
+  }
+
 
 
 

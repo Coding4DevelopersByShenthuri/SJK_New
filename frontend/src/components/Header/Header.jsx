@@ -3,6 +3,7 @@ import { Link } from "react-scroll";
 import SignInPopup from "../SignInPopup/SignInPopup.jsx";
 import logo from "../../assets/images/Shakthi_Logo.png";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { FiShoppingBag } from "react-icons/fi";
 
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -51,6 +52,7 @@ const Header = () => {
           <a href="#" className="logo" onClick={refreshHome}>
             <img src={logo} className="responsive-logo" alt="SJK - Home" />
           </a>
+          
 
           {/* Navbar */}
           <nav className={`navbar ${isNavOpen ? "active" : ""}`} data-navbar>
@@ -122,7 +124,13 @@ const Header = () => {
                 smooth={true}
                 duration={500}
                 className="btn btn-secondary nav-btn"
-                style={{ cursor: "pointer", marginTop: "20px", display: "block", textAlign: "center", left: "40px", }}
+                style={{ 
+                  cursor: "pointer", 
+                  marginTop: "20px", 
+                  display: "block", 
+                  textAlign: "center", 
+                  left: "40px", 
+                }}
               >
                 <span className="text text-1">Find A Table</span>
                 <span className="text text-2" aria-hidden="true">
@@ -131,6 +139,11 @@ const Header = () => {
               </Link>
             </div>
           </nav>
+
+          {/* Shopping Basket Icon */}
+          <div className="basket-icon">
+            <FiShoppingBag size={24} />
+          </div>
 
 
           {/* Scroll to Reservation Section */}
