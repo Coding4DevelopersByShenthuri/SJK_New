@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import SignInPopup from "../SignInPopup/SignInPopup.jsx";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/Shakthi_Logo.png";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { FiShoppingBag } from "react-icons/fi";
@@ -10,7 +11,9 @@ const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [showBackTopBtn, setShowBackTopBtn] = useState(false);
+  const [basketCount] = useState(0);
   const [isSignInPopupVisible, setSignInPopupVisible] = useState(false);
+  const navigate = useNavigate();
   let lastScrollPos = 0;
 
   useEffect(() => {
@@ -52,7 +55,6 @@ const Header = () => {
           <a href="#" className="logo" onClick={refreshHome}>
             <img src={logo} className="responsive-logo" alt="SJK - Home" />
           </a>
-          
 
           {/* Navbar */}
           <nav className={`navbar ${isNavOpen ? "active" : ""}`} data-navbar>
@@ -85,8 +87,8 @@ const Header = () => {
                   href="#signin"
                   className="navbar-link hover-underline"
                   onClick={(e) => {
-                    e.preventDefault(); // Prevent page jump
-                    setSignInPopupVisible(true); // Show Sign In popup
+                    e.preventDefault();
+                    setSignInPopupVisible(true);
                   }}
                 >
                   <div className="separator"></div>
@@ -94,7 +96,6 @@ const Header = () => {
                 </a>
               </li>
             </ul>
-
 
             {/* Contact Info */}
             <div className="text-center">
@@ -118,18 +119,17 @@ const Header = () => {
                 +94-777-240510
               </a>
 
-              {/* Find A Table Button in Small Device Navigation */}
               <Link
                 to="reservation"
                 smooth={true}
                 duration={500}
                 className="btn btn-secondary nav-btn"
-                style={{ 
-                  cursor: "pointer", 
-                  marginTop: "20px", 
-                  display: "block", 
-                  textAlign: "center", 
-                  left: "40px", 
+                style={{
+                  cursor: "pointer",
+                  marginTop: "20px",
+                  display: "block",
+                  textAlign: "center",
+                  left: "40px",
                 }}
               >
                 <span className="text text-1">Find A Table</span>
@@ -141,10 +141,10 @@ const Header = () => {
           </nav>
 
           {/* Shopping Basket Icon */}
-          <div className="basket-icon">
+          <div className="basket-icon" onClick={() => navigate("/basket")}>
             <FiShoppingBag size={24} />
+            {basketCount > 0 && <span className="basket-badge">{basketCount}</span>}
           </div>
-
 
           {/* Scroll to Reservation Section */}
           <Link

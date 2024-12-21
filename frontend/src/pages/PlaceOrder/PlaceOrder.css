@@ -1,0 +1,182 @@
+/* General Page Layout */
+.place-order {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 50px;
+    margin-top: 100px;
+    flex-wrap: wrap;
+    /* Allow wrapping of elements for smaller screens */
+}
+
+.place-order-left,
+.place-order-right {
+    width: 100%;
+    max-width: 500px;
+    /* Allow a maximum width to avoid very wide forms */
+    margin-bottom: 30px;
+    /* Add bottom margin for better spacing */
+}
+
+/* Titles */
+.place-order-left .title {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+/* Input Fields */
+.place-order-left input,
+.place-order-left .multi-fields input,
+.place-order-left .multi-fields {
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    outline-color: tomato;
+}
+
+.place-order-left .multi-fields {
+    display: flex;
+    gap: 10px;
+}
+
+.basket-total button {
+    margin-top: 30px;
+    width: 100%;
+    /* Full width on smaller screens */
+    padding: 15px;
+}
+
+/* Basket Total Section */
+.place-order-right {
+    width: 100%;
+    max-width: 500px;
+}
+
+.basket-total {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Promo Code Input and Button */
+.basket-promocode-input {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    width: 100%;
+}
+
+.promo-code-input {
+    padding: 10px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid #040404;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+.apply-button:disabled {
+    background-color: #a7a1a1;
+    cursor: not-allowed;
+    width: 150px;
+    font-size: 14px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .place-order {
+        flex-direction: column;
+        /* Stack the two sections vertically */
+        align-items: center;
+        gap: 20px;
+        /* Reduce gap between elements */
+    }
+
+    .place-order-left,
+    .place-order-right {
+        max-width: 100%;
+        /* Make each section full width */
+    }
+
+    .place-order-left .title {
+        font-size: 24px;
+        /* Adjust title size on small screens */
+        margin-bottom: 30px;
+    }
+
+    .basket-total {
+        width: 100%;
+        /* Make basket total take full width */
+    }
+
+    .promo-code-input {
+        width: 100%;
+        /* Make the promo input full width */
+    }
+
+    .basket-promocode-input {
+        flex-direction: column;
+        /* Stack the input and button vertically on small screens */
+        align-items: flex-start;
+    }
+
+    .basket-promocode-input input,
+    .apply-button {
+        width: 100%;
+        /* Ensure the input and button fill the width of the container */
+    }
+}
+
+/* Small Devices (Phones) */
+@media (max-width: 480px) {
+    .place-order {
+        gap: 10px;
+        margin-top: 50px;
+        /* Reduce margin for small screens */
+    }
+
+    .place-order-left .title {
+        font-size: 20px;
+    }
+
+    .place-order-left input {
+        font-size: 14px;
+    }
+
+    .basket-total button {
+        padding: 12px;
+        /* Adjust padding for small screens */
+    }
+
+    .basket-total-details p {
+        font-size: 14px;
+        /* Adjust text size for basket details */
+    }
+
+    .error-message {
+        font-size: 12px;
+        /* Reduce error message font size on small screens */
+    }
+}
+
+/* Extra Large Screens */
+@media (min-width: 1200px) {
+    .place-order {
+        gap: 60px;
+        /* Increase gap for large screens */
+    }
+
+    .place-order-left .title {
+        font-size: 35px;
+        /* Adjust title size for large screens */
+    }
+}

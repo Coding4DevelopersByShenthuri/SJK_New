@@ -617,7 +617,11 @@ body.nav-active {
   padding-block: 1px;
   background-color: var(--eerie-black-4);
   border-color: var(--black-alpha-15);
+  width: 100%; /* Make sure it covers the full width */
+  left: 0; /* Aligns it to the left edge of the page */
+  right: 0; /* Aligns it to the right edge of the page */
 }
+
 
 .header.hide {
   transform: translateY(-100%);
