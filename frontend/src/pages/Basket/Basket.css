@@ -1,8 +1,7 @@
-/* Basket Icon Styles */
-.basket-icon {
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+/* Basket Styles */
+.basket {
+    margin-top: 100px;
+    padding: 20px;
 }
 
 .basket-icon:hover {
@@ -10,34 +9,16 @@
     color: #f95a5a;
 }
 
-/* For Small Devices (max-width: 768px) */
-@media (max-width: 768px) {
-    .basket-icon {
-        right: 10px; /* Move the basket icon slightly to the right */
-    }
-}
-
-/* For Extra Small Devices (max-width: 480px) */
-@media (max-width: 480px) {
-    .basket-icon {
-        right: 20px; /* Move the basket icon further to the right */
-    }
-}
-
-/* Basket Styles */
-.basket {
-    margin-top: 100px;
-    padding: 20px;
-}
 
 .basket-items-title,
 .basket-items-item {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
     align-items: center;
+    max-width: 100%;
     font-size: clamp(12px, 1vw, 16px);
     font-weight: bold;
-    color: grey;
+    color: rgb(17, 16, 16);
     padding-bottom: 10px;
     border-bottom: 2px solid #ccc;
 }
@@ -55,15 +36,15 @@
 }
 
 .basket-items-item img {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     object-fit: cover;
     border-radius: 4px;
 }
 
 .basket-items-item p {
     margin: 0;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .basket-items-item button {
@@ -105,8 +86,8 @@
 .basket-total-details {
     display: flex;
     justify-content: space-between;
-    color: #555;
-    font-size: 14px;
+    color: #bcb2b2;
+    font-size: 15px;
 }
 
 .basket-total hr {
@@ -126,7 +107,7 @@
 }
 
 .basket-total button:hover {
-    background-color: #ff6347;
+    background-color: #c7290e;
 }
 
 .basket-promocode {
@@ -134,8 +115,8 @@
 }
 
 .basket-promocode p {
-    color: #555;
-    font-size: 14px;
+    color: #dccdcd;
+    font-size: 15px;
 }
 
 .basket-promocode-input {
@@ -143,18 +124,6 @@
     align-items: center;
     gap: 10px;
     margin-top: 10px;
-}
-
-.basket-badge {
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    background-color: tomato;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 12px;
-    font-weight: bold;
 }
 
 .basket-promocode-input input {
@@ -169,16 +138,16 @@
 }
 
 .basket-promocode-input input:focus {
-    border-color: #666;
+    border-color: #161313;
     box-shadow: 0 0 5px rgba(102, 102, 102, 0.5);
 }
 
 .basket-promocode-input button {
     width: max(10vw, 150px);
     padding: 12px 5px;
-    background-color: black;
+    background-color: rgb(115, 111, 111);
     border: none;
-    color: white;
+    color: rgb(15, 7, 7);
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
@@ -186,7 +155,7 @@
 }
 
 .basket-promocode-input button:hover {
-    background-color: #333;
+    background-color: #c3c0c0;
 }
 
 .error-message {

@@ -1,0 +1,19 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styling for the AllMenu container */
+body {
+    overflow-y: auto;
+    /* Ensure scrollability */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .AllMenu {
+        padding: 10px;
+    }
+}
