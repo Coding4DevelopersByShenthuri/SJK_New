@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App.jsx';
-import { BrowserRouter as Router } from 'react-router-dom';
-import StoreContextProvider from './context/StoreContext.jsx';
+import { RouterProvider } from 'react-router-dom';
+import Router from './routers/router';
+import StoreContextProvider from './context/StoreContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Router>
+  <React.StrictMode>
     <StoreContextProvider>
-      <App />
+      <RouterProvider router={Router} />
     </StoreContextProvider>
-  </Router>
+  </React.StrictMode>
 );
+
 
 

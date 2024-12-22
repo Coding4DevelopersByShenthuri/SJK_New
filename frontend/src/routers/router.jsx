@@ -1,40 +1,54 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Hero from '../components/Hero/Hero.jsx';
-import Service from '../components/Services/Service.jsx';
-import About from '../components/About/About.jsx';
-import SpecialDish from '../components/SpecialDish/SpecialDish.jsx';
-import Menu from '../components/Menu/Menu.jsx';
-import Testimonial from '../components/Testimonial/Testimonial.jsx';
-import Reservation from '../components/Reservation/Reservation.jsx';
-import FeaturesSection from '../components/FeaturesSection/FeaturesSection.jsx';
-import EventSection from '../components/EventSection/EventSection.jsx';
-import Basket from '../pages/Basket/Basket.jsx';
-import PlaceOrder from '../pages/PlaceOrder/PlaceOrder.jsx';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Hero from "../components/Hero/Hero";
+import Service from "../components/Services/Service";
+import About from "../components/About/About";
+import SpecialDish from "../components/SpecialDish/SpecialDish";
+import Menu from "../components/Menu/Menu";
+import Testimonial from "../components/Testimonial/Testimonial";
+import Reservation from "../components/Reservation/Reservation";
+import FeaturesSection from "../components/FeaturesSection/FeaturesSection";
+import EventSection from "../components/EventSection/EventSection";
+import Basket from "../pages/Basket/Basket";
+import PlaceOrder from "../pages/PlaceOrder/PlaceOrder";
+import Header from "../components/Header/Header";
+import TopBar from "../components/Topbar/TopBar";
+import BackToTop from "../components/BackToTop/BackToTop";
+import Preloader from "../components/common/Preloader";
+import Footer from "../components/Footer/Footer";
 
-const router = () => {
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <Hero />
-            <Service />
-            <About />
-            <SpecialDish />
-            <Menu />
-            <Testimonial />
-            <Reservation />
-            <FeaturesSection />
-            <EventSection />
-          </>
-        }
-      />
-      <Route path="/basket" element={<Basket />} />
-      <Route path="/order" element={<PlaceOrder />} />
-    </Routes>
-  );
-};
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <>
+        <TopBar /> 
+        <Hero />
+        <Header />
+        <Service />
+        <About />
+        <SpecialDish />
+        <Menu />
+        <BackToTop />
+        <Preloader />
+        <Testimonial />
+        <Reservation />
+        <FeaturesSection />
+        <EventSection />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/basket",
+    element: <Basket />,
+  },
+  {
+    path: "/order",
+    element: <PlaceOrder />,
+  },
+]);
 
 export default router;

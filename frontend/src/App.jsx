@@ -1,12 +1,11 @@
-// App.jsx
 import React, { useState } from 'react';
-import TopBar from './components/Topbar/TopBar.jsx';
-import Header from './components/Header/Header.jsx';
-import Footer from './components/Footer/Footer.jsx';
-import BackToTop from './components/BackToTop/BackToTop.jsx';
-import Preloader from './components/common/Preloader.jsx';
-import SignInPopup from './components/SignInPopup/SignInPopup.jsx';
-import RouterConfig from './routers/router.jsx';
+import TopBar from './components/Topbar/TopBar';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import BackToTop from './components/BackToTop/BackToTop';
+import Preloader from './components/common/Preloader';
+import SignInPopup from './components/SignInPopup/SignInPopup';
+import RouterConfig from './routers/router';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -15,7 +14,7 @@ const App = () => {
     <>
       {showLogin && <SignInPopup setShowLogin={setShowLogin} />}
       <div className="app">
-        <TopBar />
+        <TopBar /> {/* TopBar should be outside the Router */}
         <Header setShowLogin={setShowLogin} />
         <RouterConfig />
       </div>
