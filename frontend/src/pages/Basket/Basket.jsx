@@ -2,33 +2,27 @@ import React, { useContext, useState } from 'react';
 import './Basket.css';
 import { StoreContext } from '../../context/StoreContext';
 import { FaTrash } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
 
 const Basket = () => {
   const { basketItems, food_list, removeFromBasket } = useContext(StoreContext);
-  const navigate = useNavigate();
   const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Calculate subtotal
   const subtotal = food_list.reduce((acc, item) => {
     return acc + (basketItems[item._id] || 0) * item.price;
   }, 0);
 
-  const deliveryFee = 2; // Fixed delivery fee
+  const deliveryFee = 2;
   const total = subtotal - discount + deliveryFee;
 
-  // Handle promo code submission
   const handlePromoCodeSubmit = () => {
     if (promoCode === 'SAVE10') {
-      setDiscount(10); // Apply discount
+      setDiscount(10);
       setErrorMessage('');
     } else {
       setErrorMessage('Invalid promo code');
       setDiscount(0);
-
-      // Hide error message after 3 seconds
       setTimeout(() => {
         setErrorMessage('');
       }, 3000);
@@ -90,20 +84,20 @@ const Basket = () => {
               <b>Rs {total}</b>
             </div>
           </div>
-          <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
+          <button onClick={() => window.open('/order', '_blank')}>
+            PROCEED TO CHECKOUT
+          </button>
         </div>
         <div className="basket-promocode">
-          <div>
-            <p>If you have a promo code, enter it here</p>
-            <div className="basket-promocode-input">
-              <input
-                type="text"
-                placeholder="Promo Code"
-                value={promoCode}
-                onChange={(e) => setPromoCode(e.target.value)}
-              />
-              <button onClick={handlePromoCodeSubmit}>Submit</button>
-            </div>
+          <p>If you have a promo code, enter it here</p>
+          <div className="basket-promocode-input">
+            <input
+              type="text"
+              placeholder="Promo Code"
+              value={promoCode}
+              onChange={(e) => setPromoCode(e.target.value)}
+            />
+            <button onClick={handlePromoCodeSubmit}>Submit</button>
           </div>
         </div>
       </div>

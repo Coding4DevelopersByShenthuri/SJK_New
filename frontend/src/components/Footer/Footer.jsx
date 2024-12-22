@@ -27,7 +27,7 @@ const Footer = () => {
             <form action="" className="input-wrapper">
               <div className="icon-wrapper">
                 <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
-                <input type="email" name="email_address" placeholder="Your email" autocomplete="off" className="input-field" />
+                <input type="email" name="email_address" placeholder="Your email" autoComplete="off" className="input-field" />
               </div>
               <button type="submit" className="btn btn-secondary">
                 <span className="text text-1">Subscribe</span>

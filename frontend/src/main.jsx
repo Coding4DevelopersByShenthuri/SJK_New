@@ -5,7 +5,6 @@ import App from './App.jsx';
 import { BrowserRouter as Router } from 'react-router-dom';
 import StoreContextProvider from './context/StoreContext.jsx';
 
-// Use createRoot directly
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Router>
     <StoreContextProvider>
@@ -13,4 +12,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </StoreContextProvider>
   </Router>
 );
+
 

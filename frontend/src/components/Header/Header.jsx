@@ -44,6 +44,10 @@ const Header = () => {
     window.location.reload();
   };
 
+  const handleBasketClick = () => {
+    window.open('/basket', '_blank'); // Open in a new tab
+  };
+
   return (
     <>
       <header

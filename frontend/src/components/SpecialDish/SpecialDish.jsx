@@ -31,21 +31,21 @@ const SpecialDish = () => {
 
           <p className="section-subtitle label-2">Special Dish</p>
 
-          <h2 className="headline-1 section-title">Lobster Tortellini</h2>
+          <h2 className="headline-1 section-title">BBQ Grilled Chicken</h2>
 
           <p className="section-text">
-            Lobster tortellini is a culinary masterpiece that combines the rich,
-            succulent flavors of fresh lobster with the delicate texture of
-            handmade pasta. Each tortellini is carefully filled with a savory
-            mixture of tender lobster meat, ricotta cheese, and a blend of herbs
-            and spices, creating a luxurious and flavorful filling. The pasta
-            itself is thin and tender, providing the perfect vessel for the rich,
-            buttery lobster filling.
+          BBQ Grilled Chicken is a deliciously smoky and flavorful dish that's 
+          perfect for outdoor gatherings or a cozy meal at home. Marinated in a 
+          blend of spices, herbs, and BBQ sauce, the chicken is grilled to perfection, 
+          creating a crispy outer layer while keeping the inside tender and juicy. 
+          The smoky aroma from the grill enhances the savory taste, making it a crowd
+          favorite. Served with sides like coleslaw or roasted vegetables, BBQ Grilled 
+          Chicken is a satisfying meal that's both simple to make and full of bold flavors.
           </p>
 
           <div className="wrapper">
-            <del className="del body-3">$40.00</del>
-            <span className="span body-1">$20.00</span>
+            <del className="del body-3">Rs 2000</del>
+            <span className="span body-1">Rs 1500</span>
           </div>
 
           <a href="#" className="btn btn-primary">
