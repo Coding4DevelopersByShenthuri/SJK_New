@@ -1,10 +1,13 @@
+// Basket.jsx
 import React, { useContext, useState } from 'react';
 import './Basket.css';
 import { StoreContext } from '../../context/StoreContext';
 import { FaTrash } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Basket = () => {
   const { basketItems, food_list, removeFromBasket } = useContext(StoreContext);
+  const navigate = useNavigate();
   const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
@@ -84,9 +87,7 @@ const Basket = () => {
               <b>Rs {total}</b>
             </div>
           </div>
-          <button onClick={() => window.open('/order', '_blank')}>
-            PROCEED TO CHECKOUT
-          </button>
+          <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
         </div>
         <div className="basket-promocode">
           <p>If you have a promo code, enter it here</p>
