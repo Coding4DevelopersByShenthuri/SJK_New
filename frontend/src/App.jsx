@@ -6,7 +6,7 @@ import Footer from './components/Footer/Footer.jsx';
 import BackToTop from './components/BackToTop/BackToTop.jsx';
 import Preloader from './components/common/Preloader.jsx';
 import SignInPopup from './components/SignInPopup/SignInPopup.jsx';
-import RouterConfig from './Router/Router.jsx';
+import RouterConfig from './routers/router.jsx';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
