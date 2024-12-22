@@ -3,61 +3,68 @@ import { food_list } from '../assets/assets.js';
 
 export const StoreContext = createContext(null);
 
-const StoreContextProvider = (props) => {
-    // Retrieve basket items from localStorage if available, otherwise set to an empty object
-    const initialBasketItems = JSON.parse(localStorage.getItem('basketItems')) || {};
+const StoreContextProvider = ({ children }) => {
+    // Retrieve basket items from localStorage, ensuring valid data
+    const initialBasketItems = (() => {
+        const storedItems = JSON.parse(localStorage.getItem('basketItems')) || {};
+        const validIds = food_list.map((item) => String(item._id));
+        return Object.keys(storedItems).reduce((acc, key) => {
+            if (validIds.includes(key)) {
+                acc[key] = storedItems[key];
+            }
+            return acc;
+        }, {});
+    })();
+
     const [basketItems, setBasketItems] = useState(initialBasketItems);
+
+    // Sync basketItems to localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('basketItems', JSON.stringify(basketItems));
+    }, [basketItems]);
 
     // Add item to the basket
     const addToBasket = (itemId) => {
-        setBasketItems((prev) => {
-            const updatedBasket = { ...prev };
-            updatedBasket[itemId] = updatedBasket[itemId] ? updatedBasket[itemId] + 1 : 1;
-            localStorage.setItem('basketItems', JSON.stringify(updatedBasket)); // Save to localStorage
-            return updatedBasket;
-        });
+        const id = String(itemId); // Ensure itemId is a string
+        setBasketItems((prev) => ({
+            ...prev,
+            [id]: (prev[id] || 0) + 1
+        }));
     };
 
     // Remove item from the basket or reduce its quantity
     const removeFromBasket = (itemId) => {
+        const id = String(itemId); // Ensure itemId is a string
         setBasketItems((prev) => {
             const updatedBasket = { ...prev };
-            if (updatedBasket[itemId] > 1) {
-                updatedBasket[itemId] -= 1; // Reduce the quantity if more than 1
+            if (updatedBasket[id] > 1) {
+                updatedBasket[id] -= 1; // Decrease quantity
             } else {
-                delete updatedBasket[itemId]; // Remove item if quantity is 1 or less
+                delete updatedBasket[id]; // Remove item
             }
-            localStorage.setItem('basketItems', JSON.stringify(updatedBasket)); // Save to localStorage
             return updatedBasket;
         });
     };
 
     // Calculate total amount in the basket
     const getTotalBasketAmount = () => {
-        let totalAmount = 0;
-        for (const itemId in basketItems) {
-            if (basketItems[itemId] > 0) {
-                const itemInfo = food_list.find((product) => product._id === itemId);
-                if (itemInfo) {
-                    totalAmount += itemInfo.price * basketItems[itemId];
-                }
-            }
-        }
-        return totalAmount;
+        return Object.entries(basketItems).reduce((total, [itemId, quantity]) => {
+            const itemInfo = food_list.find((product) => String(product._id) === itemId);
+            return itemInfo ? total + itemInfo.price * quantity : total;
+        }, 0);
     };
 
     const contextValue = {
         food_list,
         basketItems,
-        setBasketItems,
         addToBasket,
         removeFromBasket,
-        getTotalBasketAmount
+        getTotalBasketAmount,
     };
 
     return (
         <StoreContext.Provider value={contextValue}>
-            {props.children}
+            {children}
         </StoreContext.Provider>
     );
 };
