@@ -1,6 +1,5 @@
-// Basket.jsx
 import React, { useContext, useState } from 'react';
-import './Basket.css';
+import '../Basket/Basket.css';
 import { StoreContext } from '../../context/StoreContext';
 import { FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
