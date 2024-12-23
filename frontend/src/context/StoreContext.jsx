@@ -46,6 +46,20 @@ const StoreContextProvider = ({ children }) => {
         });
     };
 
+    // Update basket item quantity
+    const updateBasketItem = (itemId, quantity) => {
+        const id = String(itemId); // Ensure itemId is a string
+        setBasketItems((prev) => {
+            const updatedBasket = { ...prev };
+            if (quantity > 0) {
+                updatedBasket[id] = quantity; // Set new quantity
+            } else {
+                delete updatedBasket[id]; // Remove item if quantity is zero
+            }
+            return updatedBasket;
+        });
+    };
+
     // Calculate total amount in the basket
     const getTotalBasketAmount = () => {
         return Object.entries(basketItems).reduce((total, [itemId, quantity]) => {
@@ -59,6 +73,7 @@ const StoreContextProvider = ({ children }) => {
         basketItems,
         addToBasket,
         removeFromBasket,
+        updateBasketItem, // Added this function
         getTotalBasketAmount,
     };
 

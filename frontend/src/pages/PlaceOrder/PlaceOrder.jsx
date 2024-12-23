@@ -7,7 +7,7 @@ const PlaceOrder = () => {
   const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
   const [error, setError] = useState(''); // To show error message
-  const deliveryFee = 2; // Fixed delivery fee
+  const deliveryFee = 250; // Fixed delivery fee
 
   // Get the subtotal from the context (total basket amount)
   const subtotal = getTotalBasketAmount();

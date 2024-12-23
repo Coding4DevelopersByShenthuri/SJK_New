@@ -5,19 +5,21 @@ import { FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const Basket = () => {
-  const { basketItems, food_list, removeFromBasket } = useContext(StoreContext);
+  const { basketItems, food_list, removeFromBasket, updateBasketItem } = useContext(StoreContext);
   const navigate = useNavigate();
   const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Calculate subtotal
   const subtotal = food_list.reduce((acc, item) => {
     return acc + (basketItems[item._id] || 0) * item.price;
   }, 0);
 
-  const deliveryFee = 2;
+  const deliveryFee = 250;
   const total = subtotal - discount + deliveryFee;
 
+  // Handle promo code submission
   const handlePromoCodeSubmit = () => {
     if (promoCode === 'SAVE10') {
       setDiscount(10);
@@ -31,11 +33,26 @@ const Basket = () => {
     }
   };
 
+  // Handle quantity changes
+  const handleQuantityChange = (itemId, change) => {
+    const currentQuantity = basketItems[itemId] || 0;
+    const newQuantity = currentQuantity + change;
+
+    if (newQuantity >= 0) {
+      if (typeof updateBasketItem === 'function') {
+        updateBasketItem(itemId, newQuantity);
+      } else {
+        console.error('updateBasketItem is not defined or not a function');
+      }
+    }
+  };
+
   return (
     <div className="basket">
       <h1 className="basket-heading">My Basket</h1>
       <p className="basket-aesthetic">"Every item here tells a story, crafted just for you."</p>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
+
       <div className="basket-items">
         <div className="basket-items-title">
           <p>Item</p>
@@ -46,6 +63,7 @@ const Basket = () => {
           <p>Remove</p>
         </div>
         <hr />
+
         {food_list.map((item) => {
           if (basketItems[item._id] > 0) {
             return (
@@ -53,7 +71,11 @@ const Basket = () => {
                 <img src={item.image} alt={item.name} />
                 <p>{item.name}</p>
                 <p>Rs {item.price}</p>
-                <p>{basketItems[item._id]}</p>
+                <div className="quantity-controls">
+                  <button onClick={() => handleQuantityChange(item._id, -1)}>-</button>
+                  <p>{basketItems[item._id]}</p>
+                  <button onClick={() => handleQuantityChange(item._id, 1)}>+</button>
+                </div>
                 <p>Rs {item.price * basketItems[item._id]}</p>
                 <button onClick={() => removeFromBasket(item._id)}>
                   <FaTrash />
@@ -64,6 +86,7 @@ const Basket = () => {
           return null;
         })}
       </div>
+
       <div className="basket-bottom">
         <div className="basket-total">
           <h2>Basket Totals</h2>
@@ -90,6 +113,7 @@ const Basket = () => {
           </div>
           <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
         </div>
+
         <div className="basket-promocode">
           <p>If you have a promo code, enter it here</p>
           <div className="basket-promocode-input">
