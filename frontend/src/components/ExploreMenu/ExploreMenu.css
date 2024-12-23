@@ -6,15 +6,15 @@
 }
 
 .explore-menu h1 {
-    color: #f5ecec;
+    color: #facf8f;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 500;
-    padding: 10px;
+    padding: 50px;
 }
 
 .explore-menu-text {
     max-width: 100%;
-    color: #c8c1c1; /* Fixed incorrect property */
+    color: #d1c3c3; /* Fixed incorrect property */
     font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-top: 40px;
