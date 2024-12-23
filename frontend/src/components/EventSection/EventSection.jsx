@@ -52,7 +52,7 @@ const EventSection = () => {
 
         </ul>
 
-        <a href="#" className="btn btn-primary">
+        <a href="/blog" className="btn btn-primary">
           <span className="text text-1">View Our Blog</span>
           <span className="text text-2" aria-hidden="true">View Our Blog</span>
         </a>

@@ -13,6 +13,7 @@ import FeaturesSection from "../components/FeaturesSection/FeaturesSection";
 import EventSection from "../components/EventSection/EventSection";
 import Basket from "../pages/Basket/Basket";
 import PlaceOrder from "../pages/PlaceOrder/PlaceOrder";
+import Blog from "../pages/Blog/Blog";
 import AllMenu from "../pages/AllMenu/AllMenu";
 import Header from "../components/Header/Header";
 import TopBar from "../components/Topbar/TopBar";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/all-menu",
     element: <AllMenu />
+  },
+  {
+    path: "/blog",
+    element: <Blog />
   },
 ]);
 

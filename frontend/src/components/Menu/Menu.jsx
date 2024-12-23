@@ -108,7 +108,7 @@ const Menu = () => {
           <span className="span">10:30 pm</span>
         </p>
 
-        <a href="#menu" className="btn btn-primary">
+        <a href="/all-menu" className="btn btn-primary">
           <span className="text text-1">View All Menu</span>
           <span className="text text-2" aria-hidden="true">
             View All Menu

@@ -48,7 +48,7 @@ const SpecialDish = () => {
             <span className="span body-1">Rs 1500</span>
           </div>
 
-          <a href="#" className="btn btn-primary">
+          <a href="/all-menu" className="btn btn-primary">
             <span className="text text-1">View All Menu</span>
             <span className="text text-2" aria-hidden="true">
               View All Menu
