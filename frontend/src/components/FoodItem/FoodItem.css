@@ -58,6 +58,7 @@
     gap: 10px;
     padding: 6px;
     border-radius: 50px;
+    color: black;
     background-color: rgb(160, 155, 155);
 }
 .food-item-counter img{
