@@ -33,6 +33,8 @@ const Basket = () => {
 
   return (
     <div className="basket">
+      <h1 className="basket-heading">My Basket</h1>
+      <p className="basket-aesthetic">"Every item here tells a story, crafted just for you."</p>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div className="basket-items">
         <div className="basket-items-title">

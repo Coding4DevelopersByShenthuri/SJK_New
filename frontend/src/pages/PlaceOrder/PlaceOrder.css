@@ -13,6 +13,8 @@
 .place-order-right {
     width: 100%;
     max-width: 500px;
+    padding-left: 25px;
+    padding-right: 25px;
     /* Allow a maximum width to avoid very wide forms */
     margin-bottom: 30px;
     /* Add bottom margin for better spacing */
@@ -20,8 +22,12 @@
 
 /* Titles */
 .place-order-left .title {
-    font-size: 30px;
+    font-size: 40px;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 600;
+    color: #facf8f;
+    margin-top: 20px;
     margin-bottom: 50px;
 }
 
@@ -39,7 +45,7 @@
 
 .place-order-left .multi-fields {
     display: flex;
-    gap: 10px;
+    gap: 15px;
 }
 
 .basket-total button {
@@ -53,12 +59,15 @@
 .place-order-right {
     width: 100%;
     max-width: 500px;
+    margin-top: 90px;
+    padding-left: 25px;
 }
 
 .basket-total {
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /* Promo Code Input and Button */
@@ -79,7 +88,7 @@
 }
 
 .apply-button:disabled {
-    background-color: #a7a1a1;
+    background-color: #6a6363;
     cursor: not-allowed;
     width: 150px;
     font-size: 14px;
