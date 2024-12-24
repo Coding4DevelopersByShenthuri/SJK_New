@@ -4,7 +4,7 @@ import menu_1 from './menu_1.jpg'
 import menu_2 from './menu_2.jpg'
 import menu_3 from './menu_3.jpeg'
 import menu_4 from './menu_4.jpg'
-import menu_5 from './menu_5.png'
+import menu_5 from './menu_5.jpeg'
 import menu_6 from './menu_6.png'
 import menu_7 from './menu_7.png'
 import menu_8 from './menu_8.png'
@@ -25,10 +25,10 @@ import food_13 from './food_13.jpg'
 import food_14 from './food_14.webp'
 import food_15 from './food_15.jpeg'
 import food_16 from './food_16.jpg'
-import food_17 from './food_17.png'
-import food_18 from './food_18.png'
-import food_19 from './food_19.png'
-import food_20 from './food_20.png'
+import food_17 from './food_17.jpeg'
+import food_18 from './food_18.jpg'
+import food_19 from './food_19.jpg'
+import food_20 from './food_20.jpg'
 import food_21 from './food_21.jpg'
 import food_22 from './food_22.webp'
 import food_23 from './food_23.jpg'
@@ -120,7 +120,7 @@ export const menu_list = [
         menu_image: menu_4
     },
     {
-        menu_name: "Cake",
+        menu_name: "Fried Rice",
         menu_image: menu_5
     },
     {
@@ -254,32 +254,38 @@ export const food_list = [
         category: "Soups"
     }, {
         _id: "17",
-        name: "Cup Cake",
+        name: "Veg Fried Rice",
         image: food_17,
-        price: 14,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Cake"
+        price: {
+            normal: 400,
+            full: 650
+        },
+        description: "Veg",
+        category: "Fried Rice"
     }, {
         _id: "18",
-        name: "Vegan Cake",
+        name: "Paneer Rice",
         image: food_18,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Cake"
+        price: {
+            normal: 500,
+            full: 900
+        },
+        description: "Veg",
+        category: "Fried Rice"
     }, {
         _id: "19",
         name: "Butterscotch Cake",
         image: food_19,
         price: 20,
         description: "Food provides essential nutrients for overall health and well-being",
-        category: "Cake"
+        category: "Fried Rice"
     }, {
         _id: "20",
         name: "Sliced Cake",
         image: food_20,
         price: 15,
         description: "Food provides essential nutrients for overall health and well-being",
-        category: "Cake"
+        category: "Fried Rice"
     }, {
         _id: "21",
         name: "Egg Meal",
