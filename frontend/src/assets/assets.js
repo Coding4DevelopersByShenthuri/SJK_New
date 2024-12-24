@@ -68,6 +68,7 @@ import food_56 from './food_56.jpg'
 import food_57 from './food_57.jpeg'
 import food_58 from './food_58.webp'
 import food_59 from './food_59.jpg'
+import food_60 from './food_60.jpeg'
 
 
 import add_icon_white from './add_icon_white.png'
@@ -256,35 +257,29 @@ export const food_list = [
         _id: "17",
         name: "Veg Fried Rice",
         image: food_17,
-        price: {
-            normal: 400,
-            full: 650
-        },
+        price: 650,
         description: "Veg",
         category: "Fried Rice"
     }, {
         _id: "18",
-        name: "Paneer Rice",
+        name: "Paneer Fried Rice",
         image: food_18,
-        price: {
-            normal: 500,
-            full: 900
-        },
+        price: 1050,
         description: "Veg",
         category: "Fried Rice"
     }, {
         _id: "19",
-        name: "Butterscotch Cake",
+        name: "Egg Fried Rice",
         image: food_19,
-        price: 20,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 750,
+        description: "Non-Veg",
         category: "Fried Rice"
     }, {
         _id: "20",
-        name: "Sliced Cake",
+        name: "Chicken Fried Rice",
         image: food_20,
         price: 15,
-        description: "Food provides essential nutrients for overall health and well-being",
+        description: "Non-Veg",
         category: "Fried Rice"
     }, {
         _id: "21",
@@ -561,5 +556,12 @@ export const food_list = [
         price: 800,
         description: "CHEF SPECIAL SOUP, Non-Veg",
         category: "Soups"
+    }, {
+        _id: "60",
+        name: "Beef Fried Rice",
+        image: food_60,
+        price: 950,
+        description: "Non-Veg",
+        category: "Fried Rice"
     }
 ]
