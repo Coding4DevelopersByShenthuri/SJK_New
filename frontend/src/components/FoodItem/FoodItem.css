@@ -36,6 +36,7 @@
     color: tomato;
     font-size: 25px;
     font-weight: 500;
+    cursor: pointer;
     margin: 10px 0px;
 }
 .food-item-img-container{
@@ -63,4 +64,13 @@
 }
 .food-item-counter img{
     width: 30px;
+}
+.selected-price {
+    font-weight: bold;
+    color: #28a745;
+    cursor: pointer;
+}
+.food-item-price p {
+    cursor: pointer;
+    margin: 5px 0;
 }
