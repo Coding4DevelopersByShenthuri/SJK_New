@@ -6,8 +6,9 @@ import menu_3 from './menu_3.jpeg'
 import menu_4 from './menu_4.jpg'
 import menu_5 from './menu_5.jpeg'
 import menu_6 from './menu_6.png'
-import menu_7 from './menu_7.png'
+import menu_7 from './menu_7.jpg'
 import menu_8 from './menu_8.png'
+import menu_9 from './menu_9.jpg'
 
 import food_1 from './food_1.webp'
 import food_2 from './food_2.jpeg'
@@ -33,10 +34,10 @@ import food_21 from './food_21.jpg'
 import food_22 from './food_22.webp'
 import food_23 from './food_23.jpg'
 import food_24 from './food_24.jpeg'
-import food_25 from './food_25.png'
-import food_26 from './food_26.png'
-import food_27 from './food_27.png'
-import food_28 from './food_28.png'
+import food_25 from './food_25.jpg'
+import food_26 from './food_26.jpeg'
+import food_27 from './food_27.jpg'
+import food_28 from './food_28.jpg'
 import food_29 from './food_29.png'
 import food_30 from './food_30.png'
 import food_31 from './food_31.png'
@@ -69,7 +70,21 @@ import food_57 from './food_57.jpeg'
 import food_58 from './food_58.webp'
 import food_59 from './food_59.jpg'
 import food_60 from './food_60.jpeg'
-
+import food_61 from './food_61.webp'
+import food_62 from './food_62.webp'
+import food_63 from './food_63.jpeg'
+import food_64 from './food_64.webp'
+import food_65 from './food_65.jpg'
+import food_66 from './food_66.jpg'
+import food_67 from './food_67.jpg'
+import food_68 from './food_68.jpg'
+import food_69 from './food_69.webp'
+import food_70 from './food_70.jpeg'
+import food_71 from './food_71.jpg'
+import food_72 from './food_72.jpg'
+import food_73 from './food_73.jpg'
+import food_74 from './food_74.jpg'
+import food_75 from './food_75.jpeg'
 
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
@@ -129,12 +144,16 @@ export const menu_list = [
         menu_image: menu_6
     },
     {
-        menu_name: "Pasta",
+        menu_name: "Nasi Goreng",
         menu_image: menu_7
     },
     {
         menu_name: "Noodles",
         menu_image: menu_8
+    },
+    {
+        menu_name: "Mongolian",
+        menu_image: menu_9
     }]
 
 export const food_list = [
@@ -312,60 +331,60 @@ export const food_list = [
     },
     {
         _id: "25",
-        name: "Cheese Pasta",
+        name: "Chicken Nasi Goreng",
         image: food_25,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pasta"
+        price: 950,
+        description: "Non-Veg",
+        category: "Nasi Goreng"
     },
     {
         _id: "26",
-        name: "Tomato Pasta",
+        name: "Beef Nasi Goreng",
         image: food_26,
-        price: 18,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pasta"
+        price: 1050,
+        description: "Non-Veg",
+        category: "Nasi Goreng"
     }, {
         _id: "27",
-        name: "Creamy Pasta",
+        name: "Seafood Nasi Goreng",
         image: food_27,
-        price: 16,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pasta"
+        price: 1100,
+        description: "Non-Veg",
+        category: "Nasi Goreng"
     }, {
         _id: "28",
-        name: "Chicken Pasta",
+        name: "Mix Nasi Goreng",
         image: food_28,
-        price: 24,
-        description: "Food provides essential nutrients for overall health and well-being",
-        category: "Pasta"
+        price: 1300,
+        description: "Non-Veg",
+        category: "Nasi Goreng"
     }, {
         _id: "29",
-        name: "Buttter Noodles",
+        name: "Egg Noodles",
         image: food_29,
-        price: 14,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 500,
+        description: "Non-Veg",
         category: "Noodles"
     }, {
         _id: "30",
         name: "Veg Noodles",
         image: food_30,
-        price: 12,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 400,
+        description: "Veg",
         category: "Noodles"
     }, {
         _id: "31",
-        name: "Somen Noodles",
+        name: "Cuttlefish Noodles",
         image: food_31,
-        price: 20,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 800,
+        description: "Non-Veg",
         category: "Noodles"
     }, {
         _id: "32",
-        name: "Cooked Noodles",
+        name: "Chicken Noodles",
         image: food_32,
-        price: 15,
-        description: "Food provides essential nutrients for overall health and well-being",
+        price: 700,
+        description: "Non-Veg",
         category: "Noodles"
     }, {
         _id: "33",
@@ -560,8 +579,113 @@ export const food_list = [
         _id: "60",
         name: "Beef Fried Rice",
         image: food_60,
-        price: 950,
+        price: 1050,
         description: "Non-Veg",
         category: "Fried Rice"
+    }, {
+        _id: "61",
+        name: "Seafood Fried Rice",
+        image: food_61,
+        price: 1200,
+        description: "Non-Veg",
+        category: "Fried Rice"
+    }, {
+        _id: "62",
+        name: "Mutton Fried Rice",
+        image: food_62,
+        price: 1300,
+        description: "Non-Veg",
+        category: "Fried Rice"
+    }, {
+        _id: "63",
+        name: "Pork Fried Rice",
+        image: food_63,
+        price: 1100,
+        description: "Non-Veg",
+        category: "Fried Rice"
+    }, {
+        _id: "64",
+        name: "Mixed Fried Rice",
+        image: food_64,
+        price: 1300,
+        description: "Non-Veg",
+        category: "Fried Rice"
+    }, {
+        _id: "65",
+        name: "SJK Special Fried Rice",
+        image: food_65,
+        price: 1300,
+        description: "Non-Veg",
+        category: "Fried Rice"
+    }, {
+        _id: "66",
+        name: "Beef Noodles",
+        image: food_66,
+        price: 800,
+        description: "Non-Veg",
+        category: "Noodles"
+    }, {
+        _id: "67",
+        name: "Mutton Noodles",
+        image: food_67,
+        price: 900,
+        description: "Non-Veg",
+        category: "Noodles"
+    }, {
+        _id: "68",
+        name: "Prawn Noodles",
+        image: food_68,
+        price: 800,
+        description: "Non-Veg",
+        category: "Noodles"
+    }, {
+        _id: "69",
+        name: "Mixed Noodles",
+        image: food_69,
+        price: 950,
+        description: "Non-Veg",
+        category: "Noodles"
+    }, {
+        _id: "70",
+        name: "Pork Noodles",
+        image: food_70,
+        price: 800,
+        description: "Non-Veg",
+        category: "Noodles"
+    }, {
+        _id: "71",
+        name: "SJK Special Noodles",
+        image: food_71,
+        price: 1500,
+        description: "Non-Veg",
+        category: "Noodles"
+    }, {
+        _id: "72",
+        name: "Chicken Mongolian",
+        image: food_72,
+        price: 1050,
+        description: "Non-Veg",
+        category: "Mongolian"
+    }, {
+        _id: "73",
+        name: "Beef Mongolian",
+        image: food_73,
+        price: 1100,
+        description: "Non-Veg",
+        category: "Mongolian"
+    }, {
+        _id: "74",
+        name: "Seafood Mongolian",
+        image: food_74,
+        price: 1150,
+        description: "Non-Veg",
+        category: "Mongolian"
+    }, {
+        _id: "75",
+        name: "Mixed Mongolian",
+        image: food_75,
+        price: 1300,
+        description: "Non-Veg",
+        category: "Mongolian"
     }
 ]
