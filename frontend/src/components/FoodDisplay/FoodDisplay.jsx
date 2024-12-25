@@ -35,7 +35,11 @@ const FoodDisplay = ({ category = 'All' }) => {
                         id={item._id}
                         name={item.name}
                         description={item.description}
-                        price={item.price}
+                        price={{
+                            price: item.price? item.price : null,
+                            normal: item.price?.normal || null,
+                            full: item.price?.full || null,
+                        }}
                         image={item.image}
                     />
                 ))}
