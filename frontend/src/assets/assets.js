@@ -276,28 +276,28 @@ export const food_list = [
         _id: "17",
         name: "Veg Fried Rice",
         image: food_17,
-        price: 650,
+        price: { normal: 400, full: 650 },
         description: "Veg",
         category: "Fried Rice"
     }, {
         _id: "18",
         name: "Paneer Fried Rice",
         image: food_18,
-        price: 1050,
+        price: { normal: 700, full: 1050 },
         description: "Veg",
         category: "Fried Rice"
     }, {
         _id: "19",
         name: "Egg Fried Rice",
         image: food_19,
-        price: 750,
+        price: { normal: 500, full: 750 },
         description: "Non-Veg",
         category: "Fried Rice"
     }, {
         _id: "20",
         name: "Chicken Fried Rice",
         image: food_20,
-        price: 15,
+        price: { normal: 600, full: 950 },
         description: "Non-Veg",
         category: "Fried Rice"
     }, {
@@ -579,35 +579,35 @@ export const food_list = [
         _id: "60",
         name: "Beef Fried Rice",
         image: food_60,
-        price: 1050,
+        price: { normal: 750, full: 1050 },
         description: "Non-Veg",
         category: "Fried Rice"
     }, {
         _id: "61",
         name: "Seafood Fried Rice",
         image: food_61,
-        price: 1200,
+        price: { normal: 850, full: 1200 },
         description: "Non-Veg",
         category: "Fried Rice"
     }, {
         _id: "62",
         name: "Mutton Fried Rice",
         image: food_62,
-        price: 1300,
+        price: { normal: 900, full: 1300 },
         description: "Non-Veg",
         category: "Fried Rice"
     }, {
         _id: "63",
         name: "Pork Fried Rice",
         image: food_63,
-        price: 1100,
+        price: { normal: 800, full: 1100 },
         description: "Non-Veg",
         category: "Fried Rice"
     }, {
         _id: "64",
         name: "Mixed Fried Rice",
         image: food_64,
-        price: 1300,
+        price: { normal: 900, full: 1300 },
         description: "Non-Veg",
         category: "Fried Rice"
     }, {
