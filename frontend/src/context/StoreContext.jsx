@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useMemo } from "react";
 import { food_list } from '../assets/assets.js';
 
 export const StoreContext = createContext(null);
@@ -7,7 +7,7 @@ const StoreContextProvider = ({ children }) => {
     // Retrieve basket items from localStorage, ensuring valid data
     const initialBasketItems = (() => {
         const storedItems = JSON.parse(localStorage.getItem('basketItems')) || {};
-        const validIds = food_list.map((item) => String(item._id));
+        const validIds = food_list?.map((item) => String(item._id)) || [];
         return Object.keys(storedItems).reduce((acc, key) => {
             if (validIds.includes(key)) {
                 acc[key] = storedItems[key];
@@ -60,20 +60,20 @@ const StoreContextProvider = ({ children }) => {
         });
     };
 
-    // Calculate total amount in the basket
-    const getTotalBasketAmount = () => {
+    // Calculate total amount in the basket with memoization
+    const getTotalBasketAmount = useMemo(() => {
         return Object.entries(basketItems).reduce((total, [itemId, quantity]) => {
             const itemInfo = food_list.find((product) => String(product._id) === itemId);
             return itemInfo ? total + itemInfo.price * quantity : total;
         }, 0);
-    };
+    }, [basketItems]);
 
     const contextValue = {
         food_list,
         basketItems,
         addToBasket,
         removeFromBasket,
-        updateBasketItem, // Added this function
+        updateBasketItem,
         getTotalBasketAmount,
     };
 

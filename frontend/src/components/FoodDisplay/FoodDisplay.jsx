@@ -12,11 +12,11 @@ const FoodDisplay = ({ category = 'All' }) => {
         ? food_list.filter((item) => category === 'All' || category === item.category)
         : [];
 
-    // Determine the displayed dishes
+    // Determine the displayed dishes (limit to first 10 or show all)
     const displayedFoodList = showAll ? filteredFoodList : filteredFoodList.slice(0, 10);
 
-    // No food items available
-    if (!filteredFoodList || filteredFoodList.length === 0) {
+    // Handle case where no food items are available
+    if (filteredFoodList.length === 0) {
         return (
             <div className='food-display' id='food-display'>
                 <h2>Top Dishes for You</h2>
@@ -35,11 +35,8 @@ const FoodDisplay = ({ category = 'All' }) => {
                         id={item._id}
                         name={item.name}
                         description={item.description}
-                        price={{
-                            price: item.price? item.price : null,
-                            normal: item.price?.normal || null,
-                            full: item.price?.full || null,
-                        }}
+                        // Handle price properly in case it's an object with quantity/type
+                        price={item.price && item.price.quantity ? `${item.price.quantity} ${item.price.type}` : item.price}
                         image={item.image}
                     />
                 ))}
