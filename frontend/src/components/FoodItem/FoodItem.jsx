@@ -15,7 +15,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
     const handleAddToBasket = () => {
         if (selectedPriceType) {
             const chosenPrice = price[selectedPriceType];
-            addToBasket(id, chosenPrice);
+            addToBasket(id, selectedPriceType, chosenPrice); // Pass selected price type and price
         } else {
             console.log('Please select a price option first.');
         }
@@ -35,11 +35,11 @@ const FoodItem = ({ id, name, price, description, image }) => {
                 ) : (
                     <div className='food-item-counter'>
                         <img
-                            onClick={() => removeFromBasket(id)}
+                            onClick={() => removeFromBasket(id, selectedPriceType)}
                             src={assets.remove_icon_red}
                             alt='Remove from basket'
                         />
-                        <p>{basketItems[id]}</p>
+                        <p>{basketItems[id]?.[selectedPriceType]?.quantity || 0}</p>
                         <img
                             onClick={handleAddToBasket}
                             src={assets.add_icon_green}

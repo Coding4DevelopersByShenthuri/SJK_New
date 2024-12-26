@@ -11,18 +11,15 @@ const Basket = () => {
   const [discount, setDiscount] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Helper function to get the correct price
-  const getItemPrice = (item) => {
-    if (item.price?.normal) {
-      return item.price.normal; // Use normal price if available
-    }
-    return typeof item.price === 'number' ? item.price : 0; // Fallback for other items
-  };
-
-  // Calculate subtotal
-  const subtotal = food_list.reduce((acc, item) => {
-    const price = getItemPrice(item);
-    return acc + (basketItems[item._id] || 0) * price;
+  // Calculate subtotal by iterating over basketItems
+  const subtotal = Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
+    return (
+      total +
+      Object.values(priceTypes).reduce(
+        (subtotal, { quantity, price }) => subtotal + quantity * price,
+        0
+      )
+    );
   }, 0);
 
   const deliveryFee = 250;
@@ -36,23 +33,17 @@ const Basket = () => {
     } else {
       setErrorMessage('Invalid promo code');
       setDiscount(0);
-      setTimeout(() => {
-        setErrorMessage('');
-      }, 3000);
+      setTimeout(() => setErrorMessage(''), 3000);
     }
   };
 
   // Handle quantity changes
-  const handleQuantityChange = (itemId, change) => {
-    const currentQuantity = basketItems[itemId] || 0;
+  const handleQuantityChange = (itemId, priceType, change) => {
+    const currentQuantity = basketItems[itemId]?.[priceType]?.quantity || 0;
     const newQuantity = currentQuantity + change;
 
     if (newQuantity >= 0) {
-      if (typeof updateBasketItem === 'function') {
-        updateBasketItem(itemId, newQuantity);
-      } else {
-        console.error('updateBasketItem is not defined or not a function');
-      }
+      updateBasketItem(itemId, priceType, newQuantity);
     }
   };
 
@@ -74,26 +65,25 @@ const Basket = () => {
         <hr />
 
         {food_list.map((item) => {
-          const itemPrice = getItemPrice(item);
-          if (basketItems[item._id] > 0) {
-            return (
-              <div key={item._id} className="basket-items-item">
-                <img src={item.image} alt={item.name} />
-                <p>{item.name}</p>
-                <p>Rs {itemPrice}</p>
-                <div className="quantity-controls">
-                  <button onClick={() => handleQuantityChange(item._id, -1)}>-</button>
-                  <p>{basketItems[item._id]}</p>
-                  <button onClick={() => handleQuantityChange(item._id, 1)}>+</button>
-                </div>
-                <p>Rs {itemPrice * basketItems[item._id]}</p>
-                <button onClick={() => removeFromBasket(item._id)}>
-                  <FaTrash />
-                </button>
+          const itemBasketDetails = basketItems[item._id];
+          if (!itemBasketDetails) return null;
+
+          return Object.entries(itemBasketDetails).map(([priceType, { quantity, price, normalPrice, fullPrice }]) => (
+            <div key={`${item._id}-${priceType}`} className="basket-items-item">
+              <img src={item.image} alt={item.name} />
+              <p>{item.name} ({priceType})</p>
+              <p>Rs {price}</p>
+              <div className="quantity-controls">
+                <button onClick={() => handleQuantityChange(item._id, priceType, -1)}>-</button>
+                <p>{quantity}</p>
+                <button onClick={() => handleQuantityChange(item._id, priceType, 1)}>+</button>
               </div>
-            );
-          }
-          return null;
+              <p>Rs {price * quantity}</p>
+              <button onClick={() => removeFromBasket(item._id, priceType)}>
+                <FaTrash />
+              </button>
+            </div>
+          ));
         })}
       </div>
 

@@ -23,38 +23,62 @@ const StoreContextProvider = ({ children }) => {
         localStorage.setItem('basketItems', JSON.stringify(basketItems));
     }, [basketItems]);
 
-    // Add item to the basket
-    const addToBasket = (itemId) => {
-        const id = String(itemId); // Ensure itemId is a string
-        setBasketItems((prev) => ({
-            ...prev,
-            [id]: (prev[id] || 0) + 1
-        }));
-    };
-
-    // Remove item from the basket or reduce its quantity
-    const removeFromBasket = (itemId) => {
+    // Add item to the basket with selected price type (normalPrice, fullPrice, etc.)
+    const addToBasket = (itemId, priceType, price) => {
         const id = String(itemId); // Ensure itemId is a string
         setBasketItems((prev) => {
             const updatedBasket = { ...prev };
-            if (updatedBasket[id] > 1) {
-                updatedBasket[id] -= 1; // Decrease quantity
-            } else {
-                delete updatedBasket[id]; // Remove item
+            if (!updatedBasket[id]) {
+                updatedBasket[id] = {}; // Initialize the item if not present
+            }
+            if (!updatedBasket[id][priceType]) {
+                updatedBasket[id][priceType] = {
+                    quantity: 0,
+                    price: price, // Add the selected price when the priceType is first added
+                };
+            }
+            updatedBasket[id][priceType].quantity += 1; // Increase quantity
+            return updatedBasket;
+        });
+    };
+
+    // Remove item from the basket or reduce its quantity
+    const removeFromBasket = (itemId, priceType) => {
+        const id = String(itemId); // Ensure itemId is a string
+        setBasketItems((prev) => {
+            const updatedBasket = { ...prev };
+            if (updatedBasket[id] && updatedBasket[id][priceType]) {
+                if (updatedBasket[id][priceType].quantity > 1) {
+                    updatedBasket[id][priceType].quantity -= 1; // Decrease quantity
+                } else {
+                    delete updatedBasket[id][priceType]; // Remove priceType
+                    if (Object.keys(updatedBasket[id]).length === 0) {
+                        delete updatedBasket[id]; // Remove item if no priceTypes left
+                    }
+                }
             }
             return updatedBasket;
         });
     };
 
     // Update basket item quantity
-    const updateBasketItem = (itemId, quantity) => {
+    const updateBasketItem = (itemId, priceType, quantity) => {
         const id = String(itemId); // Ensure itemId is a string
         setBasketItems((prev) => {
             const updatedBasket = { ...prev };
+            if (!updatedBasket[id]) {
+                updatedBasket[id] = {}; // Initialize the item if not present
+            }
             if (quantity > 0) {
-                updatedBasket[id] = quantity; // Set new quantity
+                updatedBasket[id][priceType] = {
+                    quantity,
+                    price: updatedBasket[id][priceType]?.price || 0,
+                };
             } else {
-                delete updatedBasket[id]; // Remove item if quantity is zero
+                delete updatedBasket[id][priceType];
+                if (Object.keys(updatedBasket[id]).length === 0) {
+                    delete updatedBasket[id];
+                }
             }
             return updatedBasket;
         });
@@ -62,12 +86,17 @@ const StoreContextProvider = ({ children }) => {
 
     // Calculate total amount in the basket with memoization
     const getTotalBasketAmount = useMemo(() => {
-        return Object.entries(basketItems).reduce((total, [itemId, quantity]) => {
-            const itemInfo = food_list.find((product) => String(product._id) === itemId);
-            return itemInfo ? total + itemInfo.price * quantity : total;
+        return Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
+            return (
+                total +
+                Object.values(priceTypes).reduce((subtotal, { quantity, price }) => {
+                    return subtotal + price * quantity;
+                }, 0)
+            );
         }, 0);
     }, [basketItems]);
 
+    // Context value
     const contextValue = {
         food_list,
         basketItems,
