@@ -37,12 +37,13 @@ const Basket = () => {
     }
   };
 
-  // Handle quantity changes
+  // Handle quantity changes (ensure the new quantity is valid)
   const handleQuantityChange = (itemId, priceType, change) => {
     const currentQuantity = basketItems[itemId]?.[priceType]?.quantity || 0;
     const newQuantity = currentQuantity + change;
 
     if (newQuantity >= 0) {
+      // Call updateBasketItem to update the quantity of the item in the basket
       updateBasketItem(itemId, priceType, newQuantity);
     }
   };
@@ -68,7 +69,7 @@ const Basket = () => {
           const itemBasketDetails = basketItems[item._id];
           if (!itemBasketDetails) return null;
 
-          return Object.entries(itemBasketDetails).map(([priceType, { quantity, price, normalPrice, fullPrice }]) => (
+          return Object.entries(itemBasketDetails).map(([priceType, { quantity, price }]) => (
             <div key={`${item._id}-${priceType}`} className="basket-items-item">
               <img src={item.image} alt={item.name} />
               <p>{item.name} ({priceType})</p>
