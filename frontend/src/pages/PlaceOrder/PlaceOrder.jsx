@@ -10,7 +10,7 @@ const PlaceOrder = () => {
   const deliveryFee = 250; // Fixed delivery fee
 
   // Get the subtotal from the context (total basket amount)
-  const subtotal = getTotalBasketAmount();
+  const subtotal = getTotalBasketAmount ? getTotalBasketAmount() : 0;
 
   // Calculate the total (subtotal - discount + delivery fee)
   const calculateTotal = () => {
@@ -32,6 +32,7 @@ const PlaceOrder = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     // Add form submission logic (e.g., API call, form validation, etc.)
+    alert('Form submitted! Proceeding to payment...');
   };
 
   return (

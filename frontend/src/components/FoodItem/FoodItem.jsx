@@ -27,15 +27,41 @@ const FoodItem = ({ id, name, price, description, image }) => {
         }
     };
 
+    const handleRemoveFromBasket = () => {
+        if (basketItems[id] && basketItems[id][selectedPriceType || 'single']) {
+            removeFromBasket(id, selectedPriceType || 'single');
+        }
+    };
+
     const getQuantity = (id, priceType) => {
-        return basketItems[id] && basketItems[id][priceType || 'single'] ? basketItems[id][priceType || 'single'].quantity : 0;
+        // Ensure priceType is handled properly for counting
+        return basketItems[id] && basketItems[id][priceType || 'single']
+            ? basketItems[id][priceType || 'single'].quantity
+            : 0;
+    };
+
+    // Increment the item count by 1
+    const handleIncrement = () => {
+        if (price?.normal || price?.full) {
+            const chosenPrice = price[selectedPriceType || 'normal'];
+            addToBasket(id, selectedPriceType || 'normal', chosenPrice);  // Increment by 1
+        } else if (price) {
+            addToBasket(id, 'single', price);  // Increment by 1 for single price items
+        }
+    };
+
+    // Decrement the item count by 1
+    const handleDecrement = () => {
+        if (basketItems[id] && basketItems[id][selectedPriceType || 'single']) {
+            removeFromBasket(id, selectedPriceType || 'single');  // Decrement by 1
+        }
     };
 
     return (
         <div className="food-item">
             <div className="food-item-img-container">
-                <img className="food-item-image" src={image} alt="" />
-                {!basketItems[id] || !basketItems[id][selectedPriceType || 'single'] ? (
+                <img className="food-item-image" src={image} alt={name} />
+                {(!basketItems[id] || !basketItems[id][selectedPriceType || 'single']) ? (
                     <img
                         className="add"
                         onClick={handleAddToBasket}
@@ -45,13 +71,14 @@ const FoodItem = ({ id, name, price, description, image }) => {
                 ) : (
                     <div className="food-item-counter">
                         <img
-                            onClick={() => removeFromBasket(id, selectedPriceType || 'single')}
+                            onClick={handleDecrement}
                             src={assets.remove_icon_red}
                             alt="Remove from basket"
                         />
+                        {/* Display the correct item count */}
                         <p>{getQuantity(id, selectedPriceType || 'single')}</p>
                         <img
-                            onClick={handleAddToBasket}
+                            onClick={handleIncrement}
                             src={assets.add_icon_green}
                             alt="Add more to basket"
                         />
