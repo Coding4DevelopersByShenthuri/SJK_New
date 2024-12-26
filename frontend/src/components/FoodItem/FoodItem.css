@@ -65,3 +65,12 @@
 .food-item-counter img{
     width: 30px;
 }
+.selected-price {
+    color: #28a745;
+    cursor: pointer;
+}
+
+.food-item-price p {
+    cursor: pointer;
+    margin: 5px 0;
+}

@@ -11,9 +11,18 @@ const Basket = () => {
   const [discount, setDiscount] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Helper function to get the correct price
+  const getItemPrice = (item) => {
+    if (item.price?.normal) {
+      return item.price.normal; // Use normal price if available
+    }
+    return typeof item.price === 'number' ? item.price : 0; // Fallback for other items
+  };
+
   // Calculate subtotal
   const subtotal = food_list.reduce((acc, item) => {
-    return acc + (basketItems[item._id] || 0) * item.price;
+    const price = getItemPrice(item);
+    return acc + (basketItems[item._id] || 0) * price;
   }, 0);
 
   const deliveryFee = 250;
@@ -65,18 +74,19 @@ const Basket = () => {
         <hr />
 
         {food_list.map((item) => {
+          const itemPrice = getItemPrice(item);
           if (basketItems[item._id] > 0) {
             return (
               <div key={item._id} className="basket-items-item">
                 <img src={item.image} alt={item.name} />
                 <p>{item.name}</p>
-                <p>Rs {item.price}</p>
+                <p>Rs {itemPrice}</p>
                 <div className="quantity-controls">
                   <button onClick={() => handleQuantityChange(item._id, -1)}>-</button>
                   <p>{basketItems[item._id]}</p>
                   <button onClick={() => handleQuantityChange(item._id, 1)}>+</button>
                 </div>
-                <p>Rs {item.price * basketItems[item._id]}</p>
+                <p>Rs {itemPrice * basketItems[item._id]}</p>
                 <button onClick={() => removeFromBasket(item._id)}>
                   <FaTrash />
                 </button>

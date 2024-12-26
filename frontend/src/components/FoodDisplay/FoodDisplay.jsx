@@ -29,27 +29,16 @@ const FoodDisplay = ({ category = 'All' }) => {
         <div className='food-display' id='food-display'>
             <h2>Top Dishes for You</h2>
             <div className='food-display-list'>
-                {displayedFoodList.map((item) => {
-                    let formattedPrice;
-
-                    // Handle cases where price is an object
-                    if (item.price && typeof item.price === 'object') {
-                        formattedPrice = `Normal: ${item.price.normal || 'N/A'}, Full: ${item.price.full || 'N/A'}`;
-                    } else {
-                        formattedPrice = item.price || 'N/A';
-                    }
-
-                    return (
-                        <FoodItem
-                            key={item._id}
-                            id={item._id}
-                            name={item.name}
-                            description={item.description}
-                            price={formattedPrice}
-                            image={item.image}
-                        />
-                    );
-                })}
+                {displayedFoodList.map((item) => (
+                    <FoodItem
+                        key={item._id}
+                        id={item._id}
+                        name={item.name}
+                        description={item.description}
+                        price={item.price}
+                        image={item.image}
+                    />
+                ))}
             </div>
             {filteredFoodList.length > 10 && (
                 <button
