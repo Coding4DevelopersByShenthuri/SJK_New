@@ -13,48 +13,54 @@ const FoodItem = ({ id, name, price, description, image }) => {
     };
 
     const handleAddToBasket = () => {
-        if (selectedPriceType) {
-            const chosenPrice = price[selectedPriceType];
-            addToBasket(id, selectedPriceType, chosenPrice); // Pass selected price type and price
+        if (price?.normal || price?.full) {
+            if (selectedPriceType) {
+                const chosenPrice = price[selectedPriceType];
+                addToBasket(id, selectedPriceType, chosenPrice);
+            } else {
+                console.log('Please select a price option first.');
+            }
+        } else if (price) {
+            addToBasket(id, 'single', price); // Add single price items
         } else {
-            console.log('Please select a price option first.');
+            console.log('Cannot add this item to the basket.');
         }
     };
 
     return (
-        <div className='food-item'>
-            <div className='food-item-img-container'>
-                <img className='food-item-image' src={image} alt='' />
+        <div className="food-item">
+            <div className="food-item-img-container">
+                <img className="food-item-image" src={image} alt="" />
                 {!basketItems[id] ? (
                     <img
-                        className='add'
+                        className="add"
                         onClick={handleAddToBasket}
                         src={assets.add_icon_white}
-                        alt='Add to basket'
+                        alt="Add to basket"
                     />
                 ) : (
-                    <div className='food-item-counter'>
+                    <div className="food-item-counter">
                         <img
-                            onClick={() => removeFromBasket(id, selectedPriceType)}
+                            onClick={() => removeFromBasket(id, selectedPriceType || 'single')}
                             src={assets.remove_icon_red}
-                            alt='Remove from basket'
+                            alt="Remove from basket"
                         />
-                        <p>{basketItems[id]?.[selectedPriceType]?.quantity || 0}</p>
+                        <p>{basketItems[id]?.[selectedPriceType || 'single']?.quantity || 0}</p>
                         <img
                             onClick={handleAddToBasket}
                             src={assets.add_icon_green}
-                            alt='Add more to basket'
+                            alt="Add more to basket"
                         />
                     </div>
                 )}
             </div>
-            <div className='food-item-info'>
-                <div className='food-item-name-rating'>
+            <div className="food-item-info">
+                <div className="food-item-name-rating">
                     <p>{name}</p>
-                    <img src={assets.rating_starts} alt='Rating stars' />
+                    <img src={assets.rating_starts} alt="Rating stars" />
                 </div>
-                <p className='food-item-desc'>{description}</p>
-                <div className='food-item-price'>
+                <p className="food-item-desc">{description}</p>
+                <div className="food-item-price">
                     {price?.normal && price?.full ? (
                         <>
                             <p

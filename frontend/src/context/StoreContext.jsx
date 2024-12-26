@@ -96,7 +96,7 @@ const StoreContextProvider = ({ children }) => {
         }, 0);
     }, [basketItems]);
 
-    // Context value
+    // Context value (only passing required functions)
     const contextValue = {
         food_list,
         basketItems,
