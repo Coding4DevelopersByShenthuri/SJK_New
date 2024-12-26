@@ -33,11 +33,12 @@ const StoreContextProvider = ({ children }) => {
             }
             if (!updatedBasket[id][priceType]) {
                 updatedBasket[id][priceType] = {
-                    quantity: 0,
+                    quantity: 1, // Start with quantity 1 when first added
                     price: price, // Add the selected price when the priceType is first added
                 };
+            } else {
+                updatedBasket[id][priceType].quantity += 1; // Increase quantity by 1
             }
-            updatedBasket[id][priceType].quantity += 1; // Increase quantity
             return updatedBasket;
         });
     };
@@ -49,7 +50,7 @@ const StoreContextProvider = ({ children }) => {
             const updatedBasket = { ...prev };
             if (updatedBasket[id] && updatedBasket[id][priceType]) {
                 if (updatedBasket[id][priceType].quantity > 1) {
-                    updatedBasket[id][priceType].quantity -= 1; // Decrease quantity
+                    updatedBasket[id][priceType].quantity -= 1; // Decrease quantity by 1
                 } else {
                     delete updatedBasket[id][priceType]; // Remove priceType
                     if (Object.keys(updatedBasket[id]).length === 0) {
@@ -71,7 +72,7 @@ const StoreContextProvider = ({ children }) => {
             }
             if (quantity > 0) {
                 updatedBasket[id][priceType] = {
-                    quantity,
+                    quantity, // Set quantity directly
                     price: updatedBasket[id][priceType]?.price || 0,
                 };
             } else {
@@ -79,6 +80,27 @@ const StoreContextProvider = ({ children }) => {
                 if (Object.keys(updatedBasket[id]).length === 0) {
                     delete updatedBasket[id];
                 }
+            }
+            return updatedBasket;
+        });
+    };
+
+    // Increment and Decrement Quantity Logic
+    const increaseQuantity = (itemId, priceType) => {
+        setBasketItems((prev) => {
+            const updatedBasket = { ...prev };
+            if (updatedBasket[itemId] && updatedBasket[itemId][priceType]) {
+                updatedBasket[itemId][priceType].quantity += 1; // Increase by 1
+            }
+            return updatedBasket;
+        });
+    };
+
+    const decreaseQuantity = (itemId, priceType) => {
+        setBasketItems((prev) => {
+            const updatedBasket = { ...prev };
+            if (updatedBasket[itemId] && updatedBasket[itemId][priceType] && updatedBasket[itemId][priceType].quantity > 1) {
+                updatedBasket[itemId][priceType].quantity -= 1; // Decrease by 1
             }
             return updatedBasket;
         });
@@ -104,6 +126,8 @@ const StoreContextProvider = ({ children }) => {
         removeFromBasket,
         updateBasketItem,
         getTotalBasketAmount,
+        increaseQuantity,
+        decreaseQuantity,
     };
 
     return (
