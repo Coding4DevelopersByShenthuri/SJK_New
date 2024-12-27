@@ -74,19 +74,4 @@
     cursor: pointer;
     margin: 5px 0;
 }
-.food-item-badge {
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-.food-item-badge label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.food-item-badge input[type="checkbox"] {
-    margin-right: 8px;
-    cursor: pointer;
-}
 
