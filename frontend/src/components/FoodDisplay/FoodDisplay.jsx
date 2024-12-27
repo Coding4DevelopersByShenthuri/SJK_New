@@ -15,11 +15,14 @@ const FoodDisplay = ({ category = 'All' }) => {
     // Determine the displayed dishes (limit to first 10 or show all)
     const displayedFoodList = showAll ? filteredFoodList : filteredFoodList.slice(0, 10);
 
+    // Determine the dynamic title based on the active category
+    const dynamicTitle = category === 'All' ? 'Top Dishes for You' : `${category} for You Below!`;
+
     // Handle case where no food items are available
     if (filteredFoodList.length === 0) {
         return (
             <div className='food-display' id='food-display'>
-                <h2>Top Dishes for You</h2>
+                <h2>{dynamicTitle}</h2>
                 <p>No dishes available at the moment. Please check back later.</p>
             </div>
         );
@@ -27,7 +30,7 @@ const FoodDisplay = ({ category = 'All' }) => {
 
     return (
         <div className='food-display' id='food-display'>
-            <h2>Top Dishes for You</h2>
+            <h2>{dynamicTitle}</h2>
             <div className='food-display-list'>
                 {displayedFoodList.map((item) => (
                     <FoodItem

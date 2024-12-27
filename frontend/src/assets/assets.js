@@ -120,7 +120,7 @@ export const assets = {
 
 export const menu_list = [
     {
-        menu_name: "Appetizer",
+        menu_name: "Appetizers",
         menu_image: menu_1
     },
     {
@@ -132,6 +132,7 @@ export const menu_list = [
         menu_image: menu_3
     },
     {
+
         menu_name: "Soups",
         menu_image: menu_4
     },
@@ -163,7 +164,7 @@ export const food_list = [
         image: food_1,
         price: 850,
         description: "Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     },
     {
         _id: "2",
@@ -171,28 +172,28 @@ export const food_list = [
         image: food_2,
         price: 750,
         description: "Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "3",
         name: "Devilled Paneer",
         image: food_3,
         price: 800,
         description: "Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "4",
         name: "Gobi 65",
         image: food_4,
         price: 650,
         description: "Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "5",
         name: "French Fry",
         image: food_5,
         price: 400,
         description: "Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "6",
         name: "Gobi Manchurian",
