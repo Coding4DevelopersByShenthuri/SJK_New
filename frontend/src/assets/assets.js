@@ -9,6 +9,7 @@ import menu_6 from './menu_6.png'
 import menu_7 from './menu_7.jpg'
 import menu_8 from './menu_8.png'
 import menu_9 from './menu_9.jpg'
+import menu_10 from './menu_10.jpg'
 
 import food_1 from './food_1.webp'
 import food_2 from './food_2.jpeg'
@@ -85,6 +86,18 @@ import food_72 from './food_72.jpg'
 import food_73 from './food_73.jpg'
 import food_74 from './food_74.jpg'
 import food_75 from './food_75.jpeg'
+import food_76 from './food_76.jpg'
+import food_77 from './food_77.jpg'
+import food_78 from './food_78.jpg'
+import food_79 from './food_79.jpeg'
+import food_80 from './food_80.webp'
+import food_81 from './food_81.jpg'
+import food_82 from './food_82.jpg'
+import food_83 from './food_83.jpeg'
+import food_84 from './food_84.jpeg'
+import food_85 from './food_85.jpg'
+import food_86 from './food_86.jpeg'
+
 
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
@@ -151,6 +164,10 @@ export const menu_list = [
     {
         menu_name: "Noodles",
         menu_image: menu_8
+    },
+    {
+        menu_name: "Koththu",
+        menu_image: menu_10
     },
     {
         menu_name: "Mongolian",
@@ -688,5 +705,86 @@ export const food_list = [
         price: 1300,
         description: "Non-Veg",
         category: "Mongolian"
+    }, {
+        _id: "76",
+        name: "Veg Koththu",
+        image: food_76,
+        price: { normal: 350, full: 600 },
+        description: "Veg",
+        category: "Koththu"
+    }, {
+        _id: "77",
+        name: "Egg Koththu",
+        image: food_77,
+        price: { normal: 450, full: 700 },
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "78",
+        name: "Chicken Koththu",
+        image: food_78,
+        price: { normal: 600, full: 900 },
+        description: "Non-Veg, (Fried)",
+        category: "Koththu"
+    }, {
+        _id: "79",
+        name: "Chicken Koththu",
+        image: food_79,
+        price: { normal: 700, full: 1000 },
+        description: "Non-Veg, (Curry)",
+        category: "Koththu"
+    }, {
+        _id: "80",
+        name: "Beef Koththu",
+        image: food_80,
+        price: { normal: 750, full: 1050 },
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "81",
+        name: "Mutton Koththu",
+        image: food_81,
+        price: { normal: 900, full: 1400 },
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "82",
+        name: "Seafood Koththu",
+        image: food_82,
+        price: { normal: 800, full: 1100 },
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "83",
+        name: "Pork Koththu",
+        image: food_83,
+        price: { normal: 800, full: 1100 },
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "84",
+        name: "Prawn Koththu",
+        image: food_84,
+        price: 850,
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "85",
+        name: "Cuttlefish Koththu",
+        image: food_85,
+        price: 850,
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "86",
+        name: "SJK Special Koththu",
+        image: food_86,
+        price: 1100,
+        description: "Non-Veg",
+        category: "Koththu",
+        extras: [
+            { name: "Cheese", price: 200 },
+            { name: "Egg", price: 150 },
+        ],
     }
 ]
