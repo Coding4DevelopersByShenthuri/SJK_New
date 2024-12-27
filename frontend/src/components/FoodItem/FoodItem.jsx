@@ -3,16 +3,9 @@ import './FoodItem.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 
-const FoodItem = ({ id, name, price, description, image, extras }) => {
+const FoodItem = ({ id, name, price, description, image }) => {
     const { basketItems, addToBasket, removeFromBasket } = useContext(StoreContext);
     const [selectedPriceType, setSelectedPriceType] = useState(null);
-    const [selectedExtras, setSelectedExtras] = useState([]); // To store selected extras
-    const [showExtras, setShowExtras] = useState(false); // To toggle visibility of extras
-
-    // Generate random prices for Egg and Cheese extras
-    const generateRandomPrice = () => {
-        return Math.floor(Math.random() * (30 - 20 + 1)) + 20; // Random price between 20 and 30
-    };
 
     const handlePriceClick = (type) => {
         console.log(`${type} price selected: Rs ${price[type]}`);
@@ -20,75 +13,49 @@ const FoodItem = ({ id, name, price, description, image, extras }) => {
     };
 
     const handleAddToBasket = () => {
-        // Ensure selectedPriceType is valid (either 'normal' or 'full')
-        const validPriceType = selectedPriceType || 'normal';  // Default to 'normal' if null
-
-        // Ensure the price for the selectedPriceType is available
-        const itemPrice = price[validPriceType];
-        if (!itemPrice) {
-            console.log('Invalid price type or no price available');
-            return;  // Stop the function if no price is available
-        }
-
-        // Start with the price of the selected price type
-        let totalPrice = itemPrice;
-
-        // Add the price of selected extras to the total price
-        selectedExtras.forEach(extra => {
-            totalPrice += extra.price;
-            console.log(`Added extra: ${extra.name} for Rs ${extra.price}`);
-        });
-
-        // If totalPrice is valid, proceed with adding the item to the basket
-        if (totalPrice) {
-            addToBasket(id, validPriceType, totalPrice, selectedExtras); // Add item with extras and price
+        if (price?.normal || price?.full) {
+            if (selectedPriceType) {
+                const chosenPrice = price[selectedPriceType];
+                addToBasket(id, selectedPriceType, chosenPrice);
+            } else {
+                console.log('Please select a price option first.');
+            }
+        } else if (price) {
+            addToBasket(id, 'single', price); // Add single price items
         } else {
             console.log('Cannot add this item to the basket.');
         }
     };
 
+    const handleRemoveFromBasket = () => {
+        if (basketItems[id] && basketItems[id][selectedPriceType || 'single']) {
+            removeFromBasket(id, selectedPriceType || 'single');
+        }
+    };
 
     const getQuantity = (id, priceType) => {
+        // Ensure priceType is handled properly for counting
         return basketItems[id] && basketItems[id][priceType || 'single']
             ? basketItems[id][priceType || 'single'].quantity
             : 0;
     };
 
+    // Increment the item count by 1
     const handleIncrement = () => {
-        let totalPrice = price[selectedPriceType || 'normal'];
-        selectedExtras.forEach(extra => {
-            totalPrice += extra.price;
-        });
-        addToBasket(id, selectedPriceType || 'normal', totalPrice);  // Increment by 1
+        if (price?.normal || price?.full) {
+            const chosenPrice = price[selectedPriceType || 'normal'];
+            addToBasket(id, selectedPriceType || 'normal', chosenPrice);  // Increment by 1
+        } else if (price) {
+            addToBasket(id, 'single', price);  // Increment by 1 for single price items
+        }
     };
 
+    // Decrement the item count by 1
     const handleDecrement = () => {
         if (basketItems[id] && basketItems[id][selectedPriceType || 'single']) {
             removeFromBasket(id, selectedPriceType || 'single');  // Decrement by 1
         }
     };
-
-    // Toggle extras visibility
-    const toggleExtras = () => {
-        setShowExtras(prev => !prev);
-    };
-
-    // Handle selecting/deselecting an extra
-    const handleSelectExtra = (extra) => {
-        setSelectedExtras(prev => {
-            if (prev.includes(extra)) {
-                return prev.filter(item => item !== extra); // Deselect extra
-            } else {
-                return [...prev, extra]; // Select extra
-            }
-        });
-    };
-
-    // Extras with fixed prices (Egg and Cheese)
-    const extrasList = extras || [
-        { name: 'Egg', price: 200 },  // Fixed price for Egg
-        { name: 'Cheese', price: 300 },  // Fixed price for Cheese
-    ];
 
     return (
         <div className="food-item">
@@ -108,6 +75,7 @@ const FoodItem = ({ id, name, price, description, image, extras }) => {
                             src={assets.remove_icon_red}
                             alt="Remove from basket"
                         />
+                        {/* Display the correct item count */}
                         <p>{getQuantity(id, selectedPriceType || 'single')}</p>
                         <img
                             onClick={handleIncrement}
@@ -143,26 +111,6 @@ const FoodItem = ({ id, name, price, description, image, extras }) => {
                         price && <p>Rs {price}</p>
                     )}
                 </div>
-
-                {/* Extras Badge */}
-                <div className="extras-badge" onClick={toggleExtras}>
-                    <p>Extras</p>
-                </div>
-
-                {/* Extras List */}
-                {showExtras && extrasList.length > 0 && (
-                    <div className="extras-list">
-                        {extrasList.map(extra => (
-                            <div
-                                key={extra.name}
-                                className={`extra-item ${selectedExtras.includes(extra) ? 'selected' : ''}`}
-                                onClick={() => handleSelectExtra(extra)}
-                            >
-                                <p>{extra.name} (+Rs {extra.price})</p>
-                            </div>
-                        ))}
-                    </div>
-                )}
             </div>
         </div>
     );
