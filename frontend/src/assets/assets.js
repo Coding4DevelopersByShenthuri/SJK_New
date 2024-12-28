@@ -11,6 +11,20 @@ import menu_8 from './menu_8.png'
 import menu_9 from './menu_9.jpg'
 import menu_10 from './menu_10.jpg'
 import menu_11 from './menu_11.jpg'
+import menu_12 from './menu_12.webp'
+import menu_13 from './menu_13.webp'
+import menu_14 from './menu_14.png'
+import menu_15 from './menu_15.jpg'
+import menu_16 from './menu_16.jpeg'
+import menu_17 from './menu_17.jpg'
+import menu_18 from './menu_18.jpg'
+import menu_19 from './menu_19.jpeg'
+import menu_20 from './menu_20.jpg'
+import menu_21 from './menu_21.jpg'
+import menu_22 from './menu_22.jpeg'
+import menu_23 from './menu_23.jpeg'
+import menu_24 from './menu_24.jpg'
+import menu_25 from './menu_25.jpg'
 
 import food_1 from './food_1.webp'
 import food_2 from './food_2.jpeg'
@@ -116,6 +130,37 @@ import food_101 from './food_101.jpg'
 import food_102 from './food_102.jpg'
 import food_103 from './food_103.jpg'
 import food_104 from './food_104.jpg'
+import food_105 from './food_105.jpg'
+import food_106 from './food_106.jpg'
+import food_107 from './food_107.jpg'
+import food_108 from './food_108.jpeg'
+import food_109 from './food_109.jpg'
+import food_110 from './food_110.jpg'
+import food_111 from './food_111.jpg'
+import food_112 from './food_112.jpeg'
+import food_113 from './food_113.jpeg'
+import food_114 from './food_114.jpg'
+import food_115 from './food_115.jpg'
+import food_116 from './food_116.webp'
+import food_117 from './food_117.jpg'
+import food_118 from './food_118.png'
+import food_119 from './food_119.jpg'
+import food_120 from './food_120.jpg'
+import food_121 from './food_121.jpg'
+import food_122 from './food_122.jpg'
+import food_123 from './food_123.jpg'
+import food_124 from './food_124.jpeg'
+import food_125 from './food_125.jpg'
+import food_126 from './food_126.jpeg'
+import food_127 from './food_127.jpeg'
+import food_128 from './food_128.jpg'
+import food_129 from './food_129.jpg'
+import food_130 from './food_130.jpg'
+import food_131 from './food_131.jpg'
+import food_132 from './food_132.jpg'
+import food_133 from './food_133.jpeg'
+import food_134 from './food_134.jpg'
+import food_135 from './food_135.jpg'
 
 
 import add_icon_white from './add_icon_white.png'
@@ -193,8 +238,64 @@ export const menu_list = [
         menu_image: menu_11
     },
     {
+        menu_name: "Curries",
+        menu_image: menu_12
+    },
+    {
+        menu_name: "Egg",
+        menu_image: menu_13
+    },
+    {
+        menu_name: "SJK Special",
+        menu_image: menu_14
+    },
+    {
+        menu_name: "Naan",
+        menu_image: menu_15
+    },
+    {
+        menu_name: "Paratta",
+        menu_image: menu_16
+    },
+    {
+        menu_name: "Appam",
+        menu_image: menu_17
+    },
+    {
+        menu_name: "BBQ",
+        menu_image: menu_18
+    },
+    {    
         menu_name: "Mongolian",
         menu_image: menu_9
+    },
+    {
+        menu_name: "Ice Creams",
+        menu_image: menu_19
+    },
+    {
+        menu_name: "Fruit Salads",
+        menu_image: menu_20
+    },
+    {
+        menu_name: "Juices",
+        menu_image: menu_21
+    },
+    {
+        menu_name: "Drinks",
+        menu_image: menu_22
+    },
+    {
+        menu_name: "Mojito",
+        menu_image: menu_23
+    },
+    {
+        menu_name: "Milk Shakes",
+        menu_image: menu_24
+    },
+    {
+        menu_name: "Lassis",
+        menu_image: menu_25
     }]
 
 export const food_list = [
@@ -929,11 +1030,221 @@ export const food_list = [
         description: "Non-Veg",
         category: "Biryani" 
     }, {
-        _id: "103",
+        _id: "104",
         name: "SJK Special Biryani",
         image: food_104,
         price: 1300,
         description: "Non-Veg",
         category: "Biryani"
+    }, {
+        _id: "105",
+        name: "Paneer Butter Masala",
+        image: food_105,
+        price: 1050,
+        description: "Veg",
+        category: "Curries"
+    }, {
+        _id: "106",
+        name: "Paneer Pepper Masala",
+        image: food_106,
+        price: 1100,
+        description: "Veg",
+        category: "Curries"
+    }, {
+        _id: "107",
+        name: "Paneer Tikka Masala",
+        image: food_107,
+        price: 1050,
+        description: "Veg",
+        category: "Curries"
+    }, {
+        _id: "108",
+        name: "Chilli Mashroom",
+        image: food_108,
+        price: 1050,
+        description: "Veg",
+        category: "Curries"
+    }, {
+        _id: "109",
+        name: "Mashroom Pepper Masala",
+        image: food_109,
+        price: 1100,
+        description: "Veg",
+        category: "Curries"
+    }, {
+        _id: "110",
+        name: "Vegetable Kurma",
+        image: food_110,
+        price: 850,
+        description: "Veg",
+        category: "Curries"
+    }, {
+        _id: "111",
+        name: "Mutton Chettinad",
+        image: food_111,
+        price: 1800,
+        description: "Non-Veg, Mutton",
+        category: "Curries"
+    }, {
+        _id: "112",
+        name: "Chilli Mutton",
+        image: food_112,
+        price: 1700,
+        description: "Non-Veg, Mutton",
+        category: "Curries"
+    }, {
+        _id: "113",
+        name: "Mutton Kadai",
+        image: food_113,
+        price: 1750,
+        description: "Non-Veg, Mutton",
+        category: "Curries"
+    }, {
+        _id: "114",
+        name: "Pork Black Curry",
+        image: food_114,
+        price: 1100,
+        description: "Non-Veg, Pork",
+        category: "Curries"
+    }, {
+        _id: "115",
+        name: "Boiled Egg",
+        image: food_115,
+        price: 80,
+        description: "Non-Veg, Egg",
+        category: "Egg"
+    }, {
+        _id: "116",
+        name: "Omelette",
+        image: food_116,
+        price: 120,
+        description: "Non-Veg, Egg",
+        category: "Egg"
+    }, {
+        _id: "117",
+        name: "Bulls Eye",
+        image: food_117,
+        price: 80,
+        description: "Non-Veg, Egg",
+        category: "Egg"
+    }, {
+        _id: "118",
+        name: "Cheese Omelette",
+        image: food_118,
+        price: 350,
+        description: "Non-Veg, Egg",
+        category: "Egg"
+    }, {
+        _id: "119",
+        name: "Chicken Murthappa",
+        image: food_119,
+        price: 1100,
+        description: "Non-Veg, SJK Special",
+        category: "SJK Special"
+    }, {
+        _id: "120",
+        name: "Plain Naan",
+        image: food_120,
+        price: 150,
+        description: "Veg",
+        category: "Naan"
+    }, {
+        _id: "121",
+        name: "Plain Paratta",
+        image: food_121,
+        price: 60,
+        description: "Veg",
+        category: "Paratta"
+    }, {
+        _id: "122",
+        name: "Egg Paratta",
+        image: food_122,
+        price: 100,
+        description: "Non-Veg",
+        category: "Paratta"
+    }, {
+        _id: "123",
+        name: "Plain Appam",
+        image: food_123,
+        price: 60,
+        description: "Veg",
+        category: "Appam"
+    }, {
+        _id: "124",
+        name: "Full BBQ",
+        image: food_124,
+        price: 1500,
+        description: "Non-Veg (Paratta-04, Salad, Mayonnaise, Chilli Sauce)",
+        category: "BBQ"
+    }, {
+        _id: "125",
+        name: "Half BBQ",
+        image: food_125,
+        price: 1000,
+        description: "Non-Veg (Paratta-02, Salad, Mayonnaise, Chilli Sauce)",
+        category: "BBQ"
+    }, {
+        _id: "126",
+        name: "Chocolate Ice Cream",
+        image: food_126,
+        price: 400,
+        description: "Special Ice Cream",
+        category: "Ice Creams"
+    }, {
+        _id: "127",
+        name: "Salad & Ice Cream",
+        image: food_127,
+        price: 450,
+        description: "Served with Icecream",
+        category: "Fruit Salads"
+    }, {
+        _id: "128",
+        name: "Fruits Salad",
+        image: food_128,
+        price: 350,
+        description: "Preferable Fruits",
+        category: "Fruit Salads"
+    }, {
+        _id: "129",
+        name: "Lemon Juice",
+        image: food_129,
+        price: 250,
+        category: "Juices"
+    }, {
+        _id: "130",
+        name: "Sharbath",
+        image: food_130,
+        price: 250,
+        category: "Drinks"
+    }, {
+        _id: "131",
+        name: "Milo",
+        image: food_131,
+        price: 250,
+        category: "Drinks"
+    }, {
+        _id: "132",
+        name: "Faluda",
+        image: food_132,
+        price: 400,
+        category: "Drinks"
+    }, {
+        _id: "133",
+        name: "Blue Lagoon",
+        image: food_133,
+        price: 450,
+        category: "Mojito"
+    }, {
+        _id: "134",
+        name: "Chocolate Milkshake",
+        image: food_134,
+        price: 500,
+        category: "Milk Shakes"
+    }, {
+        _id: "135",
+        name: "Sweet Lassi",
+        image: food_135,
+        price: 450,
+        category: "Lassis"
     }
 ]
