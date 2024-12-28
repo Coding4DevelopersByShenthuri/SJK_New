@@ -14,7 +14,7 @@ import menu_10 from './menu_10.jpg'
 import food_1 from './food_1.webp'
 import food_2 from './food_2.jpeg'
 import food_3 from './food_3.jpg'
-import food_4 from './food_4.webp'
+import food_4 from './food_4.jpg'
 import food_5 from './food_5.jpg'
 import food_6 from './food_6.jpeg'
 import food_7 from './food_7.jpeg'
@@ -90,13 +90,23 @@ import food_76 from './food_76.jpg'
 import food_77 from './food_77.jpg'
 import food_78 from './food_78.jpg'
 import food_79 from './food_79.jpeg'
-import food_80 from './food_80.webp'
+import food_80 from './food_80.jpg'
 import food_81 from './food_81.jpg'
 import food_82 from './food_82.jpg'
 import food_83 from './food_83.jpeg'
 import food_84 from './food_84.jpeg'
 import food_85 from './food_85.jpg'
 import food_86 from './food_86.jpeg'
+import food_87 from './food_87.jpg'
+import food_88 from './food_88.jpg'
+import food_89 from './food_89.jpg'
+import food_90 from './food_90.jpg'
+import food_91 from './food_91.jpg'
+import food_92 from './food_92.jpg'
+import food_93 from './food_93.jpg'
+import food_94 from './food_94.jpg'
+import food_95 from './food_95.jpg'
+import food_96 from './food_96.jpg'
 
 
 import add_icon_white from './add_icon_white.png'
@@ -459,77 +469,84 @@ export const food_list = [
         image: food_40,
         price: 850,
         description: "Non-Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "41",
         name: "Prawn 65",
         image: food_41,
         price: 950,
         description: "Non-Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "42",
         name: "Chicken Lolipop",
         image: food_42,
         price: 950,
         description: "Non-Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "43",
         name: "Hot butter Cuttle fish",
         image: food_43,
         price: 1200,
         description: "Non-Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "44",
         name: "Pepper Chicken",
         image: food_44,
         price: 1100,
         description: "Non-Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "45",
         name: "Chilli Chicken",
         image: food_45,
         price: 1100,
         description: "Non-Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "46",
         name: "Pepper Beef",
         image: food_46,
         price: 1250,
         description: "Non-Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "47",
         name: "Jaffna Style Fried Chicken",
         image: food_47,
         price: 1200,
         description: "Non-Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "48",
         name: "Hot butter chicken",
         image: food_48,
         price: 950,
         description: "Non-Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "49",
         name: "Vegetable Pakoda",
         image: food_49,
         price: 600,
         description: "Veg",
-        category: "Appetizer"
+        category: "Appetizers"
+    }, {
+        _id: "96",
+        name: "Chicken Pakoda",
+        image: food_96,
+        price: 1100,
+        description: "Non-Veg",
+        category: "Appetizers"
     }, {
         _id: "50",
         name: "Onion Pakoda",
         image: food_50,
         price: 450,
         description: "Veg",
-        category: "Appetizer"
+        category: "Appetizers"
     }, {
         _id: "51",
         name: "Fish Devillled",
@@ -776,6 +793,41 @@ export const food_list = [
         description: "Non-Veg",
         category: "Koththu"
     }, {
+        _id: "91",
+        name: "Chicken Dolphin",
+        image: food_91,
+        price: 900,
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "92",
+        name: "Beef Dolphin",
+        image: food_92,
+        price: 1050,
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "93",
+        name: "Mixed Dolphin",
+        image: food_93,
+        price: 1100,
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "94",
+        name: "Mutton Dolphin",
+        image: food_94,
+        price: 1200,
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
+        _id: "95",
+        name: "SJK Special Dolphin",
+        image: food_95,
+        price: 1300,
+        description: "Non-Veg",
+        category: "Koththu"
+    }, {
         _id: "86",
         name: "SJK Special Koththu",
         image: food_86,
@@ -786,5 +838,33 @@ export const food_list = [
             { name: "Cheese", price: 200 },
             { name: "Egg", price: 150 },
         ],
+    }, {
+        _id: "87",
+        name: "Chicken Koththu",
+        image: food_87,
+        price: 1000,
+        description: "Non-Veg",
+        category: "Mongolian"
+    }, {
+        _id: "88",
+        name: "Beef Koththu",
+        image: food_88,
+        price: 1150,
+        description: "Non-Veg",
+        category: "Mongolian"
+    }, {
+        _id: "89",
+        name: "Mix Koththu",
+        image: food_89,
+        price: 1200,
+        description: "Non-Veg",
+        category: "Mongolian"
+    }, {
+        _id: "90",
+        name: "Mutton Koththu",
+        image: food_90,
+        price: 1300,
+        description: "Non-Veg",
+        category: "Mongolian"
     }
 ]
