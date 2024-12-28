@@ -63,6 +63,22 @@ body {
     padding-left: 40px;
     color: #ccc;
 }
+/* Responsive adjustments for smaller devices */
+@media (max-width: 768px) {
+    .app__header-p {
+        font-size: 1.6rem; /* Reduce font size */
+        width: 90%;       /* Increase width for better readability */
+        padding-left: 20px; /* Reduce padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .app__header-p {
+        font-size: 1.4rem; /* Further reduce font size for very small screens */
+        width: 95%;       /* Use nearly full width */
+        padding-left: 10px; /* Minimize padding */
+    }
+}
 
 /* Menu Content Section */
 .app__menu-content {
