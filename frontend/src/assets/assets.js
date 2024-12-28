@@ -108,6 +108,14 @@ import food_93 from './food_93.jpg'
 import food_94 from './food_94.jpg'
 import food_95 from './food_95.jpg'
 import food_96 from './food_96.jpg'
+import food_97 from './food_97.jpg'
+import food_98 from './food_98.jpg'
+import food_99 from './food_99.jpg'
+import food_100 from './food_100.jpg'
+import food_101 from './food_101.jpg'
+import food_102 from './food_102.jpg'
+import food_103 from './food_103.jpg'
+import food_104 from './food_104.jpg'
 
 
 import add_icon_white from './add_icon_white.png'
@@ -871,5 +879,61 @@ export const food_list = [
         price: 1300,
         description: "Non-Veg",
         category: "Mongolian"
+    }, {
+        _id: "97",
+        name: "Veg Biryani",
+        image: food_97,
+        price: 450,
+        description: "Veg",
+        category: "Biryani"
+    }, {
+        _id: "98",
+        name: "Egg Biryani",
+        image: food_98,
+        price: 600,
+        description: "Non-Veg",
+        category: "Biryani"
+    }, {
+        _id: "99",
+        name: "Chicken Biryani",
+        image: food_99,
+        price: 950,
+        description: "Non-Veg",
+        category: "Biryani"
+    }, {
+        _id: "100",
+        name: "Beef Biryani",
+        image: food_100,
+        price: 950,
+        description: "Non-Veg",
+        category: "Biryani"
+    }, {
+        _id: "101",
+        name: "Mutton Biryani",
+        image: food_101,
+        price: 1150,
+        description: "Non-Veg",
+        category: "Biryani"
+    }, {
+        _id: "102",
+        name: "Prawn Biryani",
+        image: food_102,
+        price: 950,
+        description: "Non-Veg",
+        category: "Biryani"
+    }, {
+        _id: "103",
+        name: "Cuttlefish Biryani",
+        image: food_103,
+        price: 950,
+        description: "Non-Veg",
+        category: "Biryani" 
+    }, {
+        _id: "103",
+        name: "SJK Special Biryani",
+        image: food_104,
+        price: 1300,
+        description: "Non-Veg",
+        category: "Biryani"
     }
 ]
