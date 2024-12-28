@@ -10,6 +10,7 @@ import menu_7 from './menu_7.jpg'
 import menu_8 from './menu_8.png'
 import menu_9 from './menu_9.jpg'
 import menu_10 from './menu_10.jpg'
+import menu_11 from './menu_11.jpg'
 
 import food_1 from './food_1.webp'
 import food_2 from './food_2.jpeg'
@@ -178,6 +179,10 @@ export const menu_list = [
     {
         menu_name: "Koththu",
         menu_image: menu_10
+    },
+    {
+        menu_name: "Biryani",
+        menu_image: menu_11
     },
     {
         menu_name: "Mongolian",
