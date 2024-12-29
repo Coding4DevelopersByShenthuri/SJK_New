@@ -1,0 +1,123 @@
+.blog-container {
+    padding: 30px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    background: rgba(220, 212, 212, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.blog-title {
+    text-align: center;
+    font-size: 3.0rem;
+    padding-top: 120px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #facf8f;
+}
+
+.blog-intro {
+    text-align: center;
+    font-size: 1.8rem;
+    padding-top: 30px;
+    color: #b3aaaa;
+}
+
+.blog-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.blog-card {
+    background: #9b9797;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.blog-card:hover {
+    transform: scale(1.05);
+}
+
+.blog-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.blog-content {
+    padding: 20px;
+}
+
+.blog-post-title {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #333;
+}
+
+.blog-author {
+    font-size: 1.2rem;
+    color: #3f0202;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.blog-excerpt {
+    font-size: 1.5rem;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.read-more:hover {
+    background-color: #0056b3;
+}
+@media (max-width: 480px) {
+    .blog-title {
+        font-size: 1.8rem;
+        padding-top: 50px;
+    }
+
+    .blog-intro {
+        font-size: 1rem;
+    }
+
+    .blog-card {
+        max-width: 100%;
+    }
+
+    .blog-post-title {
+        font-size: 1.2rem;
+    }
+
+    .blog-author, .blog-excerpt {
+        font-size: 0.9rem;
+    }
+
+    .read-more {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+}
