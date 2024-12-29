@@ -813,28 +813,28 @@ export const food_list = [
         name: "Chicken Mongolian",
         image: food_72,
         price: 1050,
-        description: "Non-Veg",
+        description: "Non-Veg, Mongolian",
         category: "Mongolian"
     }, {
         _id: "73",
         name: "Beef Mongolian",
         image: food_73,
         price: 1100,
-        description: "Non-Veg",
+        description: "Non-Veg, Mongolian",
         category: "Mongolian"
     }, {
         _id: "74",
         name: "Seafood Mongolian",
         image: food_74,
         price: 1150,
-        description: "Non-Veg",
+        description: "Non-Veg, Mongolian",
         category: "Mongolian"
     }, {
         _id: "75",
         name: "Mixed Mongolian",
         image: food_75,
         price: 1300,
-        description: "Non-Veg",
+        description: "Non-Veg, Mongolian",
         category: "Mongolian"
     }, {
         _id: "76",
@@ -957,21 +957,21 @@ export const food_list = [
         name: "Chicken Koththu",
         image: food_87,
         price: 1000,
-        description: "Non-Veg",
+        description: "Non-Veg, Mongolian",
         category: "Mongolian"
     }, {
         _id: "88",
         name: "Beef Koththu",
         image: food_88,
         price: 1150,
-        description: "Non-Veg",
+        description: "Non-Veg, Mongolian",
         category: "Mongolian"
     }, {
         _id: "89",
         name: "Mix Koththu",
         image: food_89,
         price: 1200,
-        description: "Non-Veg",
+        description: "Non-Veg, Mongolian",
         category: "Mongolian"
     }, {
         _id: "90",
@@ -979,7 +979,7 @@ export const food_list = [
         image: food_90,
         price: 1300,
         description: "Non-Veg",
-        category: "Mongolian"
+        category: "Mongolian, Mongolian"
     }, {
         _id: "97",
         name: "Veg Biryani",
