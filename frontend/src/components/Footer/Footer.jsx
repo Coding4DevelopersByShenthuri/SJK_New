@@ -37,8 +37,10 @@ const Footer = () => {
           </div>
           <ul className="footer-list">
             <li><a href="#home" className="label-2 footer-link hover-underline">Home</a></li>
-            <li><a href="#menu" className="label-2 footer-link hover-underline">Menus</a></li>
+            <li><a href="#menu" className="label-2 footer-link hover-underline">Special Dish</a></li>
             <li><a href="#about" className="label-2 footer-link hover-underline">About Us</a></li>
+            <li><a href="#service" className="label-2 footer-link hover-underline">Services</a></li>
+            <li><a href="/all-menu" className="label-2 footer-link hover-underline">Menu</a></li>
           </ul>
           <ul className="footer-list">
             <li><a href="https://www.facebook.com/profile.php?id=61558985514970&mibextid=ZbWKwL" className="label-2 footer-link hover-underline">Facebook</a></li>
