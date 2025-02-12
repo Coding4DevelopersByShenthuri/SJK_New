@@ -61,6 +61,7 @@ const Basket = () => {
           <p>Price</p>
           <p>Quantity</p>
           <p>Total</p>
+          <p>Delivery Method</p> {/* Added new column */}
           <p>Remove</p>
         </div>
         <hr />
@@ -80,6 +81,7 @@ const Basket = () => {
                 <button onClick={() => handleQuantityChange(item._id, priceType, 1)}>+</button>
               </div>
               <p>Rs {price * quantity}</p>
+              <p>{item.deliveryMethod}</p> {/* Displaying the delivery method */}
               <button onClick={() => removeFromBasket(item._id, priceType)}>
                 <FaTrash />
               </button>

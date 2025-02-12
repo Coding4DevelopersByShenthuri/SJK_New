@@ -1,4 +1,5 @@
-.food-item{
+/* Existing Styles */
+.food-item {
     width: 83%;
     margin: auto;
     border-radius: 15px;
@@ -7,42 +8,44 @@
     transition: 0.3s;
     animation: fadeIn 1s;
 }
-.food-item-image{
+.food-item-image {
     width: 100%;
     border-radius: 15px 15px 0px 0px;
 }
-.food-item-info{
+.food-item-info {
     padding: 20px;
 }
-.food-item-name-rating{
+.food-item-name-rating {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
-.food-item-name-rating p{
+.food-item-name-rating p {
     font-size: 25px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 500;
+    color: rgb(236, 222, 222); /* Set food item name to black */
 }
-.food-item-name-rating img{
+.food-item-name-rating img {
     width: 70px;
 }
-.food-item-desc{
+.food-item-desc {
     color: #bab9b9;
     font-size: 15px;
 }
-.food-item-price{
+.food-item-price {
     color: tomato;
     font-size: 25px;
     font-weight: 500;
     cursor: pointer;
     margin: 10px 0px;
 }
-.food-item-img-container{
+.food-item-img-container {
     position: relative;
+    cursor: pointer;
 }
-.food-item-img-container .add{
+.food-item-img-container .add {
     width: 35px;
     position: absolute;
     bottom: 15px;
@@ -50,7 +53,7 @@
     cursor: pointer;
     border-radius: 50%;
 }
-.food-item-counter{
+.food-item-counter {
     position: absolute;
     bottom: 15px;
     right: 15px;
@@ -62,7 +65,7 @@
     color: black;
     background-color: rgb(160, 155, 155);
 }
-.food-item-counter img{
+.food-item-counter img {
     width: 30px;
 }
 .selected-price {
@@ -73,4 +76,82 @@
 .food-item-price p {
     cursor: pointer;
     margin: 5px 0;
+}
+
+/* Popup Styles */
+.food-item-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.popup-content {
+    background-color: rgb(208, 196, 196);
+    padding: 30px; /* Reduced padding */
+    border-radius: 10px;
+    max-width: 350px; /* Fixed width for consistency */
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+.popup-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: red;
+    font-weight: bold;
+    font-size: 25px;
+    cursor: pointer;
+}
+.popup-image {
+    width: 100%;
+    border-radius: 10px;
+}
+.popup-price {
+    margin: 15px 0; /* Reduced margin */
+    font-size: 18px; /* Reduced font size */
+    font-weight: 600;
+    color: tomato;
+}
+.delivery-methods h4 {
+    font-size: 16px; /* Reduced font size */
+    color: black;
+    font-weight: 600;
+}
+.delivery-methods p {
+    margin: 5px 0;
+    color: black;
+}
+.add-to-basket-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px; /* Reduced padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Makes it a block element */
+    margin: 0 auto; /* Centers the button horizontally */
+}
+.add-to-basket-btn:hover {
+    background-color: #218838;
+}
+
+/* Delivery Method CSS */
+.delivery-method-options {
+    display: flex;
+    gap: 20px;
+    justify-content: space-evenly;
+}
+.delivery-method-options label {
+    font-size: 14px;
+    color: black;
+}
+.delivery-method-options input {
+    margin-right: 5px;
 }

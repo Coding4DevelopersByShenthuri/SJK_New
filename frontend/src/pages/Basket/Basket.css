@@ -28,11 +28,10 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-
 .basket-items-title,
 .basket-items-item {
     display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 1fr 0.5fr;
     align-items: center;
     max-width: 100%;
     font-size: clamp(12px, 1vw, 16px);
@@ -49,7 +48,7 @@
     border-radius: 4px;
     border-bottom: 1px solid #ddd;
     display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 1fr 0.5fr;
     gap: 15px;
     /* Increased gap between columns */
 }
@@ -162,95 +161,23 @@
 }
 
 .basket-promocode-input button {
-    width: max(10vw, 150px);
-    padding: 12px 5px;
-    background-color: rgb(115, 111, 111);
+    background-color: #27a9b0;
     border: none;
-    color: rgb(15, 7, 7);
+    padding: 10px;
     border-radius: 4px;
     cursor: pointer;
+    color: white;
     font-size: 14px;
     transition: background-color 0.3s ease;
 }
 
 .basket-promocode-input button:hover {
-    background-color: #c3c0c0;
+    background-color: #218c8c;
 }
 
 .error-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    color: red;
     font-size: 16px;
-    font-weight: bold;
-    z-index: 1000;
     text-align: center;
-}
-
-/* Responsive styling */
-@media (max-width: 768px) {
-
-    .basket-items-title,
-    .basket-items-item {
-        grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 1fr;
-        /* Added space for button */
-    }
-
-    .basket-items-title {
-        font-size: clamp(10px, 2vw, 14px);
-    }
-
-    .basket-items-item img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .basket-items-item button {
-        padding: 5px;
-        font-size: clamp(12px, 3vw, 14px);
-        width: 35px;
-        height: 35px;
-    }
-
-    .basket-bottom {
-        gap: 30px;
-        /* Increased gap for small devices */
-    }
-}
-
-@media (max-width: 480px) {
-
-    .basket-items-title,
-    .basket-items-item {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        /* Even space for all columns */
-    }
-
-    .basket-items-title {
-        font-size: 12px;
-    }
-
-    .basket-items-item img {
-        width: 35px;
-        height: 35px;
-    }
-
-    .basket-items-item button {
-        padding: 3px;
-        font-size: 12px;
-        width: 30px;
-        height: 30px;
-    }
-
-    .basket-bottom {
-        gap: 40px;
-        /* Increased gap for even smaller screens */
-    }
+    margin-top: 10px;
 }
