@@ -11,7 +11,6 @@ const Basket = () => {
   const [discount, setDiscount] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Calculate subtotal by iterating over basketItems
   const subtotal = Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
     return (
       total +
@@ -25,7 +24,6 @@ const Basket = () => {
   const deliveryFee = 250;
   const total = subtotal - discount + deliveryFee;
 
-  // Handle promo code submission
   const handlePromoCodeSubmit = () => {
     if (promoCode === 'SAVE10') {
       setDiscount(10);
@@ -37,13 +35,11 @@ const Basket = () => {
     }
   };
 
-  // Handle quantity changes (ensure the new quantity is valid)
   const handleQuantityChange = (itemId, priceType, change) => {
     const currentQuantity = basketItems[itemId]?.[priceType]?.quantity || 0;
     const newQuantity = currentQuantity + change;
 
     if (newQuantity >= 0) {
-      // Call updateBasketItem to update the quantity of the item in the basket
       updateBasketItem(itemId, priceType, newQuantity);
     }
   };
@@ -61,7 +57,7 @@ const Basket = () => {
           <p>Price</p>
           <p>Quantity</p>
           <p>Total</p>
-          <p>Delivery Method</p> {/* Added new column */}
+          <p>Delivery Method</p>
           <p>Remove</p>
         </div>
         <hr />
@@ -70,7 +66,7 @@ const Basket = () => {
           const itemBasketDetails = basketItems[item._id];
           if (!itemBasketDetails) return null;
 
-          return Object.entries(itemBasketDetails).map(([priceType, { quantity, price }]) => (
+          return Object.entries(itemBasketDetails).map(([priceType, { quantity, price, deliveryMethod }]) => (
             <div key={`${item._id}-${priceType}`} className="basket-items-item">
               <img src={item.image} alt={item.name} />
               <p>{item.name} ({priceType})</p>
@@ -81,7 +77,7 @@ const Basket = () => {
                 <button onClick={() => handleQuantityChange(item._id, priceType, 1)}>+</button>
               </div>
               <p>Rs {price * quantity}</p>
-              <p>{item.deliveryMethod}</p> {/* Displaying the delivery method */}
+              <p>{deliveryMethod}</p>
               <button onClick={() => removeFromBasket(item._id, priceType)}>
                 <FaTrash />
               </button>

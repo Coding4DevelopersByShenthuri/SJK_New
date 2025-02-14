@@ -9,13 +9,11 @@ const PlaceOrder = () => {
   const [error, setError] = useState(''); // To show error message
   const deliveryFee = 250; // Fixed delivery fee
 
-  // Get the subtotal from the context (total basket amount)
+  // Ensure getTotalBasketAmount is a function
   const subtotal = getTotalBasketAmount ? getTotalBasketAmount() : 0;
 
   // Calculate the total (subtotal - discount + delivery fee)
-  const calculateTotal = () => {
-    return subtotal - discount + deliveryFee;
-  };
+  const calculateTotal = () => subtotal - discount + deliveryFee;
 
   // Handle promo code submission
   const handlePromoCodeSubmit = () => {
@@ -59,6 +57,7 @@ const PlaceOrder = () => {
         </div>
         <input type="text" placeholder='Phone Number' required />
       </div>
+
       <div className='place-order-right'>
         <div className="basket-total">
           <h2>Basket Totals</h2>

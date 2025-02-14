@@ -53,21 +53,6 @@
     cursor: pointer;
     border-radius: 50%;
 }
-.food-item-counter {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px;
-    border-radius: 50px;
-    color: black;
-    background-color: rgb(160, 155, 155);
-}
-.food-item-counter img {
-    width: 30px;
-}
 .selected-price {
     color: #28a745;
     cursor: pointer;
@@ -136,7 +121,7 @@
     border-radius: 5px;
     cursor: pointer;
     display: block; /* Makes it a block element */
-    margin: 0 auto; /* Centers the button horizontally */
+    margin: 15px auto 0; /* Centers the button horizontally and adds margin-top */
 }
 .add-to-basket-btn:hover {
     background-color: #218838;
@@ -154,4 +139,40 @@
 }
 .delivery-method-options input {
     margin-right: 5px;
+}
+
+/* Counter Styles in Popup */
+.quantity-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 9px;
+}
+
+.counter-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.counter-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.quantity {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 15px;
+    color: #060505;
+}
+
+.counter-btn:hover {
+    background-color: #218838;
 }

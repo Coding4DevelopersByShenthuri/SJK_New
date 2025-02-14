@@ -4,7 +4,7 @@ import { food_list } from '../assets/assets.js';
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
-    // Retrieve basket items from localStorage, ensuring valid data
+    // Initialize basketItems from localStorage or an empty object
     const initialBasketItems = (() => {
         const storedItems = JSON.parse(localStorage.getItem('basketItems')) || {};
         const validIds = food_list?.map((item) => String(item._id)) || [];
@@ -23,38 +23,36 @@ const StoreContextProvider = ({ children }) => {
         localStorage.setItem('basketItems', JSON.stringify(basketItems));
     }, [basketItems]);
 
-    // Add item to the basket with selected price type (normalPrice, fullPrice, etc.)
-    const addToBasket = (itemId, priceType, price) => {
-        const id = String(itemId);
-        setBasketItems((prev) => {
-            const updatedBasket = { ...prev };
-            if (!updatedBasket[id]) {
-                updatedBasket[id] = {};
+    // Add an item to the basket
+    const addToBasket = (itemId, priceType, price, quantity, deliveryMethod) => {
+        setBasketItems((prevItems) => {
+            const updatedItems = { ...prevItems };
+
+            if (!updatedItems[itemId]) {
+                updatedItems[itemId] = {};
             }
-            if (!updatedBasket[id][priceType]) {
-                updatedBasket[id][priceType] = {
-                    quantity: 1,
-                    price,
-                };
-            } else {
-                updatedBasket[id][priceType].quantity += 1;
-            }
-            return updatedBasket;
+
+            updatedItems[itemId][priceType] = {
+                quantity: (updatedItems[itemId][priceType]?.quantity || 0) + quantity,
+                price: price,
+                deliveryMethod: deliveryMethod || 'Not specified',
+            };
+
+            return updatedItems;
         });
     };
 
-    // Remove item from the basket or reduce its quantity
+    // Remove an item from the basket
     const removeFromBasket = (itemId, priceType) => {
-        const id = String(itemId);
         setBasketItems((prev) => {
             const updatedBasket = { ...prev };
-            if (updatedBasket[id] && updatedBasket[id][priceType]) {
-                if (updatedBasket[id][priceType].quantity > 1) {
-                    updatedBasket[id][priceType].quantity -= 1;
+            if (updatedBasket[itemId] && updatedBasket[itemId][priceType]) {
+                if (updatedBasket[itemId][priceType].quantity > 1) {
+                    updatedBasket[itemId][priceType].quantity -= 1;
                 } else {
-                    delete updatedBasket[id][priceType];
-                    if (Object.keys(updatedBasket[id]).length === 0) {
-                        delete updatedBasket[id];
+                    delete updatedBasket[itemId][priceType];
+                    if (Object.keys(updatedBasket[itemId]).length === 0) {
+                        delete updatedBasket[itemId];
                     }
                 }
             }
@@ -62,30 +60,30 @@ const StoreContextProvider = ({ children }) => {
         });
     };
 
-    // Update basket item quantity
+    // Update the quantity of a basket item
     const updateBasketItem = (itemId, priceType, quantity) => {
-        const id = String(itemId);
         setBasketItems((prev) => {
             const updatedBasket = { ...prev };
-            if (!updatedBasket[id]) {
-                updatedBasket[id] = {};
+            if (!updatedBasket[itemId]) {
+                updatedBasket[itemId] = {};
             }
             if (quantity > 0) {
-                updatedBasket[id][priceType] = {
+                updatedBasket[itemId][priceType] = {
                     quantity,
-                    price: updatedBasket[id][priceType]?.price || 0,
+                    price: updatedBasket[itemId][priceType]?.price || 0,
+                    deliveryMethod: updatedBasket[itemId][priceType]?.deliveryMethod || 'Not specified',
                 };
             } else {
-                delete updatedBasket[id][priceType];
-                if (Object.keys(updatedBasket[id]).length === 0) {
-                    delete updatedBasket[id];
+                delete updatedBasket[itemId][priceType];
+                if (Object.keys(updatedBasket[itemId]).length === 0) {
+                    delete updatedBasket[itemId];
                 }
             }
             return updatedBasket;
         });
     };
 
-    // Increment and Decrement Quantity Logic
+    // Increase the quantity of a basket item
     const increaseQuantity = (itemId, priceType) => {
         setBasketItems((prev) => {
             const updatedBasket = { ...prev };
@@ -96,6 +94,7 @@ const StoreContextProvider = ({ children }) => {
         });
     };
 
+    // Decrease the quantity of a basket item
     const decreaseQuantity = (itemId, priceType) => {
         setBasketItems((prev) => {
             const updatedBasket = { ...prev };
@@ -106,7 +105,7 @@ const StoreContextProvider = ({ children }) => {
         });
     };
 
-    // Calculate total amount in the basket with memoization
+    // Calculate the total basket amount using memoization
     const getTotalBasketAmount = useMemo(() => {
         return Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
             return (
@@ -118,7 +117,7 @@ const StoreContextProvider = ({ children }) => {
         }, 0);
     }, [basketItems]);
 
-    // Context value (only passing required functions)
+    // Provide context values to the components
     const contextValue = {
         food_list,
         basketItems,
