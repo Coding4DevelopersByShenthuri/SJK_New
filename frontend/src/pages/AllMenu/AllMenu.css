@@ -55,29 +55,33 @@ body {
 }
 
 .app__header-p {
-    margin: 3rem 0;
+    margin: 2.5rem 0;
     font-size: 2.0rem;
     line-height: 1.6;
     width: 80%;
     padding-left: 40px;
     color: #ccc;
 }
+
 /* Responsive adjustments for smaller devices */
 @media (max-width: 768px) {
     .app__header-p {
-        font-size: 1.6rem; /* Reduce font size */
-        width: 90%;       /* Increase width for better readability */
-        padding-left: 20px; /* Reduce padding for smaller screens */
+        font-size: 2.0rem; /* Keep font size large for tablets */
+        width: 90%;        /* Increase width for better readability */
+        padding-left: 20px; /* Reduce padding */
+        line-height: 1.8;   /* Increase line-height for better readability */
     }
 }
 
 @media (max-width: 480px) {
     .app__header-p {
-        font-size: 1.4rem; /* Further reduce font size for very small screens */
-        width: 95%;       /* Use nearly full width */
-        padding-left: 10px; /* Minimize padding */
+        font-size: 1.8rem; /* Larger font size for small screens */
+        width: 95%;        /* Nearly full width */
+        padding-left: 10px; /* Reduce padding */
+        line-height: 1.8;   /* Adjust line height */
     }
 }
+
 
 /* Menu Content Section */
 .app__menu-content {
