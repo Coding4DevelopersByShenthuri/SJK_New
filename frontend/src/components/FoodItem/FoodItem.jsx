@@ -11,20 +11,34 @@ const FoodItem = ({ id, name, price, description, image }) => {
     const [quantity, setQuantity] = useState(1);
     const [showSuccessMsg, setShowSuccessMsg] = useState(false);
 
+    // Handle selecting price type (normal or full)
     const handlePriceClick = (type) => setSelectedPriceType(type);
+
+    // Toggle popup open/close
     const handlePopupToggle = () => setIsPopupOpen(!isPopupOpen);
+
+    // Handle changing delivery method
     const handleDeliveryMethodChange = (e) => setSelectedDeliveryMethod(e.target.value);
+
+    // Increase quantity
     const increaseQuantity = () => setQuantity(prev => prev + 1);
+
+    // Decrease quantity
     const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : prev));
 
+    // Handle adding item to the basket
     const handleAddToBasket = () => {
-        if (!selectedPriceType && (price?.normal || price?.full)) {
+        if (!selectedPriceType) {
             console.log('Please select a price option first.');
             return;
         }
+        if (!selectedDeliveryMethod) {
+            console.log('Please select a delivery method.');
+            return;
+        }
 
-        const chosenPrice = selectedPriceType ? price[selectedPriceType] : price;
-        addToBasket(id, selectedPriceType || 'single', chosenPrice, quantity, selectedDeliveryMethod);
+        const chosenPrice = price[selectedPriceType];
+        addToBasket(id, selectedPriceType, chosenPrice, quantity, selectedDeliveryMethod);
 
         // Show success message
         setShowSuccessMsg(true);
@@ -40,10 +54,10 @@ const FoodItem = ({ id, name, price, description, image }) => {
         <div className="food-item">
             <div className="food-item-img-container" onClick={handlePopupToggle}>
                 <img className="food-item-image" src={image} alt={name} />
-                {(!basketItems[id] || !basketItems[id][selectedPriceType || 'single']) && (
+                {(!basketItems[id] || !basketItems[id][selectedPriceType || 'single']) && price?.normal && price?.full && (
                     <img
                         className="add"
-                        onClick={handleAddToBasket}
+                        onClick={handlePopupToggle}
                         src={assets.add_icon_white}
                         alt="Add to basket"
                     />
@@ -58,8 +72,18 @@ const FoodItem = ({ id, name, price, description, image }) => {
                 <div className="food-item-price">
                     {price?.normal && price?.full ? (
                         <>
-                            <p className={selectedPriceType === 'normal' ? 'selected-price' : ''} onClick={() => handlePriceClick('normal')}>Normal: Rs {price.normal}</p>
-                            <p className={selectedPriceType === 'full' ? 'selected-price' : ''} onClick={() => handlePriceClick('full')}>Full: Rs {price.full}</p>
+                            <p
+                                className={selectedPriceType === 'normal' ? 'selected-price' : ''}
+                                onClick={() => handlePriceClick('normal')}
+                            >
+                                Normal: Rs {price.normal}
+                            </p>
+                            <p
+                                className={selectedPriceType === 'full' ? 'selected-price' : ''}
+                                onClick={() => handlePriceClick('full')}
+                            >
+                                Full: Rs {price.full}
+                            </p>
                         </>
                     ) : (
                         price && <p>Rs {price}</p>
@@ -77,8 +101,18 @@ const FoodItem = ({ id, name, price, description, image }) => {
                         <div className="popup-price">
                             {price?.normal && price?.full ? (
                                 <>
-                                    <p className={selectedPriceType === 'normal' ? 'selected-price' : ''} onClick={() => handlePriceClick('normal')}>Normal: Rs {price.normal}</p>
-                                    <p className={selectedPriceType === 'full' ? 'selected-price' : ''} onClick={() => handlePriceClick('full')}>Full: Rs {price.full}</p>
+                                    <p
+                                        className={selectedPriceType === 'normal' ? 'selected-price' : ''}
+                                        onClick={() => handlePriceClick('normal')}
+                                    >
+                                        Normal: Rs {price.normal}
+                                    </p>
+                                    <p
+                                        className={selectedPriceType === 'full' ? 'selected-price' : ''}
+                                        onClick={() => handlePriceClick('full')}
+                                    >
+                                        Full: Rs {price.full}
+                                    </p>
                                 </>
                             ) : (
                                 price && <p>Rs {price}</p>
