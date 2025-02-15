@@ -52,9 +52,10 @@ const Home = () => (
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />, 
+    element: <RootLayout />,
     children: [
-      { path: "home", index: true, element: <Home /> },
+      { path: "/", index: true, element: <Home /> }, // Set the homepage as the default route
+      { path: "home", element: <Home /> }, // Optional: can still keep this as a route if needed
       { path: "basket", element: <Basket /> },
       { path: "order", element: <PlaceOrder /> },
       { path: "all-menu", element: <AllMenu /> },

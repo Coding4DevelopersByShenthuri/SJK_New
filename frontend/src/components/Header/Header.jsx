@@ -39,7 +39,7 @@ const Header = () => {
 
   // Set header to sticky for all routes except home
   useEffect(() => {
-    if (location.pathname !== "/home") {
+    if (location.pathname !== "/home" && location.pathname !== "/") {
       setIsSticky(true);
     } else {
       setIsSticky(false);
