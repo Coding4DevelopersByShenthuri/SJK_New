@@ -11,13 +11,14 @@ const Basket = () => {
   const [discount, setDiscount] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Calculate subtotal
   const subtotal = Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
     return (
       total +
-      Object.values(priceTypes).reduce(
-        (subtotal, { quantity, price }) => subtotal + quantity * price,
-        0
-      )
+      Object.entries(priceTypes).reduce((subtotal, [priceType, details]) => {
+        const itemPrice = details.price || 0;
+        return subtotal + details.quantity * itemPrice;
+      }, 0)
     );
   }, 0);
 
@@ -38,7 +39,6 @@ const Basket = () => {
   const handleQuantityChange = (itemId, priceType, change) => {
     const currentQuantity = basketItems[itemId]?.[priceType]?.quantity || 0;
     const newQuantity = currentQuantity + change;
-
     if (newQuantity >= 0) {
       updateBasketItem(itemId, priceType, newQuantity);
     }
@@ -66,23 +66,26 @@ const Basket = () => {
           const itemBasketDetails = basketItems[item._id];
           if (!itemBasketDetails) return null;
 
-          return Object.entries(itemBasketDetails).map(([priceType, { quantity, price, deliveryMethod }]) => (
-            <div key={`${item._id}-${priceType}`} className="basket-items-item">
-              <img src={item.image} alt={item.name} />
-              <p>{item.name} ({priceType})</p>
-              <p>Rs {price}</p>
-              <div className="quantity-controls">
-                <button onClick={() => handleQuantityChange(item._id, priceType, -1)}>-</button>
-                <p>{quantity}</p>
-                <button onClick={() => handleQuantityChange(item._id, priceType, 1)}>+</button>
+          return Object.entries(itemBasketDetails).map(([priceType, details]) => {
+            const itemPrice = details.price || 0;
+            return (
+              <div key={`${item._id}-${priceType}`} className="basket-items-item">
+                <img src={item.image} alt={item.name} />
+                <p>{item.name} ({priceType})</p>
+                <p>Rs {itemPrice}</p>
+                <div className="quantity-controls">
+                  <button onClick={() => handleQuantityChange(item._id, priceType, -1)}>-</button>
+                  <p>{details.quantity}</p>
+                  <button onClick={() => handleQuantityChange(item._id, priceType, 1)}>+</button>
+                </div>
+                <p>Rs {itemPrice * details.quantity}</p>
+                <p>{details.deliveryMethod}</p>
+                <button onClick={() => removeFromBasket(item._id, priceType)}>
+                  <FaTrash />
+                </button>
               </div>
-              <p>Rs {price * quantity}</p>
-              <p>{deliveryMethod}</p>
-              <button onClick={() => removeFromBasket(item._id, priceType)}>
-                <FaTrash />
-              </button>
-            </div>
-          ));
+            );
+          });
         })}
       </div>
 

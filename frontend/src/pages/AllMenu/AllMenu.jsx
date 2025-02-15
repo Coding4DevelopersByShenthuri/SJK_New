@@ -18,9 +18,7 @@ const AllMenu = () => {
           <p className="p__opensans app__header-p">
             We redefine the art of dining with a perfect blend of exquisite flavors, 
             elegant ambiance, and impeccable service. Every dish is a masterpiece 
-            crafted from the finest ingredients, promising a culinary journey that delights your senses. 
-            Whether it’s a special occasion or a casual evening out, we aim to create unforgettable moments 
-            that leave a lasting impression.
+            crafted from the finest ingredients, promising a culinary journey that delights your senses.
           </p>
         </div>
         <div className="app__wrapper_img">

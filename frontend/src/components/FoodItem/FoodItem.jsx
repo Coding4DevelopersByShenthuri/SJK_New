@@ -4,11 +4,12 @@ import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 
 const FoodItem = ({ id, name, price, description, image }) => {
-    const { basketItems, addToBasket, removeFromBasket } = useContext(StoreContext);
+    const { basketItems, addToBasket } = useContext(StoreContext);
     const [selectedPriceType, setSelectedPriceType] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState('');
     const [quantity, setQuantity] = useState(1);
+    const [showSuccessMsg, setShowSuccessMsg] = useState(false);
 
     const handlePriceClick = (type) => setSelectedPriceType(type);
     const handlePopupToggle = () => setIsPopupOpen(!isPopupOpen);
@@ -21,9 +22,18 @@ const FoodItem = ({ id, name, price, description, image }) => {
             console.log('Please select a price option first.');
             return;
         }
-        
+
         const chosenPrice = selectedPriceType ? price[selectedPriceType] : price;
         addToBasket(id, selectedPriceType || 'single', chosenPrice, quantity, selectedDeliveryMethod);
+
+        // Show success message
+        setShowSuccessMsg(true);
+
+        // Hide message & close popup after 1.5 seconds
+        setTimeout(() => {
+            setShowSuccessMsg(false);
+            setIsPopupOpen(false);
+        }, 1500);
     };
 
     return (
@@ -97,6 +107,12 @@ const FoodItem = ({ id, name, price, description, image }) => {
                         </div>
                         <button className="add-to-basket-btn" onClick={handleAddToBasket}>Add to Basket</button>
                     </div>
+                </div>
+            )}
+
+            {showSuccessMsg && (
+                <div className="success-message">
+                    <p>✅ Added Successfully!</p>
                 </div>
             )}
         </div>
