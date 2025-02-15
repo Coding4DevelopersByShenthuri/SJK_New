@@ -1,6 +1,7 @@
+/* Blog Container */
 .blog-container {
     padding: 30px;
-    margin: 100px auto;
+    margin: 150px auto; /* Increased margin to create more space from navbar */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,14 +15,16 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Blog Title */
 .blog-title {
     text-align: center;
     font-size: 3.0rem;
-    padding-top: 120px;
+    padding-top: 300px; /* Increased padding for better spacing */
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #facf8f;
 }
 
+/* Blog Intro */
 .blog-intro {
     text-align: center;
     font-size: 1.8rem;
@@ -29,6 +32,7 @@
     color: #b3aaaa;
 }
 
+/* Blog Posts Section */
 .blog-posts {
     display: flex;
     flex-wrap: wrap;
@@ -36,6 +40,7 @@
     justify-content: center;
 }
 
+/* Blog Card */
 .blog-card {
     background: #9b9797;
     border: 1px solid #ddd;
@@ -94,41 +99,43 @@
     background-color: #0056b3;
 }
 
+/* Categories Section */
 .categories-container {
-  margin: 20px 0;
-  text-align: center;
+    margin: 20px 0;
+    text-align: center;
 }
 
 .categories-title {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #aa9e9e;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #aa9e9e;
 }
 
 .categories-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 .category-item {
-  background-color: #facf8f;
-  padding: 10px 20px;
-  border: 1px solid #ddd;
-  color: #000000;
-  border-radius: 5px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+    background-color: #facf8f;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    color: #000000;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
 
 .category-item:hover {
-  background-color: #7b7b6f;
-  color: white;
-  border-color: #060603;
+    background-color: #7b7b6f;
+    color: white;
+    border-color: #060603;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .blog-posts {
         flex-direction: column; /* Arrange blog posts in a column */
@@ -145,7 +152,7 @@
 @media (max-width: 480px) {
     .blog-title {
         font-size: 1.8rem;
-        padding-top: 50px;
+        padding-top: 80px; /* Adjusted padding for better spacing on small screens */
     }
 
     .blog-intro {

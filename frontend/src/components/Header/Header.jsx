@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-scroll";
+import { Link, useLocation } from "react-router-dom";
 import SignInPopup from "../SignInPopup/SignInPopup.jsx";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/Shakthi_Logo.png";
@@ -14,6 +14,7 @@ const Header = () => {
   const [basketCount] = useState(0);
   const [isSignInPopupVisible, setSignInPopupVisible] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // Hook to get the current route
   let lastScrollPos = 0;
 
   useEffect(() => {
@@ -35,6 +36,22 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Set header to sticky for all routes except home
+  useEffect(() => {
+    if (location.pathname !== "/home") {
+      setIsSticky(true);
+    } else {
+      setIsSticky(false);
+    }
+  }, [location]);
+
+  // Close navigation on small devices when a route is selected
+  const handleNavLinkClick = () => {
+    if (window.innerWidth <= 768) {
+      setIsNavOpen(false); // Close the navbar on small devices
+    }
+  };
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -71,19 +88,23 @@ const Header = () => {
             </a>
 
             <ul className="navbar-list">
-              {[
-                { href: "#home", label: "Home" },
-                { href: "#menu", label: "Special Dish" },
-                { href: "/all-menu", label: "Menu"},
-                { href: "/blog", label: "Blogs"},
-                { href: "#about", label: "About Us" },
-                { href: "#service", label: "Services" },
+              {[ 
+                { href: "/home", label: "Home" },
+                { href: "/about", label: "About Us" },
+                { href: "/service", label: "Services" },
+                { href: "/menu", label: "Special Dish" },
+                { href: "/all-menu", label: "Menu" },
+                { href: "/blog", label: "Blogs" },
               ].map(({ href, label }) => (
                 <li className="navbar-item" key={href}>
-                  <a href={href} className="navbar-link hover-underline">
+                  <Link 
+                    to={href} 
+                    className="navbar-link hover-underline" 
+                    onClick={handleNavLinkClick} // Close nav on link click
+                  >
                     <div className="separator"></div>
                     <span className="span">{label}</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
 

@@ -11,7 +11,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
     const [quantity, setQuantity] = useState(1);
     const [showSuccessMsg, setShowSuccessMsg] = useState(false);
 
-    // Handle selecting price type (normal or full)
+    // Handle selecting price type (normal or full) for food items with multiple prices
     const handlePriceClick = (type) => setSelectedPriceType(type);
 
     // Toggle popup open/close
@@ -28,7 +28,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
 
     // Handle adding item to the basket
     const handleAddToBasket = () => {
-        if (!selectedPriceType) {
+        if (price?.normal && price?.full && !selectedPriceType) {
             console.log('Please select a price option first.');
             return;
         }
@@ -37,8 +37,8 @@ const FoodItem = ({ id, name, price, description, image }) => {
             return;
         }
 
-        const chosenPrice = price[selectedPriceType];
-        addToBasket(id, selectedPriceType, chosenPrice, quantity, selectedDeliveryMethod);
+        const chosenPrice = price[selectedPriceType] || price;  // Default to price if no price type selected
+        addToBasket(id, selectedPriceType || 'Portion', chosenPrice, quantity, selectedDeliveryMethod);
 
         // Show success message
         setShowSuccessMsg(true);
@@ -54,7 +54,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
         <div className="food-item">
             <div className="food-item-img-container" onClick={handlePopupToggle}>
                 <img className="food-item-image" src={image} alt={name} />
-                {(!basketItems[id] || !basketItems[id][selectedPriceType || 'single']) && price?.normal && price?.full && (
+                {(!basketItems[id] || !basketItems[id][selectedPriceType || 'normal']) && (price?.normal || price?.full) && (
                     <img
                         className="add"
                         onClick={handlePopupToggle}

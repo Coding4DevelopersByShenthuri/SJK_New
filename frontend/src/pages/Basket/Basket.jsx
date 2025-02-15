@@ -45,87 +45,89 @@ const Basket = () => {
   };
 
   return (
-    <div className="basket">
-      <h1 className="basket-heading">My Basket</h1>
-      <p className="basket-aesthetic">"Every item here tells a story, crafted just for you."</p>
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
+    <div className="basket-container">
+      <div className="basket">
+        <h1 className="basket-heading">My Basket</h1>
+        <p className="basket-aesthetic">"Every item here tells a story, crafted just for you."</p>
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
 
-      <div className="basket-items">
-        <div className="basket-items-title">
-          <p>Item</p>
-          <p>Title</p>
-          <p>Price</p>
-          <p>Quantity</p>
-          <p>Total</p>
-          <p>Delivery Method</p>
-          <p>Remove</p>
-        </div>
-        <hr />
-
-        {food_list.map((item) => {
-          const itemBasketDetails = basketItems[item._id];
-          if (!itemBasketDetails) return null;
-
-          return Object.entries(itemBasketDetails).map(([priceType, details]) => {
-            const itemPrice = details.price || 0;
-            return (
-              <div key={`${item._id}-${priceType}`} className="basket-items-item">
-                <img src={item.image} alt={item.name} />
-                <p>{item.name} ({priceType})</p>
-                <p>Rs {itemPrice}</p>
-                <div className="quantity-controls">
-                  <button onClick={() => handleQuantityChange(item._id, priceType, -1)}>-</button>
-                  <p>{details.quantity}</p>
-                  <button onClick={() => handleQuantityChange(item._id, priceType, 1)}>+</button>
-                </div>
-                <p>Rs {itemPrice * details.quantity}</p>
-                <p>{details.deliveryMethod}</p>
-                <button onClick={() => removeFromBasket(item._id, priceType)}>
-                  <FaTrash />
-                </button>
-              </div>
-            );
-          });
-        })}
-      </div>
-
-      <div className="basket-bottom">
-        <div className="basket-total">
-          <h2>Basket Totals</h2>
-          <div>
-            <div className="basket-total-details">
-              <p>Subtotal</p>
-              <p>Rs {subtotal}</p>
-            </div>
-            <hr />
-            <div className="basket-total-details">
-              <p>Promo Discount</p>
-              <p>- Rs {discount}</p>
-            </div>
-            <hr />
-            <div className="basket-total-details">
-              <p>Delivery Fee</p>
-              <p>Rs {deliveryFee}</p>
-            </div>
-            <hr />
-            <div className="basket-total-details">
-              <p>Total</p>
-              <b>Rs {total}</b>
-            </div>
+        <div className="basket-items">
+          <div className="basket-items-title">
+            <p>Item</p>
+            <p>Title</p>
+            <p>Price</p>
+            <p>Quantity</p>
+            <p>Total</p>
+            <p>Delivery Method</p>
+            <p>Remove</p>
           </div>
-          <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
+          <hr />
+
+          {food_list.map((item) => {
+            const itemBasketDetails = basketItems[item._id];
+            if (!itemBasketDetails) return null;
+
+            return Object.entries(itemBasketDetails).map(([priceType, details]) => {
+              const itemPrice = details.price || 0;
+              return (
+                <div key={`${item._id}-${priceType}`} className="basket-items-item">
+                  <img src={item.image} alt={item.name} />
+                  <p>{item.name} ({priceType})</p>
+                  <p>Rs {itemPrice}</p>
+                  <div className="quantity-controls">
+                    <button onClick={() => handleQuantityChange(item._id, priceType, -1)}>-</button>
+                    <p>{details.quantity}</p>
+                    <button onClick={() => handleQuantityChange(item._id, priceType, 1)}>+</button>
+                  </div>
+                  <p>Rs {itemPrice * details.quantity}</p>
+                  <p>{details.deliveryMethod}</p>
+                  <button onClick={() => removeFromBasket(item._id, priceType)}>
+                    <FaTrash />
+                  </button>
+                </div>
+              );
+            });
+          })}
         </div>
 
-        <div className="basket-promocode">
-          <p>If you have a promo code, enter it here</p>
-          <div className="basket-promocode-input">
-            <input
-              type="text"
-              placeholder="Promo Code"
-              value={promoCode}
-              onChange={(e) => setPromoCode(e.target.value)}
-            />
-            <button onClick={handlePromoCodeSubmit}>Submit</button>
+        <div className="basket-bottom">
+          <div className="basket-total">
+            <h2>Basket Totals</h2>
+            <div>
+              <div className="basket-total-details">
+                <p>Subtotal</p>
+                <p>Rs {subtotal}</p>
+              </div>
+              <hr />
+              <div className="basket-total-details">
+                <p>Promo Discount</p>
+                <p>- Rs {discount}</p>
+              </div>
+              <hr />
+              <div className="basket-total-details">
+                <p>Delivery Fee</p>
+                <p>Rs {deliveryFee}</p>
+              </div>
+              <hr />
+              <div className="basket-total-details">
+                <p>Total</p>
+                <b>Rs {total}</b>
+              </div>
+            </div>
+            <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
+          </div>
+
+          <div className="basket-promocode">
+            <p>If you have a promo code, enter it here</p>
+            <div className="basket-promocode-input">
+              <input
+                type="text"
+                placeholder="Promo Code"
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+              />
+              <button onClick={handlePromoCodeSubmit}>Submit</button>
+            </div>
           </div>
         </div>
       </div>
