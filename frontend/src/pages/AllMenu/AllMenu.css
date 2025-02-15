@@ -37,7 +37,7 @@ body {
 
 .app__wrapper_img img {
     width: 100%;
-    max-width: 500px;
+    max-width: 380px;
     border-radius: 10px;
     object-fit: contain;
 }

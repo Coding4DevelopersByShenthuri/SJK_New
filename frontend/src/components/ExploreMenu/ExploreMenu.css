@@ -7,8 +7,9 @@
 
 .explore-menu h1 {
     color: #facf8f;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: cursive;
     font-weight: 500;
+    margin-top: -180px; /* Adjust the value to move the title up */
 }
 
 .explore-menu-list {
