@@ -134,8 +134,8 @@ const Header = () => {
 
               <p className="body-4 navbar-text">Open: 6.30 am - 10.30 pm</p>
 
-              <a href="mailto:shakthijaffnakitchen@gmail.com" className="body-4 sidebar-link">
-                shakthijaffnakitchen@gmail.com
+              <a href="mailto:shakthyjaffnakitchen@gmail.com" className="body-4 sidebar-link">
+                shakthyjaffnakitchen@gmail.com
               </a>
 
               <div className="separator"></div>

@@ -12,7 +12,7 @@ const Footer = () => {
             <address className="body-4">
               Station Road Chavakachcheri, Jaffna.
             </address>
-            <a href="mailto:shakthijaffnakitchen@gmail.com" className="body-4 contact-link">shakthijaffnakitchen@gmail.com</a>
+            <a href="mailto:shakthyjaffnakitchen@gmail.com" className="body-4 contact-link">shakthyjaffnakitchen@gmail.com</a>
             <a href="tel:+94-777-240510" className="body-4 contact-link">Booking Request : +94-777-240510</a>
             <p className="body-4">Open : 06:30 am - 10:30 pm</p>
             <div className="wrapper">
@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
         <div className="footer-bottom">
           <p className="copyright">
-            &copy; 2024 Shakthi Jaffna Kitchen. All Rights Reserved | Crafted by Shenthuri Maran with ♡ <a href="https://www.facebook.com/profile.php?id=100085593338393" target="_blank" className="link">Let's Connect</a>
+            &copy; 2024 Shakthy Jaffna Kitchen. All Rights Reserved | Crafted by Shenthuri Maran with ♡ <a href="https://www.facebook.com/profile.php?id=100085593338393" target="_blank" className="link">Let's Connect</a>
           </p>
         </div>
       </div>

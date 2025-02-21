@@ -23,7 +23,7 @@ const Preloader = () => {
       <div className="circle"></div>
 
       {/* Loading Text */}
-      <div className="text">shakthi Jaffna Kitchen</div>
+      <div className="text">Shakthy Jaffna Kitchen</div>
     </div>
   );
 };
