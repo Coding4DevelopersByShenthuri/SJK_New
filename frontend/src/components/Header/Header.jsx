@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom"; // Renamed to RouterLink to avoid conflicts
+import { Link as ScrollLink } from "react-scroll"; // Import ScrollLink from react-scroll
 import SignInPopup from "../SignInPopup/SignInPopup.jsx";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/Shakthi_Logo.png";
-import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { MdOutlineRestaurantMenu, MdClose } from "react-icons/md";
 import { FiShoppingBag } from "react-icons/fi";
 
 const Header = () => {
@@ -14,22 +15,15 @@ const Header = () => {
   const [basketCount] = useState(0);
   const [isSignInPopupVisible, setSignInPopupVisible] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); // Hook to get the current route
+  const location = useLocation();
   let lastScrollPos = 0;
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
-
-      // Sticky header logic
       setIsSticky(currentScrollPos > 50);
-
-      // Show/hide header based on scroll direction
       setIsHeaderHidden(currentScrollPos > 50 && currentScrollPos > lastScrollPos);
-
-      // Show/hide back-to-top button
       setShowBackTopBtn(currentScrollPos >= 50);
-
       lastScrollPos = currentScrollPos;
     };
 
@@ -37,7 +31,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Set header to sticky for all routes except home
   useEffect(() => {
     if (location.pathname !== "/home" && location.pathname !== "/") {
       setIsSticky(true);
@@ -46,10 +39,9 @@ const Header = () => {
     }
   }, [location]);
 
-  // Close navigation on small devices when a route is selected
   const handleNavLinkClick = () => {
     if (window.innerWidth <= 768) {
-      setIsNavOpen(false); // Close the navbar on small devices
+      setIsNavOpen(false);
     }
   };
 
@@ -62,7 +54,7 @@ const Header = () => {
   };
 
   const handleBasketClick = () => {
-    window.open('/basket', '_blank'); // Open in a new tab
+    window.open('/basket', '_blank');
   };
 
   return (
@@ -88,7 +80,7 @@ const Header = () => {
             </a>
 
             <ul className="navbar-list">
-              {[ 
+              {[
                 { href: "/home", label: "Home" },
                 { href: "/about", label: "About Us" },
                 { href: "/service", label: "Services" },
@@ -97,14 +89,14 @@ const Header = () => {
                 { href: "/blog", label: "Blogs" },
               ].map(({ href, label }) => (
                 <li className="navbar-item" key={href}>
-                  <Link 
-                    to={href} 
-                    className="navbar-link hover-underline" 
-                    onClick={handleNavLinkClick} // Close nav on link click
+                  <RouterLink
+                    to={href}
+                    className="navbar-link hover-underline"
+                    onClick={handleNavLinkClick}
                   >
                     <div className="separator"></div>
                     <span className="span">{label}</span>
-                  </Link>
+                  </RouterLink>
                 </li>
               ))}
 
@@ -146,10 +138,11 @@ const Header = () => {
                 +94-777-240510
               </a>
 
-              <Link
-                to="reservation"
-                smooth={true}
-                duration={500}
+              {/* Use ScrollLink for smooth scrolling to the reservation section */}
+              <ScrollLink
+                to="reservation" // ID of the reservation section
+                smooth={true} // Enable smooth scrolling
+                duration={500} // Duration of the scroll animation
                 className="btn btn-secondary nav-btn"
                 style={{
                   cursor: "pointer",
@@ -163,7 +156,7 @@ const Header = () => {
                 <span className="text text-2" aria-hidden="true">
                   Find A Table
                 </span>
-              </Link>
+              </ScrollLink>
             </div>
           </nav>
 
@@ -173,11 +166,11 @@ const Header = () => {
             {basketCount > 0 && <span className="basket-badge">{basketCount}</span>}
           </div>
 
-          {/* Scroll to Reservation Section */}
-          <Link
-            to="reservation"
-            smooth={true}
-            duration={500}
+          {/* Use ScrollLink for smooth scrolling to the reservation section */}
+          <ScrollLink
+            to="reservation" // ID of the reservation section
+            smooth={true} // Enable smooth scrolling
+            duration={500} // Duration of the scroll animation
             className="btn btn-secondary"
             style={{ cursor: "pointer" }}
           >
@@ -185,7 +178,7 @@ const Header = () => {
             <span className="text text-2" aria-hidden="true">
               Find A Table
             </span>
-          </Link>
+          </ScrollLink>
 
           {/* Navigation toggle buttons */}
           <button className="nav-open-btn" aria-label="Open menu" onClick={toggleNav}>
