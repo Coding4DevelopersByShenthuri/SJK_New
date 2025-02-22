@@ -1,37 +1,62 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./SignInPopup.css";
 import googleIcon from "../../assets/images/icons8-google.svg";
+import { StoreContext } from "../../context/StoreContext";
 
 const SignInPopup = ({ isVisible, onClose }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const { url } = useContext(StoreContext);
     const [currState, setCurrState] = useState("Sign Up");
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        password: "",
+    });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Email:", email, "Password:", password);
+    const onChangeHandler = (event) => {
+        const { name, value } = event.target;
+        setData((prevData) => ({ ...prevData, [name]: value }));
     };
+
+    const onSignin = async (event) => {
+        
+        
+    }
 
     if (!isVisible) return null;
 
     return (
         <div className="popup-overlay">
-            <div className="signin-popup-container">
+            <div onSubmit={onSignin} className="signin-popup-container">
                 <div className="signin-popup-title">
                     <h2>{currState}</h2>
                     <button className="close-button" onClick={onClose}>
                         &times;
                     </button>
                 </div>
-                <form className="signin-popup-form" onSubmit={handleSubmit}>
+                <form className="signin-popup-form" onSubmit={onSignin}>
                     <div className="signin-popup-inputs">
+                        {currState === "Sign Up" && (
+                            <div className="form-group">
+                                <label htmlFor="name">Name</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={data.name}
+                                    onChange={onChangeHandler}
+                                    placeholder="Enter your name"
+                                    required
+                                />
+                            </div>
+                        )}
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input
                                 type="email"
                                 id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                name="email"
+                                value={data.email}
+                                onChange={onChangeHandler}
                                 placeholder="Enter your email"
                                 required
                             />
@@ -41,23 +66,13 @@ const SignInPopup = ({ isVisible, onClose }) => {
                             <input
                                 type="password"
                                 id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                name="password"
+                                value={data.password}
+                                onChange={onChangeHandler}
                                 placeholder="Enter your password"
                                 required
                             />
                         </div>
-                        {currState === "Sign Up" && (
-                            <div className="form-group">
-                                <label htmlFor="confirmPassword">Confirm Password</label>
-                                <input
-                                    type="password"
-                                    id="confirmPassword"
-                                    placeholder="Confirm your password"
-                                    required
-                                />
-                            </div>
-                        )}
                     </div>
                     <button type="submit" className="signin-button">
                         {currState === "Sign Up" ? "Sign Up" : "Login"}

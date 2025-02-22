@@ -4,6 +4,7 @@ import { food_list } from '../assets/assets.js';
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
+
     // Initialize basketItems from localStorage or an empty object
     const initialBasketItems = (() => {
         const storedItems = JSON.parse(localStorage.getItem('basketItems')) || {};
@@ -17,6 +18,7 @@ const StoreContextProvider = ({ children }) => {
     })();
 
     const [basketItems, setBasketItems] = useState(initialBasketItems);
+    const url = "http://localhost:5000";
 
     // Sync basketItems to localStorage whenever it changes
     useEffect(() => {
@@ -127,6 +129,7 @@ const StoreContextProvider = ({ children }) => {
         getTotalBasketAmount,
         increaseQuantity,
         decreaseQuantity,
+        url,
     };
 
     return (
