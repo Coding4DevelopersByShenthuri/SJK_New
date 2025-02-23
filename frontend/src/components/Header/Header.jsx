@@ -4,7 +4,7 @@ import { Link as ScrollLink } from "react-scroll"; // Import ScrollLink from rea
 import SignInPopup from "../SignInPopup/SignInPopup.jsx";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/Shakthi_Logo.png";
-import { MdOutlineRestaurantMenu, MdClose } from "react-icons/md";
+import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { FiShoppingBag } from "react-icons/fi";
 
 const Header = () => {
