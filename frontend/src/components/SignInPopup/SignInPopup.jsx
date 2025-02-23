@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import "./SignInPopup.css";
 import googleIcon from "../../assets/images/icons8-google.svg";
 import { StoreContext } from "../../context/StoreContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const SignInPopup = ({ isVisible, onClose }) => {
-    const { url } = useContext(StoreContext);
+    const { url, setToken } = useContext(StoreContext);
     const [currState, setCurrState] = useState("Sign Up");
     const [data, setData] = useState({
         name: "",
@@ -17,23 +19,43 @@ const SignInPopup = ({ isVisible, onClose }) => {
         setData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const onSignin = async (event) => {
-        
-        
-    }
+    const onSubmitHandler = async (event) => {
+        event.preventDefault();
+        const endpoint = currState === "Sign Up" ? "/api/user/signup" : "/api/user/login";
+        const fullUrl = `${url}${endpoint}`;
+
+        console.log("API Request to:", fullUrl);
+
+        try {
+            const response = await axios.post(fullUrl, data);
+
+            if (response.data.success) {
+                setToken(response.data.token);
+                localStorage.setItem("token", response.data.token);
+                toast.success(response.data.message);
+                onClose();
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            console.error("Axios Error:", error.response || error.message);
+            toast.error(error.response?.data?.message || "Something went wrong!");
+        }
+    };
+
 
     if (!isVisible) return null;
 
     return (
         <div className="popup-overlay">
-            <div onSubmit={onSignin} className="signin-popup-container">
+            <div onSubmit={onSubmitHandler} className="signin-popup-container">
                 <div className="signin-popup-title">
                     <h2>{currState}</h2>
                     <button className="close-button" onClick={onClose}>
                         &times;
                     </button>
                 </div>
-                <form className="signin-popup-form" onSubmit={onSignin}>
+                <form className="signin-popup-form" onSubmit={onSubmitHandler}>
                     <div className="signin-popup-inputs">
                         {currState === "Sign Up" && (
                             <div className="form-group">

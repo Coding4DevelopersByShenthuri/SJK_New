@@ -19,6 +19,7 @@ const StoreContextProvider = ({ children }) => {
 
     const [basketItems, setBasketItems] = useState(initialBasketItems);
     const url = "http://localhost:5000";
+    const [token, setToken] = useState("");
 
     // Sync basketItems to localStorage whenever it changes
     useEffect(() => {
@@ -130,6 +131,8 @@ const StoreContextProvider = ({ children }) => {
         increaseQuantity,
         decreaseQuantity,
         url,
+        token,
+        setToken
     };
 
     return (
