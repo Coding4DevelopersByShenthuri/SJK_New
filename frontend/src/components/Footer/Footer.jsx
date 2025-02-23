@@ -1,5 +1,4 @@
 import React from 'react';
-import './Footer.css';
 
 const Footer = () => {
   return (
@@ -53,7 +52,7 @@ const Footer = () => {
         </div>
         <div className="footer-bottom">
           <p className="copyright">
-            &copy; 2024 Shakthy Jaffna Kitchen. All Rights Reserved | Crafted by Shenthuri Maran with ♡ <a href="https://www.facebook.com/profile.php?id=100085593338393" target="_blank" className="link">Let's Connect</a>
+            &copy; 2025 Shakthy Jaffna Kitchen. All Rights Reserved | Crafted by Shenthuri Maran with ♡ <a href="https://www.facebook.com/profile.php?id=100085593338393" target="_blank" className="link">Let's Connect</a>
           </p>
         </div>
       </div>
