@@ -32,6 +32,7 @@
 }
 .food-item-desc {
     color: #bab9b9;
+    font-weight: bold;
     font-size: 15px;
 }
 .food-item-price {
@@ -80,9 +81,11 @@
     background-color: rgb(208, 196, 196);
     padding: 30px; /* Reduced padding */
     border-radius: 10px;
+    font-weight: bold;
     max-width: 350px; /* Fixed width for consistency */
     width: 100%;
     text-align: center;
+    color: black;
     position: relative;
 }
 .popup-close {

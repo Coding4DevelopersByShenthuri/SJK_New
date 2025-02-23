@@ -12,8 +12,8 @@ const FoodDisplay = ({ category = 'All' }) => {
         ? food_list.filter((item) => category === 'All' || category === item.category)
         : [];
 
-    // Determine the displayed dishes (limit to first 10 or show all)
-    const displayedFoodList = showAll ? filteredFoodList : filteredFoodList.slice(0, 10);
+    // Determine the displayed dishes (limit to first 20 or show all)
+    const displayedFoodList = showAll ? filteredFoodList : filteredFoodList.slice(0, 20);
 
     // Determine the dynamic title based on the active category
     const dynamicTitle = category === 'All' ? 'Top Dishes for You' : `${category} for You Below!`;
@@ -51,7 +51,7 @@ const FoodDisplay = ({ category = 'All' }) => {
                     />
                 ))}
             </div>
-            {filteredFoodList.length > 10 && (
+            {filteredFoodList.length > 20 && (
                 <button
                     className="expand-all-button"
                     onClick={() => setShowAll((prev) => !prev)}
