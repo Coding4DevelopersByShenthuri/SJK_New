@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useEffect, useState, useMemo } from "react";
 
 export const StoreContext = createContext(null);
@@ -9,19 +10,26 @@ const StoreContextProvider = ({ children }) => {
     const url = "http://localhost:5000";
 
     // Fetch food list (this part can be modified to your fetching logic)
+    const fetchFoodList = async () => {
+        try {
+            const response = await axios.get(`${url}/api/food/list`);
+            setFoodList(response.data.data);  // Set food list after fetching
+        } catch (error) {
+            console.error("Error fetching food list:", error);
+        }
+    };
+
+    // Fetch food list and token on component mount
     useEffect(() => {
-        // Simulating fetching food list from an API
-        const fetchFoodList = async () => {
-            const response = await fetch(`${url}/food-list`);
-            const data = await response.json();
-            setFoodList(data);  // Set food list after fetching
-        };
         fetchFoodList();
-    }, []);
+        if (localStorage.getItem("token")) {
+            setToken(localStorage.getItem("token"));
+        }
+    }, []); // Runs only once on mount
 
     // Initialize basketItems from localStorage or an empty object after food_list is fetched
     useEffect(() => {
-        if (food_list.length > 0) {
+        if (food_list && food_list.length > 0) {  // Check if food_list is not empty
             const storedItems = JSON.parse(localStorage.getItem('basketItems')) || {};
             const validIds = food_list.map((item) => String(item._id)) || [];
             const initialBasket = Object.keys(storedItems).reduce((acc, key) => {
@@ -32,12 +40,12 @@ const StoreContextProvider = ({ children }) => {
             }, {});
             setBasketItems(initialBasket);  // Set basket items based on the food list
         }
-    }, [food_list]);
+    }, [food_list]);  // Runs every time food_list is updated
 
     // Sync basketItems to localStorage whenever it changes
     useEffect(() => {
         localStorage.setItem('basketItems', JSON.stringify(basketItems));
-    }, [basketItems]);
+    }, [basketItems]);  // Runs whenever basketItems change
 
     // Add an item to the basket
     const addToBasket = (itemId, priceType, price, quantity, deliveryMethod) => {
