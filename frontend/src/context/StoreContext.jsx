@@ -1,25 +1,38 @@
 import { createContext, useEffect, useState, useMemo } from "react";
-import { food_list } from '../assets/assets.js';
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
-
-    // Initialize basketItems from localStorage or an empty object
-    const initialBasketItems = (() => {
-        const storedItems = JSON.parse(localStorage.getItem('basketItems')) || {};
-        const validIds = food_list?.map((item) => String(item._id)) || [];
-        return Object.keys(storedItems).reduce((acc, key) => {
-            if (validIds.includes(key)) {
-                acc[key] = storedItems[key];
-            }
-            return acc;
-        }, {});
-    })();
-
-    const [basketItems, setBasketItems] = useState(initialBasketItems);
-    const url = "http://localhost:5000";
+    const [food_list, setFoodList] = useState([]);
+    const [basketItems, setBasketItems] = useState({});
     const [token, setToken] = useState("");
+    const url = "http://localhost:5000";
+
+    // Fetch food list (this part can be modified to your fetching logic)
+    useEffect(() => {
+        // Simulating fetching food list from an API
+        const fetchFoodList = async () => {
+            const response = await fetch(`${url}/food-list`);
+            const data = await response.json();
+            setFoodList(data);  // Set food list after fetching
+        };
+        fetchFoodList();
+    }, []);
+
+    // Initialize basketItems from localStorage or an empty object after food_list is fetched
+    useEffect(() => {
+        if (food_list.length > 0) {
+            const storedItems = JSON.parse(localStorage.getItem('basketItems')) || {};
+            const validIds = food_list.map((item) => String(item._id)) || [];
+            const initialBasket = Object.keys(storedItems).reduce((acc, key) => {
+                if (validIds.includes(key)) {
+                    acc[key] = storedItems[key];
+                }
+                return acc;
+            }, {});
+            setBasketItems(initialBasket);  // Set basket items based on the food list
+        }
+    }, [food_list]);
 
     // Sync basketItems to localStorage whenever it changes
     useEffect(() => {
