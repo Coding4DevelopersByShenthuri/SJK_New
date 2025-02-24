@@ -1,0 +1,117 @@
+/* Sign In Button */
+.sign-in-btn {
+    background-color: #f7d884;
+    color: black;
+    padding: 6px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sign-in-btn:hover {
+    background-color: #e65c00;
+    /* Darker shade on hover */
+}
+
+/* Profile Section */
+.profile-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 80%;
+    border: 2px solid #f7d884;
+    cursor: pointer;
+}
+
+/* Dropdown Menu */
+.profile-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    color: black;
+    font-weight: bold;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    list-style: none;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Show dropdown on hover */
+.profile-section:hover .profile-dropdown {
+    visibility: visible;
+    opacity: 1;
+}
+
+.profile-dropdown li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.profile-dropdown li:hover {
+    background-color: #fae88d;
+}
+
+.profile-dropdown hr {
+    margin: 5px 0;
+    border: 0;
+    height: 1px;
+    background: #ddd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sign-in-btn {
+        padding: 5px 12px;
+        font-size: 0.9rem;
+    }
+
+    .profile-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .profile-dropdown {
+        top: 45px;
+        min-width: 130px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sign-in-btn {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+    }
+
+    .profile-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .profile-dropdown {
+        top: 40px;
+        min-width: 120px;
+        font-size: 0.8rem;
+        right: -20px;
+        /* Adjust position for smaller screens */
+    }
+}

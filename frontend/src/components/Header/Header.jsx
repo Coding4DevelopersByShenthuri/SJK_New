@@ -1,22 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom"; // Renamed to RouterLink to avoid conflicts
 import { Link as ScrollLink } from "react-scroll"; // Import ScrollLink from react-scroll
 import SignInPopup from "../SignInPopup/SignInPopup.jsx";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/Shakthi_Logo.png";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { StoreContext } from "../../context/StoreContext.jsx";
 import { FiShoppingBag } from "react-icons/fi";
+import { assets } from "../../assets/assets.js";
+import "./Header.css";
 
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [showBackTopBtn, setShowBackTopBtn] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [basketCount] = useState(0);
   const [isSignInPopupVisible, setSignInPopupVisible] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { token, setToken } = useContext(StoreContext);
   let lastScrollPos = 0;
+
+  // Load token from localStorage on component mount
+  useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, [setToken]);
+
+  // Save token to localStorage when it changes
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("authToken", token);
+    } else {
+      localStorage.removeItem("authToken");
+    }
+  }, [token]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,12 +71,20 @@ const Header = () => {
     setIsNavOpen(!isNavOpen);
   };
 
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
   const refreshHome = () => {
     window.location.reload();
   };
 
   const handleBasketClick = () => {
     window.open('/basket', '_blank');
+  };
+
+  const handleLogout = () => {
+    setToken(null);
+    localStorage.removeItem("authToken");
+    navigate("/");
   };
 
   return (
@@ -102,17 +132,37 @@ const Header = () => {
 
               {/* Separate Sign In option */}
               <li className="navbar-item">
-                <a
-                  href="#signin"
-                  className="navbar-link hover-underline"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setSignInPopupVisible(true);
-                  }}
-                >
-                  <div className="separator"></div>
-                  <span className="span">Sign In</span>
-                </a>
+                {!token ? (
+                  <button
+                    className="sign-in-btn navbar-button hover-underline"
+                    onClick={() => setSignInPopupVisible(true)}
+                  >
+                    <div className="separator"></div>
+                    <span className="span">Sign In</span>
+                  </button>
+                ) : (
+                  <div className="profile-section">
+                    <img
+                      src={assets.profile_icon}
+                      alt="Profile"
+                      className="profile-icon"
+                      onClick={toggleDropdown}
+                    />
+                    {isDropdownOpen && (
+                      <ul className="profile-dropdown">
+                        <li onClick={() => navigate("/orders")}>
+                          <img src={assets.bag_icon} alt="Orders" />
+                          <p>Orders</p>
+                        </li>
+                        <hr />
+                        <li onClick={() => { { handleLogout } setToken(null); navigate("/"); }}>
+                          <img src={assets.logout_icon} alt="Logout" />
+                          <p>Logout</p>
+                        </li>
+                      </ul>
+                    )}
+                  </div>
+                )}
               </li>
             </ul>
 
