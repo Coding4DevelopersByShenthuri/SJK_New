@@ -155,7 +155,7 @@ const Header = () => {
                           <p>Orders</p>
                         </li>
                         <hr />
-                        <li onClick={() => { { handleLogout } setToken(null); navigate("/"); }}>
+                        <li onClick={() => { handleLogout(); navigate("/"); }}>
                           <img src={assets.logout_icon} alt="Logout" />
                           <p>Logout</p>
                         </li>
