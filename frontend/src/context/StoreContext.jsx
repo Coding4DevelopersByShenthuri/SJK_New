@@ -4,28 +4,38 @@ import { createContext, useEffect, useState, useMemo } from "react";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
+    const [basketItems, setBasketItems] = useState(() => {
+        // Load basket from localStorage on initial render
+        const savedBasket = localStorage.getItem('basketItems');
+        return savedBasket ? JSON.parse(savedBasket) : {};
+    });
+
     const [food_list, setFoodList] = useState([]);
-    const [basketItems, setBasketItems] = useState({});
     const [token, setToken] = useState("");
     const url = "http://localhost:5000";
 
-    // Fetch food list (this part can be modified to your fetching logic)
-    const fetchFoodList = async () => {
-        try {
-            const response = await axios.get(`${url}/api/food/list`);
-            setFoodList(response.data.data);  // Set food list after fetching
-        } catch (error) {
-            console.error("Error fetching food list:", error);
-        }
-    };
-
-    // Fetch food list and token on component mount
     useEffect(() => {
+        // Save basket to localStorage whenever it changes
+        localStorage.setItem('basketItems', JSON.stringify(basketItems));
+    }, [basketItems]);
+
+
+    // Fetch food list (this part can be modified to your fetching logic)
+    useEffect(() => {
+        const fetchFoodList = async () => {
+            try {
+                const response = await axios.get(`${url}/api/food/list`);
+                setFoodList(response.data.data);
+            } catch (error) {
+                console.error("Error fetching food list:", error);
+            }
+        };
+
         fetchFoodList();
-        if (localStorage.getItem("token")) {
-            setToken(localStorage.getItem("token"));
-        }
-    }, []); // Runs only once on mount
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) setToken(storedToken);
+    }, []);
+    
 
     // Initialize basketItems from localStorage or an empty object after food_list is fetched
     useEffect(() => {
