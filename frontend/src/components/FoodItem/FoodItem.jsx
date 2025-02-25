@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 
 const FoodItem = ({ id, name, price, description, image }) => {
-    const { basketItems, addToBasket } = useContext(StoreContext);
+    const { basketItems, addToBasket,url } = useContext(StoreContext);
     const [selectedPriceType, setSelectedPriceType] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState('');
@@ -50,10 +50,13 @@ const FoodItem = ({ id, name, price, description, image }) => {
         }, 1500);
     };
 
+    // Log image URL to check what value is being passed
+    console.log(image);  // Check what value is being passed
+
     return (
         <div className="food-item">
             <div className="food-item-img-container" onClick={handlePopupToggle}>
-                <img className="food-item-image" src={image} alt={name} />
+            <img className="food-item-image" src={`${url}/uploads/${image}`} alt={name} />
                 {(!basketItems[id] || !basketItems[id][selectedPriceType || 'normal']) && (price?.normal || price?.full) && (
                     <img
                         className="add"
@@ -95,7 +98,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
                 <div className="food-item-popup">
                     <div className="popup-content">
                         <span className="popup-close" onClick={handlePopupToggle}>X</span>
-                        <img className="popup-image" src={image} alt={name} />
+                        <img className="popup-image" src={url + "/images/" + image} alt={name} />
                         <h3 style={{ color: 'black' }}>{name}</h3>
                         <p>{description}</p>
                         <div className="popup-price">
