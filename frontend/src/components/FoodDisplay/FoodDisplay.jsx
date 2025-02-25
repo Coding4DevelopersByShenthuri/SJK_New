@@ -7,18 +7,20 @@ const FoodDisplay = ({ category = 'All' }) => {
     const { food_list } = useContext(StoreContext);
     const [showAll, setShowAll] = useState(false);
 
-    // Filter dishes based on category
-    const filteredFoodList = food_list
-        ? food_list.filter((item) => category === 'All' || category === item.category)
-        : [];
+    // Filter dishes based on category (case-insensitive)
+    const filteredFoodList = food_list?.filter((item) => 
+        category.toLowerCase() === 'all' || category.toLowerCase() === item.category.toLowerCase()
+    ) || [];
 
-    // Determine the displayed dishes (limit to first 20 or show all)
+    // Determine displayed items
     const displayedFoodList = showAll ? filteredFoodList : filteredFoodList.slice(0, 20);
 
-    // Determine the dynamic title based on the active category
-    const dynamicTitle = category === 'All' ? 'Top Dishes for You' : `${category} for You Below!`;
+    // Dynamic title
+    const dynamicTitle = `${category === 'All' ? 'Top Dishes' : category} for You Below!`;
 
-    // Handle case where no food items are available
+    // Check if expand button is needed
+    const shouldShowExpandButton = filteredFoodList.length > 20;
+
     if (filteredFoodList.length === 0) {
         return (
             <div className="food-display" id="food-display">
@@ -27,8 +29,9 @@ const FoodDisplay = ({ category = 'All' }) => {
                     <p>😔 Sorry, we’re out of dishes at the moment. Please check back soon!</p>
                     <div className="crying-gif">
                         <img
-                            src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHJjbGpkano2NGoxMzJzaTd6aTY1ajZnaWc1ODh3NXhycTZxZW44byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qQdL532ZANbjy/200w.webp"
+                            src="https://media1.giphy.com/media/qQdL532ZANbjy/200w.webp"
                             alt="Crying Animation"
+                            onError={(e) => e.target.src = '/images/placeholder.gif'}
                         />
                     </div>
                 </div>
@@ -51,7 +54,7 @@ const FoodDisplay = ({ category = 'All' }) => {
                     />
                 ))}
             </div>
-            {filteredFoodList.length > 20 && (
+            {shouldShowExpandButton && (
                 <button
                     className="expand-all-button"
                     onClick={() => setShowAll((prev) => !prev)}
