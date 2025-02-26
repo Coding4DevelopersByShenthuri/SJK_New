@@ -15,6 +15,7 @@ const Add = ({ url }) => {
     category: 'Appetizers',
   });
 
+
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
@@ -142,11 +143,10 @@ const Add = ({ url }) => {
               />
             </div>
           </div>
+          <button type='submit' className='add-btn'>
+            Add Product
+          </button>
         </div>
-
-        <button type='submit' className='add-btn'>
-          Add Product
-        </button>
       </form>
     </div>
   );

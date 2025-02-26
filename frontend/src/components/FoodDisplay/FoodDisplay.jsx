@@ -50,7 +50,8 @@ const FoodDisplay = ({ category = 'All' }) => {
                         name={item.name}
                         description={item.description}
                         price={item.price}
-                        image={item.image}
+                        normalPrice={item.normalPrice}
+                        fullPrice={item.fullPrice}
                     />
                 ))}
             </div>

@@ -4,12 +4,13 @@
     margin-top: 50px;
     color: #6d6d6d;
     font-size: 16px;
+    position: relative;
 }
 
 .add form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
 }
 
 .add-img-upload img {
@@ -18,56 +19,76 @@
     border-radius: 5px;
 }
 
+.add-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.add-left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.add-right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .add-product-name, 
 .add-product-description {
-    width: max(40%, 280px);
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.add-product-name input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
+.add-product-name input,
 .add-product-description textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    width: 100%;
 }
 
 .add-category-price {
     display: flex;
-    gap: 20px; /* Adjust gap between all items */
-    align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 15px;
     font-size: 16px;
+    flex-wrap: wrap;
 }
 
 .add-category-price select,
 .add-category-price input {
-    flex: 1; /* Ensures equal width distribution */
-    min-width: 100px; /* Prevents shrinking too much */
+    width: 100%;
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
 }
 
-
 .add-btn {
-    max-width: 120px;
+    max-width: 180px;
     border: none;
-    padding: 10px;
+    padding: 20px;
     background-color: black;
     border-radius: 5px;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    align-self: center;
 }
 
 .add-btn:hover {
     background-color: #333;
+}
+
+.add-btn:active {
+    background-color: #555;
 }

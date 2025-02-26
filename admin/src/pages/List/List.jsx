@@ -18,7 +18,7 @@ const List = ({ url }) => {
       toast.error('Error fetching data');
     }
   };
-  
+
   const removeFood = async (foodId) => {
     try {
       const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
@@ -37,6 +37,14 @@ const List = ({ url }) => {
     fetchList();
   }, []);
 
+  // Format both full and normal prices
+  const formatPrice = (price, type) => {
+    if (price) {
+      return `Rs ${price} (${type})`;
+    }
+    return '';  // Return empty if price is not available
+  };
+
   return (
     <div className='list add flex-col'>
       <p>All Food List</p>
@@ -44,6 +52,7 @@ const List = ({ url }) => {
         <div className='list-table-format title'>
           <b>Image</b>
           <b>Name</b>
+          <b>Description</b>
           <b>Category</b>
           <b>Price</b>
           <b>Action</b>
@@ -52,8 +61,14 @@ const List = ({ url }) => {
           <div key={index} className='list-table-format'>
             <img src={`${url}/images/${item.Image}`} alt={item.name} />
             <p>{item.name}</p>
+            <p>{item.description}</p>
             <p>{item.category}</p>
-            <p>Rs {item.price}</p>
+            <p>
+              {/* Stacked Prices */}
+              {formatPrice(item.fullPrice, 'Full')} <br />
+              {formatPrice(item.normalPrice, 'Normal')}
+              <p>{formatPrice(item.price, 'Portion')}</p>
+            </p>
             <p onClick={() => removeFood(item._id)} className='cursor'>X</p>
           </div>
         ))}

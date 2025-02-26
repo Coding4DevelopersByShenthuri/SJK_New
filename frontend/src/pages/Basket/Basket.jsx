@@ -71,7 +71,7 @@ const Basket = () => {
               const itemPrice = details.price || 0;
               return (
                 <div key={`${item._id}-${priceType}`} className="basket-items-item">
-                  <img src={item.image} alt={item.name} />
+                  <img src={item.Image} alt={item.name} />
                   <p>{item.name} ({priceType})</p>
                   <p>Rs {itemPrice}</p>
                   <div className="quantity-controls">
