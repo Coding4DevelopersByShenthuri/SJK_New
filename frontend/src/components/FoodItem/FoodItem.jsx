@@ -37,7 +37,7 @@ const FoodItem = ({ id, name, price, description, Image, url }) => {
             return;
         }
     
-        const chosenPrice = selectedPriceType ? price[selectedPriceType] : price;  // Default to price if no price type selected
+        const chosenPrice = selectedPriceType ? price[selectedPriceType] : price;
         addToBasket(id, selectedPriceType || 'Portion', chosenPrice, quantity, selectedDeliveryMethod);
     
         // Show success message

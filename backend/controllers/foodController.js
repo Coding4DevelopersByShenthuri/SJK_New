@@ -39,10 +39,15 @@ const listFood = async (req, res) => {
 // Remove food item
 const removeFood = async (req, res) => {
     try {
+        // Find the food item by ID
         const food = await foodModel.findById(req.body.id);
 
+        if (!food) {
+            return res.status(404).json({ success: false, message: 'Food item not found' });
+        }
+
+        // If the food item has an associated image, remove it from the uploads folder
         if (food.Image) {
-            // Remove the image file from the uploads folder
             const imagePath = path.join(__dirname, `../uploads/${food.Image}`);
             fs.unlink(imagePath, (err) => {
                 if (err) {
@@ -51,11 +56,13 @@ const removeFood = async (req, res) => {
             });
         }
 
+        // Delete the food item from the database
         await foodModel.findByIdAndDelete(req.body.id);
+
         res.json({ success: true, message: 'Food item removed successfully' });
     } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: 'Failed to remove food item' });
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Failed to remove food item' });
     }
 };
 

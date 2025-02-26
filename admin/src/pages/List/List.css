@@ -1,6 +1,6 @@
 .list-table-format {
     display: grid;
-    grid-template-columns: 1fr 3fr 3fr 2fr 2fr 1fr;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr 1fr;
     /* Adjusted grid sizes for content */
     align-items: center;
     gap: 10px;
