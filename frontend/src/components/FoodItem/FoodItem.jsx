@@ -3,7 +3,7 @@ import './FoodItem.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 
-const FoodItem = ({ id, name, price, description, image }) => {
+const FoodItem = ({ id, name, price, normalPrice, fullPrice, description, image }) => {
     const { basketItems, addToBasket,url } = useContext(StoreContext);
     const [selectedPriceType, setSelectedPriceType] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -37,7 +37,15 @@ const FoodItem = ({ id, name, price, description, image }) => {
             return;
         }
 
-        const chosenPrice = price[selectedPriceType] || price;  // Default to price if no price type selected
+        let chosenPrice;
+        if (selectedPriceType === 'normal') {
+            chosenPrice = normalPrice;
+        } else if (selectedPriceType === 'full') {
+            chosenPrice = fullPrice;
+        } else {
+            chosenPrice = price; // Default portion price
+        }
+
         addToBasket(id, selectedPriceType || 'Portion', chosenPrice, quantity, selectedDeliveryMethod);
 
         // Show success message
@@ -56,8 +64,8 @@ const FoodItem = ({ id, name, price, description, image }) => {
     return (
         <div className="food-item">
             <div className="food-item-img-container" onClick={handlePopupToggle}>
-            <img className="food-item-image" src={`${url}/uploads/${image}`} alt={name} />
-                {(!basketItems[id] || !basketItems[id][selectedPriceType || 'normal']) && (price?.normal || price?.full) && (
+                <img className="food-item-image" src={`${url}/uploads/${image}`} alt={name} />
+                {(!basketItems[id] || !basketItems[id][selectedPriceType || 'portion']) && (
                     <img
                         className="add"
                         onClick={handlePopupToggle}
@@ -73,23 +81,27 @@ const FoodItem = ({ id, name, price, description, image }) => {
                 </div>
                 <p className="food-item-desc">{description}</p>
                 <div className="food-item-price">
-                    {price?.normal && price?.full ? (
-                        <>
-                            <p
-                                className={selectedPriceType === 'normal' ? 'selected-price' : ''}
-                                onClick={() => handlePriceClick('normal')}
-                            >
-                                Normal: Rs {price.normal}
-                            </p>
-                            <p
-                                className={selectedPriceType === 'full' ? 'selected-price' : ''}
-                                onClick={() => handlePriceClick('full')}
-                            >
-                                Full: Rs {price.full}
-                            </p>
-                        </>
-                    ) : (
-                        price && <p>Rs {price}</p>
+                    <p
+                        className={selectedPriceType === 'portion' ? 'selected-price' : ''}
+                        onClick={() => handlePriceClick('portion')}
+                    >
+                        Portion: Rs {price}
+                    </p>
+                    {normalPrice && (
+                        <p
+                            className={selectedPriceType === 'normal' ? 'selected-price' : ''}
+                            onClick={() => handlePriceClick('normal')}
+                        >
+                            Normal: Rs {normalPrice}
+                        </p>
+                    )}
+                    {fullPrice && (
+                        <p
+                            className={selectedPriceType === 'full' ? 'selected-price' : ''}
+                            onClick={() => handlePriceClick('full')}
+                        >
+                            Full: Rs {fullPrice}
+                        </p>
                     )}
                 </div>
             </div>
@@ -98,29 +110,35 @@ const FoodItem = ({ id, name, price, description, image }) => {
                 <div className="food-item-popup">
                     <div className="popup-content">
                         <span className="popup-close" onClick={handlePopupToggle}>X</span>
-                        <img className="popup-image" src={url + "/images/" + image} alt={name} />
+                        <img className="popup-image" src={`${url}/uploads/${image}`} alt={name} />
                         <h3 style={{ color: 'black' }}>{name}</h3>
                         <p>{description}</p>
-                        <div className="popup-price">
-                            {price?.normal && price?.full ? (
-                                <>
-                                    <p
-                                        className={selectedPriceType === 'normal' ? 'selected-price' : ''}
-                                        onClick={() => handlePriceClick('normal')}
-                                    >
-                                        Normal: Rs {price.normal}
-                                    </p>
-                                    <p
-                                        className={selectedPriceType === 'full' ? 'selected-price' : ''}
-                                        onClick={() => handlePriceClick('full')}
-                                    >
-                                        Full: Rs {price.full}
-                                    </p>
-                                </>
-                            ) : (
-                                price && <p>Rs {price}</p>
+
+                        <div className="popup-prices">
+                            <p
+                                className={selectedPriceType === 'portion' ? 'selected-price' : ''}
+                                onClick={() => handlePriceClick('portion')}
+                            >
+                                Portion: Rs {price}
+                            </p>
+                            {normalPrice && (
+                                <p
+                                    className={selectedPriceType === 'normal' ? 'selected-price' : ''}
+                                    onClick={() => handlePriceClick('normal')}
+                                >
+                                    Normal: Rs {normalPrice}
+                                </p>
+                            )}
+                            {fullPrice && (
+                                <p
+                                    className={selectedPriceType === 'full' ? 'selected-price' : ''}
+                                    onClick={() => handlePriceClick('full')}
+                                >
+                                    Full: Rs {fullPrice}
+                                </p>
                             )}
                         </div>
+                        
                         <div className="delivery-methods">
                             <h4>Delivery Methods:</h4>
                             <div className="delivery-method-options">
