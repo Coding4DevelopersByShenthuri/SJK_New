@@ -3,8 +3,8 @@ import './FoodItem.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 
-const FoodItem = ({ id, name, price, description, Image, url }) => {
-    const { basketItems, addToBasket } = useContext(StoreContext);
+const FoodItem = ({ id, name, price, description, Image }) => {
+    const { basketItems, addToBasket, url } = useContext(StoreContext);
     const [selectedPriceType, setSelectedPriceType] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState('');
@@ -14,9 +14,6 @@ const FoodItem = ({ id, name, price, description, Image, url }) => {
     // Debugging props
     console.log('FoodItem Props:', { id, name, price, description, Image, url });
 
-    // Ensure Image and url exist before constructing the full image URL
-    const imageUrl = Image ? `${url}/images/${Image}` : assets.placeholder_image;
-    console.log('FoodItem Image URL:', imageUrl);
 
     // Handle selecting price type (normal or full) for food items with multiple prices
     const handlePriceClick = (type) => setSelectedPriceType(type);
@@ -61,7 +58,7 @@ const FoodItem = ({ id, name, price, description, Image, url }) => {
     return (
         <div className="food-item">
             <div className="food-item-img-container" onClick={handlePopupToggle}>
-                <img className="food-item-image" src={imageUrl} alt={name} />
+                <img className="food-item-image" src={url+ "/images/" + Image} alt={name} />
                 {(!basketItems[id] || !basketItems[id][selectedPriceType || 'portion']) && (
                     <img
                         className="add"
@@ -103,7 +100,7 @@ const FoodItem = ({ id, name, price, description, Image, url }) => {
                 <div className="food-item-popup">
                     <div className="popup-content">
                         <span className="popup-close" onClick={handlePopupToggle}>X</span>
-                        <img className="popup-image" src={imageUrl} alt={name} />
+                        <img className="popup-image" src={url+ "/images/" + Image} alt={name} />
                         <h3 style={{ color: 'black' }}>{name}</h3>
                         <p>{description}</p>
                         <div className="popup-price">
