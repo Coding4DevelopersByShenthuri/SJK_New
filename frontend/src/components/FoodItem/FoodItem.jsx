@@ -11,10 +11,6 @@ const FoodItem = ({ id, name, price, description, Image, url }) => {
     const [quantity, setQuantity] = useState(1);
     const [showSuccessMsg, setShowSuccessMsg] = useState(false);
 
-    // Construct the full image URL
-    const imageUrl = Image ? `${url}/images/${Image}` : assets.placeholder_image;
-    console.log('FoodItem Image URL:', imageUrl);
-
     // Handle selecting price type (normal or full) for food items with multiple prices
     const handlePriceClick = (type) => setSelectedPriceType(type);
 
@@ -58,7 +54,7 @@ const FoodItem = ({ id, name, price, description, Image, url }) => {
     return (
         <div className="food-item">
             <div className="food-item-img-container" onClick={handlePopupToggle}>
-            <img className="food-item-image" src={imageUrl} alt={name} />
+                <img className="food-item-image" src={`${url}/images/${Image}`} alt={name} />
                 {(!basketItems[id] || !basketItems[id][selectedPriceType || 'portion']) && (
                     <img
                         className="add"
