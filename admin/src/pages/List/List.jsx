@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 const List = ({ url }) => {
   const [list, setList] = useState([]);
 
-  // Fetch food list from the backend
   const fetchList = async () => {
     try {
       const response = await axios.get(`${url}/api/food/list`);
@@ -20,18 +19,17 @@ const List = ({ url }) => {
     }
   };
 
-  // Remove food item
   const removeFood = async (foodId) => {
     try {
       const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
       if (response.data.success) {
         toast.success(response.data.message);
-        setList((prevList) => prevList.filter((item) => item._id !== foodId)); // Remove from UI instantly
+        setList(prevList => prevList.filter(item => item._id !== foodId));
       } else {
-        toast.error("Error removing food: " + response.data.message);
+        toast.error(`Error removing food: ${response.data.message}`);
       }
     } catch (error) {
-      toast.error("Error removing food: " + (error.response?.data?.message || error.message || "Unknown error"));
+      toast.error(`Error removing food: ${error.response?.data?.message || error.message || "Unknown error"}`);
     }
   };
 
@@ -39,13 +37,7 @@ const List = ({ url }) => {
     fetchList();
   }, []);
 
-  // Format prices (Full, Normal, Portion)
-  const formatPrice = (price, type) => {
-    if (price) {
-      return `Rs ${price} (${type})`;
-    }
-    return '';  // Return empty if price is not available
-  };
+  const formatPrice = (price, type) => (price ? `Rs ${price} (${type})` : '');
 
   return (
     <div className='list add flex-col'>
@@ -66,7 +58,6 @@ const List = ({ url }) => {
             <p>{item.description}</p>
             <p>{item.category}</p>
             <div>
-              {/* Displaying prices separately */}
               <p>{formatPrice(item.fullPrice, 'Full')}</p>
               <p>{formatPrice(item.normalPrice, 'Normal')}</p>
               <p>{formatPrice(item.price, 'Portion')}</p>

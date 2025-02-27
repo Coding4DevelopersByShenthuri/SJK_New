@@ -76,23 +76,32 @@ const StoreContextProvider = ({ children }) => {
         });
     };
 
-    // Remove an item from the basket
     const removeFromBasket = (itemId, priceType) => {
         setBasketItems((prev) => {
-            const updatedBasket = { ...prev };
+            // Deep copy the basket state
+            const updatedBasket = JSON.parse(JSON.stringify(prev));
+    
+            // Check if the item and price type exist
             if (updatedBasket[itemId] && updatedBasket[itemId][priceType]) {
-                if (updatedBasket[itemId][priceType].quantity > 1) {
+                const item = updatedBasket[itemId][priceType];
+    
+                // Decrease quantity if more than 1, otherwise remove the item
+                if (item.quantity > 1) {
                     updatedBasket[itemId][priceType].quantity -= 1;
                 } else {
                     delete updatedBasket[itemId][priceType];
+    
+                    // If no price types remain, remove the item from the basket
                     if (Object.keys(updatedBasket[itemId]).length === 0) {
                         delete updatedBasket[itemId];
                     }
                 }
             }
-            return updatedBasket;
+    
+            return { ...updatedBasket }; // Ensure a new object reference to trigger re-render
         });
-    };
+    };    
+    
 
     // Update the quantity of a basket item
     const updateBasketItem = (itemId, priceType, quantity) => {

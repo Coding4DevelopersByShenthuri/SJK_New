@@ -75,9 +75,9 @@ const Basket = () => {
                   <p>{item.name} ({priceType})</p>
                   <p>Rs {itemPrice}</p>
                   <div className="quantity-controls">
-                    <button onClick={() => handleQuantityChange(item._id, priceType, -1)}>-</button>
+                    <button onClick={() => handleQuantityChange(item._id, priceType, +1)}>+</button>
                     <p>{details.quantity}</p>
-                    <button onClick={() => handleQuantityChange(item._id, priceType, 1)}>+</button>
+                    <button onClick={() => handleQuantityChange(item._id, priceType, -1)}>-</button>
                   </div>
                   <p>Rs {itemPrice * details.quantity}</p>
                   <p>{details.deliveryMethod}</p>
