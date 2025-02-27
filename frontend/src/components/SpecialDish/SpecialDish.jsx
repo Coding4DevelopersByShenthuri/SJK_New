@@ -3,6 +3,7 @@ import specialDishBanner from "../../assets/images/special-dish-banner.jpg";
 import badge from "../../assets/images/badge-1.png";
 import shape1 from "../../assets/images/shape-4.png";
 import shape2 from "../../assets/images/shape-9.png";
+import "./SpecialDish.css";
 
 const SpecialDish = () => {
   return (
@@ -34,17 +35,17 @@ const SpecialDish = () => {
           <h2 className="headline-1 section-title">BBQ Grilled Chicken</h2>
 
           <p className="section-text">
-          BBQ Grilled Chicken is a deliciously smoky and flavorful dish that's 
-          perfect for outdoor gatherings or a cozy meal at home. Marinated in a 
-          blend of spices, herbs, and BBQ sauce, the chicken is grilled to perfection, 
-          creating a crispy outer layer while keeping the inside tender and juicy. 
-          The smoky aroma from the grill enhances the savory taste, making it a crowd
-          favorite. Served with sides like coleslaw or roasted vegetables, BBQ Grilled 
-          Chicken is a satisfying meal that's both simple to make and full of bold flavors.
+            BBQ Grilled Chicken is a deliciously smoky and flavorful dish that's
+            perfect for outdoor gatherings or a cozy meal at home. Marinated in a
+            blend of spices, herbs, and BBQ sauce, the chicken is grilled to perfection,
+            creating a crispy outer layer while keeping the inside tender and juicy.
+            The smoky aroma from the grill enhances the savory taste, making it a crowd
+            favorite. Served with sides like coleslaw or roasted vegetables, BBQ Grilled
+            Chicken is a satisfying meal that's both simple to make and full of bold flavors.
           </p>
 
           <div className="wrapper">
-            <del className="del body-3">Rs 2000</del>
+            <del className="del body-3 cut-price">Rs 2000</del>
             <span className="span body-1">Rs 1500</span>
           </div>
 

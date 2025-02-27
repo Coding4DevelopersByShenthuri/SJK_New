@@ -8,7 +8,7 @@ const Reservation = () => {
           <form action="" className="form-left">
             <h2 className="headline-1 text-center">Online Reservation</h2>
             <p className="form-text text-center">
-              Booking request <a href="tel:+94 777240510" className="link">+94-777-240510</a>
+              Booking request <a href="tel:+94 777240510" className="link">+94-777-240510</a><br></br>
               or fill out the order form
             </p>
 

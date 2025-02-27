@@ -1,6 +1,8 @@
 import React from "react";
 import testiBg from "../../assets/images/testimonial-bg.jpg";
-import testiAvatar from "../../assets/images/testi-avatar.jpg"; 
+import testiAvatar from "../../assets/images/testi-avatar.png";
+import Sign from "../../assets/sign.png";
+import "./Testimonial.css"; 
 
 const Testimonial = () => {
   return (
@@ -15,7 +17,7 @@ const Testimonial = () => {
 
         {/* Testimonial Text */}
         <p className="headline-2 testi-text">
-          I wanted to thank you for inviting me down for that amazing dinner the other night. The food was extraordinary.
+          We Deal with your Trust.
         </p>
 
         {/* Separator Lines */}
@@ -32,10 +34,18 @@ const Testimonial = () => {
             width="100"
             height="100"
             loading="lazy"
-            alt="Sam Jhonson"
+            alt="Satheepan"
             className="img"
           />
-          <p className="label-2 profile-name">Sam Jhonson</p>
+          <p className="label-2 profile-name">Chandrakumar Satheepan</p>
+          <h5>Founder, CEO</h5>
+          <img 
+          src={Sign}
+          width="250"
+          height="250"
+          loading="lazy"
+          className="sign-img"
+          alt="" />
         </div>
       </div>
     </section>

@@ -105,6 +105,7 @@ const Menu = () => {
 
         <p className="menu-text text-center">
           Openings daily from <span className="span">6:30 am</span> to
+          <br />
           <span className="span">10:30 pm</span>
         </p>
 

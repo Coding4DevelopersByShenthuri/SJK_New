@@ -1,0 +1,42 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    /* Keeps the text stacked */
+    align-items: center;
+    /* Centers the avatar and name */
+    position: relative;
+    /* Allows positioning of the sign */
+}
+
+.profile img {
+    margin-bottom: 10px;
+}
+
+.profile h5 {
+    margin-bottom: 20px;
+}
+
+.profile .sign-img {
+    margin-top: 10px;
+    /* Creates space between the name and the signature */
+    width: 170px;
+    /* Adjust width */
+    height: auto;
+    position: static;
+    /* Removes absolute positioning */
+}
+
+/* Ensuring responsiveness */
+@media (max-width: 768px) {
+    .profile .sign-img {
+        width: 150px;
+        /* Slightly smaller for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .profile .sign-img {
+        width: 150px;
+        /* Even smaller for mobile */
+    }
+}

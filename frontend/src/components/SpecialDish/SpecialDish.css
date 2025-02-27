@@ -1,0 +1,7 @@
+.wrapper .span {
+    font-size: 2.0rem;
+    /* New price font size */
+    color: #f8e682;
+    /* Optional: Adds green color to the new price */
+    font-weight: bold;
+}
