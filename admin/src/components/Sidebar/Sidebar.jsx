@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import './Sidebar.css';
 import { assets } from '../../assets/assets';
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    navigate('/add'); // Redirect to Add Items page on initial load
-  }, [navigate]);
+    if (location.pathname === '/') {
+      navigate('/add'); // Redirect to Add Items only if on root URL
+    }
+  }, [navigate, location.pathname]);
 
   return (
     <div className='sidebar'>
