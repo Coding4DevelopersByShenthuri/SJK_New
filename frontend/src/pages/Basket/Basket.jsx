@@ -5,7 +5,7 @@ import { FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const Basket = () => {
-  const { basketItems, food_list, removeFromBasket, updateBasketItem } = useContext(StoreContext);
+  const { basketItems, food_list, removeFromBasket, updateBasketItem, url } = useContext(StoreContext);
   const navigate = useNavigate();
   const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
@@ -71,7 +71,7 @@ const Basket = () => {
               const itemPrice = details.price || 0;
               return (
                 <div key={`${item._id}-${priceType}`} className="basket-items-item">
-                  <img src={item.Image} alt={item.name} />
+                  <img src={`${url}/images/${item.Image}`} alt={item.name} />
                   <p>{item.name} ({priceType})</p>
                   <p>Rs {itemPrice}</p>
                   <div className="quantity-controls">
