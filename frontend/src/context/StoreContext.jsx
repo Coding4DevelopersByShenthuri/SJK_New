@@ -52,10 +52,6 @@ const StoreContextProvider = ({ children }) => {
         }
     }, [food_list]);  // Runs every time food_list is updated
 
-    // Sync basketItems to localStorage whenever it changes
-    useEffect(() => {
-        localStorage.setItem('basketItems', JSON.stringify(basketItems));
-    }, [basketItems]);  // Runs whenever basketItems change
 
     // Add an item to the basket
     const addToBasket = (itemId, priceType, price, quantity, deliveryMethod) => {
