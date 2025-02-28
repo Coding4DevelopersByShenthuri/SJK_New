@@ -11,8 +11,11 @@ const FoodItem = ({ id, name, price, description, Image }) => {
     const [quantity, setQuantity] = useState(1);
     const [showSuccessMsg, setShowSuccessMsg] = useState(false);
 
+    const normalPrice = price?.normal;
+    const fullPrice = price?.full;
+
     // Debugging props
-    console.log('FoodItem Props:', { id, name, price, description, Image, url });
+    console.log('FoodItem Props:', { id, name, price, fullPrice, normalPrice, description, Image, url });
 
 
     // Handle selecting price type (normal or full) for food items with multiple prices
