@@ -23,13 +23,13 @@ const Header = () => {
   const { token, setToken } = useContext(StoreContext);
   let lastScrollPos = 0;
 
-  // Load token from localStorage on component mount
+  // Load token from localStorage only if it's not already set
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
-    if (storedToken) {
+    if (storedToken && !token) {
       setToken(storedToken);
     }
-  }, [setToken]);
+  }, [setToken, token]);
 
   // Save token to localStorage when it changes
   useEffect(() => {
@@ -39,6 +39,7 @@ const Header = () => {
       localStorage.removeItem("authToken");
     }
   }, [token]);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,6 +62,12 @@ const Header = () => {
     }
   }, [location]);
 
+  const handleLogout = () => {
+    setToken(null);
+    localStorage.removeItem("authToken"); // Ensure the token is completely removed
+    navigate("/");
+  };
+
   const handleNavLinkClick = () => {
     if (window.innerWidth <= 768) {
       setIsNavOpen(false);
@@ -81,11 +88,7 @@ const Header = () => {
     window.open('/basket', '_blank');
   };
 
-  const handleLogout = () => {
-    setToken(null);
-    localStorage.removeItem("authToken");
-    navigate("/");
-  };
+  
 
   return (
     <>

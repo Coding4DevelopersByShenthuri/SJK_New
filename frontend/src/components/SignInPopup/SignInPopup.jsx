@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./SignInPopup.css";
 import googleIcon from "../../assets/images/icons8-google.svg";
 import { StoreContext } from "../../context/StoreContext";
@@ -13,6 +13,14 @@ const SignInPopup = ({ isVisible, onClose }) => {
         email: "",
         password: "",
     });
+
+    useEffect(() => {
+        // Check if token exists in localStorage but don't auto-set it unless user logs in
+        const storedToken = localStorage.getItem("token");
+        if (!storedToken) {
+            setToken(null); // Ensure user stays logged out on reload
+        }
+    }, [setToken]);
 
     const onChangeHandler = (event) => {
         const { name, value } = event.target;
