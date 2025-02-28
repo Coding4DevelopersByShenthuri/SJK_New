@@ -12,14 +12,18 @@ const Basket = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   // Calculate subtotal
-  const subtotal = Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
-    return (
-      total +
-      Object.entries(priceTypes).reduce((subtotal, [priceType, details]) => {
-        const itemPrice = details.price || 0;
-        return subtotal + details.quantity * itemPrice;
-      }, 0)
-    );
+  const subtotal = Object.entries(basketItems || {}).reduce((total, [itemId, priceTypes]) => {
+    // Check if priceTypes is an object
+    if (priceTypes && typeof priceTypes === 'object') {
+      return (
+        total +
+        Object.entries(priceTypes).reduce((subtotal, [priceType, details]) => {
+          const itemPrice = details.price || 0;
+          return subtotal + details.quantity * itemPrice;
+        }, 0)
+      );
+    }
+    return total; // Return total if priceTypes is invalid
   }, 0);
 
   const deliveryFee = 250;

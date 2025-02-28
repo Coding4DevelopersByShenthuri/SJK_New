@@ -151,14 +151,23 @@ const StoreContextProvider = ({ children }) => {
     // Calculate the total basket amount using memoization
     const getTotalBasketAmount = useMemo(() => {
         return Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
-            return (
-                total +
-                Object.values(priceTypes).reduce((subtotal, { quantity, price }) => {
-                    return subtotal + price * quantity;
-                }, 0)
-            );
+            // Ensure priceTypes is a valid object
+            if (priceTypes && typeof priceTypes === 'object') {
+                return (
+                    total +
+                    Object.values(priceTypes).reduce((subtotal, { quantity, price }) => {
+                        // Defensive check to avoid errors if price or quantity is missing
+                        if (quantity && price) {
+                            return subtotal + price * quantity;
+                        }
+                        return subtotal; // Skip if invalid data is found
+                    }, 0)
+                );
+            }
+            return total; // Return total if priceTypes is invalid
         }, 0);
     }, [basketItems]);
+
 
     // Provide context values to the components
     const contextValue = {
