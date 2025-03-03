@@ -5,7 +5,7 @@ const addToBasket = async (req, res) => {
     // implement logic to add item to basket
     try {
         let userData = await userModel.findById(req.body.userId);
-        let basketData = userData.basketData;
+        let basketData = await userData.basketData;
         if(!basketData[req.body.itemId])
         {
             basketData[req.body.itemId] = 1;
