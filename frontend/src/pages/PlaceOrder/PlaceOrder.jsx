@@ -1,13 +1,35 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
 
 const PlaceOrder = () => {
-  const { basketItems, food_list } = useContext(StoreContext);
+  const { basketItems, food_list, token, url } = useContext(StoreContext);
   const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
   const [error, setError] = useState('');
   const deliveryFee = 250;
+
+  const [data, setData] = useState({
+    firstname: '',
+    lastname: '',
+    email: '',
+    street: '',
+    city: '',
+    province: '',
+    zipcode: '',
+    country: '',
+    phone: '',
+  });
+
+  const onChangeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setData((data) => ({ ...data, [name]: value }));
+  };
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   // Calculate subtotal
   const subtotal = Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
@@ -39,27 +61,95 @@ const PlaceOrder = () => {
   };
 
   return (
-    <form className='place-order' onSubmit={handleFormSubmit}>
-      <div className='place-order-left'>
-        <p className='title'>Delivery Information</p>
-        <div className='multi-fields'>
-          <input type="text" placeholder="First Name" required />
-          <input type="text" placeholder="Last Name" required />
+    <form className="place-order" onSubmit={handleFormSubmit}>
+      <div className="place-order-left">
+        <p className="title">Delivery Information</p>
+        <div className="multi-fields">
+          <input
+            name="firstName"
+            onChange={onChangeHandler}
+            value={data.firstName}
+            type="text"
+            placeholder="First Name"
+            required
+          />
+          <input
+            name="lastName"
+            onChange={onChangeHandler}
+            value={data.lastName}
+            type="text"
+            placeholder="Last Name"
+            required
+          />
         </div>
-        <input type="email" placeholder='Email Address' required />
-        <input type="text" placeholder='Street' required />
-        <div className='multi-fields'>
-          <input type="text" value="Chavakachcheri" disabled required />
-          <input type="text" value="Jaffna" disabled required />
+        <input
+          name="email"
+          onChange={onChangeHandler}
+          value={data.email}
+          type="email"
+          placeholder="Email Address"
+        />
+        <input
+          name="street"
+          onChange={onChangeHandler}
+          value={data.street}
+          type="text"
+          placeholder="Street"
+          required
+        />
+        <div className="multi-fields">
+          {/* City Dropdown */}
+          <select
+            name="city"
+            onChange={onChangeHandler}
+            value={data.city}
+            required
+            className="bg-gray-800 text-white border rounded p-2"
+          >
+            <option value="" disabled className="text-white">
+              Select City
+            </option>
+            <option className='bg-gray-800' value="city1">Chavakachcheri</option>
+            <option value="city2">Kalvayal</option>
+            <option value="city3">Meesalai</option>
+            <option value="city3">Sangaththanai</option>
+            <option value="city3">Nunavil</option>
+            <option value="city3">Kachchai</option>
+            <option value="city3">Kodikamam</option>
+            <option value="city3">Madduvil</option>
+            {/* Add more cities as needed */}
+          </select>
+
+          {/* Province Dropdown */}
+          <select
+            name="province"
+            onChange={onChangeHandler}
+            value={data.province}
+            required
+            className="bg-gray-800 text-white border rounded p-2"
+          >
+            <option value="" disabled className="text-white">
+              Select Province
+            </option>
+            <option value="province1">Jaffna</option>
+            {/* Add more provinces as needed */}
+          </select>
         </div>
-        <div className='multi-fields'>
+        <div className="multi-fields">
           <input type="text" value="40000" disabled required />
           <input type="text" value="Sri Lanka" disabled required />
         </div>
-        <input type="text" placeholder='Phone Number' required />
+        <input
+          name="phone"
+          onChange={onChangeHandler}
+          value={data.phone}
+          type="text"
+          placeholder="Phone Number"
+          required
+        />
       </div>
 
-      <div className='place-order-right'>
+      <div className="place-order-right">
         <div className="basket-total">
           <h2>Basket Totals</h2>
           <div>
@@ -99,7 +189,9 @@ const PlaceOrder = () => {
             </div>
             {error && <p className="error-message">{error}</p>}
           </div>
-          <button type="submit" className="proceed-button">PROCEED TO PAYMENT</button>
+          <button type="submit" className="proceed-button">
+            PROCEED TO PAYMENT
+          </button>
         </div>
       </div>
     </form>

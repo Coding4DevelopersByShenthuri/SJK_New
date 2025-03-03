@@ -54,7 +54,7 @@ const StoreContextProvider = ({ children }) => {
 
 
     // Add an item to the basket
-    const addToBasket = (itemId, priceType, price, quantity, deliveryMethod) => {
+    const addToBasket = async (itemId, priceType, price, quantity, deliveryMethod) => {
         setBasketItems((prevItems) => {
             const updatedItems = { ...prevItems };
 
@@ -70,33 +70,50 @@ const StoreContextProvider = ({ children }) => {
 
             return updatedItems;
         });
+        if (token) {
+            try {
+                await axios.post(`${url}/api/basket/add`, { itemId }, { headers: { token } });
+            } catch (error) {
+                console.error('Error adding item to basket:', error);
+            }
+        }
     };
 
-    const removeFromBasket = (itemId, priceType) => {
+    const removeFromBasket = async (itemId, priceType) => {
         setBasketItems((prev) => {
             // Deep copy the basket state
-            const updatedBasket = JSON.parse(JSON.stringify(prev));
+            const updatedBasket = structuredClone(prev);
     
-            // Check if the item and price type exist
-            if (updatedBasket[itemId] && updatedBasket[itemId][priceType]) {
+            // Check if item and price type exist
+            if (updatedBasket?.[itemId]?.[priceType]) {
                 const item = updatedBasket[itemId][priceType];
     
-                // Decrease quantity if more than 1, otherwise remove the item
+                // Decrease quantity or remove item
                 if (item.quantity > 1) {
-                    updatedBasket[itemId][priceType].quantity -= 1;
+                    item.quantity -= 1;
                 } else {
                     delete updatedBasket[itemId][priceType];
     
-                    // If no price types remain, remove the item from the basket
+                    // Remove item if no price types remain
                     if (Object.keys(updatedBasket[itemId]).length === 0) {
                         delete updatedBasket[itemId];
                     }
                 }
             }
     
-            return { ...updatedBasket }; // Ensure a new object reference to trigger re-render
+            return { ...updatedBasket }; // New reference to trigger re-render
         });
-    };    
+    
+        // API call to update backend
+        if (token) {
+            try {
+                await axios.post(`${url}/api/basket/remove`, { itemId }, { headers: { token } });
+            } catch (error) {
+                console.error("Error removing item from basket:", error);
+            }
+        }
+    };
+        
     
 
     // Update the quantity of a basket item
