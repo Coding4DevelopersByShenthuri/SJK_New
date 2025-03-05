@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
+import axios from 'axios';
 
 const PlaceOrder = () => {
   const { basketItems, food_list, token, url } = useContext(StoreContext);
@@ -37,7 +38,19 @@ const PlaceOrder = () => {
         orderItems.push(itemInfo);
       }
     })
-    console.log(orderItems);
+    let orderData = {
+      address: data,
+      items: orderItems,
+      amount: subtotal()+250,
+    }
+    let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}});
+    if (response.data.success) {
+      const {session_url} = response.data.data;
+      window.location.replace = (session_url);
+    }
+    else{
+      alert('Error!');
+    }
   }
 
   // Calculate subtotal
