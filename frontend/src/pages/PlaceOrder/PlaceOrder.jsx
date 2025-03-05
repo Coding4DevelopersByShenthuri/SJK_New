@@ -27,9 +27,18 @@ const PlaceOrder = () => {
     setData((data) => ({ ...data, [name]: value }));
   };
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  const placeOrder = async (event) => {
+    event.preventDefault();
+    let orderItems = [];
+    food_list.map((item)=>{
+      if (basketItems[item._id]>0) {
+        let itemInfo = item;
+        itemInfo['quantity'] = basketItems[item._id];
+        orderItems.push(itemInfo);
+      }
+    })
+    console.log(orderItems);
+  }
 
   // Calculate subtotal
   const subtotal = Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
@@ -61,7 +70,7 @@ const PlaceOrder = () => {
   };
 
   return (
-    <form className="place-order" onSubmit={handleFormSubmit}>
+    <form onSubmit={placeOrder} className="place-order" onSubmit={handleFormSubmit}>
       <div className="place-order-left">
         <p className="title">Delivery Information</p>
         <div className="multi-fields">
