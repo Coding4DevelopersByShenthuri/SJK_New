@@ -1,59 +1,72 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
+import dotenv from 'dotenv';
 
+// Load environment variables
+dotenv.config();
+
+console.log(process.env.STRIPE_SECRET_KEY); // Debugging line
+
+// Initialize Stripe with your secret key from environment variables
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-
-// placing user order from frontend
+// Placing user order from frontend
 const placeOrder = async (req, res) => {
-    const frontend_url = "http://localhost:5173";
+    const frontend_url = "http://localhost:5173"; // URL of your frontend
     
     try {
+        // Create a new order
         const newOrder = new orderModel({
             userId: req.body.userId,
             items: req.body.items,
             amount: req.body.amount,
             address: req.body.address
-        })
+        });
         await newOrder.save();
-        await userModel.findByIdAndUpdate(req.body.userId, { basketData:{}});
+        
+        // Update the user's basketData to empty after order placement
+        await userModel.findByIdAndUpdate(req.body.userId, { basketData: {} });
 
+        // Map over the items to create line items for Stripe
         const line_items = req.body.items.map((item) => ({
             price_data: {
-                currency: "lkr",
+                currency: "lkr", // Currency
                 product_data: {
-                    name: item.name
+                    name: item.name, // Product name
                 },
-                unit_amount: item.price * 100 * 80
+                unit_amount: item.price * 100 * 80 // Price in cents, adjusted by 80 (exchange rate or factor)
             },
-            quantity: item.quantity
-        }))
+            quantity: item.quantity // Quantity of the product
+        }));
 
+        // Adding delivery charges to line items
         line_items.push({
             price_data: {
                 currency: "lkr",
                 product_data: {
                     name: "Delivery Charges"
                 },
-                unit_amount: 250 * 100 * 80
+                unit_amount: 250 * 100 * 80 // Delivery charge in cents
             },
-            quantity: 1
-        })
+            quantity: 1 // Only 1 delivery charge
+        });
 
+        // Create a Stripe Checkout session
         const session = await stripe.checkout.sessions.create({
             line_items: line_items,
             mode: "payment",
-            success_url: '${frontend_url}/verify?success=true&orderId=${newOrder._id}',
-            cancel_url: '${frontend_url}/verify?success=false&orderId=${newOrder._id}',
-        })
+            success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`, // Correct string interpolation
+            cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`, // Correct string interpolation
+        });
 
-        res.json({ success: true,session_url: session.url });
+        // Return the session URL to the frontend for redirect
+        res.json({ success: true, session_url: session.url });
 
     } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: 'Failed to place order' });
+        console.log(error); // Log the error for debugging
+        res.json({ success: false, message: 'Failed to place order' }); // Send failure response
     }
-}
-    
-export {placeOrder}
+};
+
+export { placeOrder };
