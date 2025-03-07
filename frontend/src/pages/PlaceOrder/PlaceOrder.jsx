@@ -22,6 +22,7 @@ const PlaceOrder = () => {
     phone: '',
   });
 
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -31,38 +32,40 @@ const PlaceOrder = () => {
   const placeOrder = async (event) => {
     event.preventDefault();
     let orderItems = [];
-    food_list.map((item)=>{
-      if (basketItems[item._id]>0) {
+    food_list.map((item) => {
+      if (basketItems[item._id] > 0) {
         let itemInfo = item;
         itemInfo['quantity'] = basketItems[item._id];
         orderItems.push(itemInfo);
       }
     })
+
     let orderData = {
       address: data,
       items: orderItems,
-      amount: subtotal()+250,
+      amount: subtotal() + 250,
     }
-    let response = await axios.post(url+'/api/order/place', orderData, {headers: {token}});
+    let response = await axios.post(url + '/api/order/place', orderData, { headers: { token } });
     if (response.data.success) {
-      const {session_url} = response.data.data;
+      const { session_url } = response.data.data;
       window.location.replace = (session_url);
     }
-    else{
+    else {
       alert('Error!');
     }
   }
 
   // Calculate subtotal
   const subtotal = Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
-    return (
-      total +
-      Object.entries(priceTypes).reduce((subtotal, [priceType, details]) => {
-        const itemPrice = details.price || 0;
-        return subtotal + details.quantity * itemPrice;
-      }, 0)
-    );
-  }, 0);
+  return (
+    total +
+    Object.entries(priceTypes).reduce((subtotal, [priceType, details]) => {
+      const itemPrice = details.price || 0;
+      return subtotal + details.quantity * itemPrice;
+    }, 0)
+  );
+}, 0);
+
 
   const total = subtotal - discount + deliveryFee;
 
@@ -88,17 +91,17 @@ const PlaceOrder = () => {
         <p className="title">Delivery Information</p>
         <div className="multi-fields">
           <input
-            name="firstName"
+            name="firstname"
             onChange={onChangeHandler}
-            value={data.firstName}
+            value={data.firstname}  
             type="text"
             placeholder="First Name"
             required
           />
           <input
-            name="lastName"
+            name="lastname"
             onChange={onChangeHandler}
-            value={data.lastName}
+            value={data.lastname}  
             type="text"
             placeholder="Last Name"
             required
@@ -107,14 +110,14 @@ const PlaceOrder = () => {
         <input
           name="email"
           onChange={onChangeHandler}
-          value={data.email}
+          value={data.email || ''}
           type="email"
           placeholder="Email Address"
         />
         <input
           name="street"
           onChange={onChangeHandler}
-          value={data.street}
+          value={data.street || ''}
           type="text"
           placeholder="Street"
           required
@@ -124,7 +127,7 @@ const PlaceOrder = () => {
           <select
             name="city"
             onChange={onChangeHandler}
-            value={data.city}
+            value={data.city || ''}
             required
             className="bg-gray-800 text-white border rounded p-2"
           >
@@ -146,7 +149,7 @@ const PlaceOrder = () => {
           <select
             name="province"
             onChange={onChangeHandler}
-            value={data.province}
+            value={data.province || ''}
             required
             className="bg-gray-800 text-white border rounded p-2"
           >
@@ -164,7 +167,7 @@ const PlaceOrder = () => {
         <input
           name="phone"
           onChange={onChangeHandler}
-          value={data.phone}
+          value={data.phone || ''}
           type="text"
           placeholder="Phone Number"
           required
