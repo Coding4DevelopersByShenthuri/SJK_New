@@ -13,8 +13,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Placing user order from frontend
 const placeOrder = async (req, res) => {
-    const frontend_url = "http://localhost:5173"; 
-    
+    const frontend_url = "http://localhost:5173";
+
     try {
         // Create a new order
         const newOrder = new orderModel({
@@ -24,7 +24,7 @@ const placeOrder = async (req, res) => {
             address: req.body.address
         });
         await newOrder.save();
-        
+
         // Update the user's basketData to empty after order placement
         await userModel.findByIdAndUpdate(req.body.userId, { basketData: {} });
 
@@ -47,7 +47,7 @@ const placeOrder = async (req, res) => {
                 product_data: {
                     name: "Delivery Charges"
                 },
-                unit_amount: 250*100*80 
+                unit_amount: 250 * 100 * 80
             },
             quantity: 1 // Only 1 delivery charge
         });
@@ -69,4 +69,33 @@ const placeOrder = async (req, res) => {
     }
 };
 
-export { placeOrder };
+const verifyOrder = async (req, res) => {
+    const { success, orderId } = req.body;
+    try {
+        if (success == 'true') {
+            await orderModel.findByIdAndUpdate(orderId, { payment: true });
+            res.json({ success: true, message: 'Order placed successfully' });
+        }
+        else {
+            await orderModel.findByIdAndUpdate(orderId, { payment: false });
+            res.json({ success: false, message: 'Order placement failed' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: 'Failed to verify order' });
+    }
+
+}
+
+// user orders for frontend
+const userOrders = async (req, res) => {
+    try {
+        const orders = await orderModel.find({ userId: req.body.userId });
+        res.json({ success: true, data: orders })
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: 'Failed to fetch user orders' });
+    }
+}
+
+export { placeOrder, verifyOrder, userOrders };

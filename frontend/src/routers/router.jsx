@@ -21,6 +21,8 @@ import TopBar from "../components/Topbar/TopBar";
 import BackToTop from "../components/BackToTop/BackToTop";
 import Preloader from "../components/common/Preloader";
 import Footer from "../components/Footer/Footer";
+import Verify from "../pages/Verify/Verify";
+import MyOrders from "../pages/MyOrders/MyOrders";
 
 // Root layout to keep common elements in all pages
 const RootLayout = () => (
@@ -63,6 +65,8 @@ const router = createBrowserRouter([
       { path: "menu", element: <SpecialDish /> },
       { path: "about", element: <About /> },
       { path: "service", element: <Service /> },
+      { path: "verify", element: <Verify />},
+      { path: "/myorders", element: <MyOrders /> }
     ],
   },
 ]);
