@@ -1,13 +1,13 @@
-.my-orders{
+.myorders{
     margin: 50px 0px;
 }
-.my-orders .container{
+.myorders .container{
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-top: 30px;
 }
-.my-orders-order{
+.myorders-order{
     display:grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
     align-items: center;
@@ -17,17 +17,17 @@
     color: #454545;
     border: 1px solid tomato;
 }
-.my-orders-order img{
+.myorders-order img{
     width: 50px;
 }
-.my-orders-order p span{
+.myorders-order p span{
     color: tomato;
 }
-.my-orders-order p b{
+.myorders-order p b{
     font-weight: 500;
     color: #454545;
 }
-.my-orders-order button{
+.myorders-order button{
     border: none;
     padding: 12px 0px;
     border-radius: 4px;
@@ -37,12 +37,12 @@
 }
 
 @media (max-width:900px) {
-    .my-orders-order{
+    .myorders-order{
         grid-template-columns: 1fr 2fr 1fr;
         row-gap: 5px;
         font-size: 12px;
     }
-    .my-orders-order button{
+    .myorders-order button{
         font-size: 10px;
     }
 }

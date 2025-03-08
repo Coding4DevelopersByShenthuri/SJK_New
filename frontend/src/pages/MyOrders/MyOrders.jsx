@@ -12,16 +12,19 @@ const MyOrders = () => {
         if (!token) return;
         try {
             const response = await axios.post(`${url}/api/order/userorders`, {}, { headers: { token } });
+            console.log("Orders received:", response.data.data);
             setData(response.data.data);
         } catch (error) {
             console.error('Error fetching orders:', error);
-        }
+        }        
     }, [url, token]);
 
     useEffect(() => {
+        console.log("Fetching orders...");
         fetchOrders();
     }, [fetchOrders]);
 
+    
     return (
         <div className="myorders">
             <h2>My Orders</h2>
