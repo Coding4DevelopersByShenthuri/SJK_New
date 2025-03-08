@@ -1,88 +1,120 @@
-import React, { useContext, useEffect, useState } from 'react';
-import './PlaceOrder.css';
-import { StoreContext } from '../../context/StoreContext';
-import axios from 'axios';
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./PlaceOrder.css";
+import { StoreContext } from "../../context/StoreContext";
+import axios from "axios";
 
 const PlaceOrder = () => {
   const { basketItems, food_list, token, url } = useContext(StoreContext);
-  const [promoCode, setPromoCode] = useState('');
+  const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
-  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const deliveryFee = 250;
 
-  const [data, setData] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    street: '',
-    city: '',
-    province: '',
-    zipcode: '',
-    country: '',
-    phone: '',
-  });
-
-
-  const onChangeHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setData((data) => ({ ...data, [name]: value }));
-  };
-
-  const placeOrder = async (event) => {
-    event.preventDefault();
-    let orderItems = [];
-    food_list.map((item) => {
-      if (basketItems[item._id] > 0) {
-        let itemInfo = item;
-        itemInfo['quantity'] = basketItems[item._id];
-        orderItems.push(itemInfo);
-      }
-    })
-
-    let orderData = {
-      address: data,
-      items: orderItems,
-      amount: subtotal() + 250,
-    }
-    let response = await axios.post(url + '/api/order/place', orderData, { headers: { token } });
-    if (response.data.success) {
-      const { session_url } = response.data.data;
-      window.location.replace = (session_url);
-    }
-    else {
-      alert('Error!');
-    }
+  if (!basketItems || !food_list || !url) {
+    console.error("Missing required context values!");
+    return <p>Error: Unable to load data.</p>;
   }
 
   // Calculate subtotal
   const subtotal = Object.entries(basketItems).reduce((total, [itemId, priceTypes]) => {
-  return (
-    total +
-    Object.entries(priceTypes).reduce((subtotal, [priceType, details]) => {
-      const itemPrice = details.price || 0;
-      return subtotal + details.quantity * itemPrice;
-    }, 0)
-  );
-}, 0);
-
+    return (
+      total +
+      Object.entries(priceTypes).reduce((subtotal, [priceType, details]) => {
+        const itemPrice = details.price || 0;
+        return subtotal + details.quantity * itemPrice;
+      }, 0)
+    );
+  }, 0);
 
   const total = subtotal - discount + deliveryFee;
 
-  const handlePromoCodeSubmit = () => {
-    if (promoCode === 'SAVE10') {
-      setDiscount(10);
-      setError('');
-    } else {
-      setError('Invalid promo code');
-      setDiscount(0);
-      setTimeout(() => setError(''), 3000);
+  useEffect(() => {
+    if (subtotal === 0) {
+      navigate("/basket"); // Redirect to basket page if subtotal is zero
+    }
+  }, [subtotal, navigate]);
+
+
+  const [data, setData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    street: "",
+    city: "",
+    province: "",
+    zipcode: "40000",
+    country: "Sri Lanka",
+    phone: "",
+  });
+
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const placeOrder = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    let orderItems = food_list
+      .filter((item) => basketItems[item._id] && basketItems[item._id] > 0)
+      .map((item) => ({
+        ...item,
+        quantity: basketItems[item._id],
+      }));
+
+    let orderData = {
+      address: data,
+      items: orderItems,
+      amount: total,
+    };
+
+    console.log("Placing order:", orderData);
+
+    try {
+      console.log("Sending request with headers:", { Authorization: `Bearer ${token}` });
+
+      const response = await axios.post(`${url}/api/order/place`, orderData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("Order response:", response.data);
+
+      if (response.data.success) {
+        const { session_url } = response.data.data;
+        window.location.href = session_url; // Redirect to payment page
+      } else {
+        alert("Error placing order!");
+      }
+    } catch (error) {
+      console.error("Order Error:", error.response?.data || error.message);
+      
+      if (error.response?.status === 401) {
+        alert("Session expired! Please login again.");
+        navigate("/login");
+      } else {
+        alert("Network Error! Please try again.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    alert('Form submitted! Proceeding to payment...');
+  const handlePromoCodeSubmit = () => {
+    if (promoCode === "SAVE10") {
+      setDiscount(10);
+      setError("");
+    } else {
+      setError("Invalid promo code");
+      setDiscount(0);
+      setTimeout(() => setError(""), 3000);
+    }
   };
 
   return (
@@ -93,7 +125,7 @@ const PlaceOrder = () => {
           <input
             name="firstname"
             onChange={onChangeHandler}
-            value={data.firstname}  
+            value={data.firstname}
             type="text"
             placeholder="First Name"
             required
@@ -101,7 +133,7 @@ const PlaceOrder = () => {
           <input
             name="lastname"
             onChange={onChangeHandler}
-            value={data.lastname}  
+            value={data.lastname}
             type="text"
             placeholder="Last Name"
             required
@@ -110,54 +142,51 @@ const PlaceOrder = () => {
         <input
           name="email"
           onChange={onChangeHandler}
-          value={data.email || ''}
+          value={data.email}
           type="email"
           placeholder="Email Address"
+          required
         />
         <input
           name="street"
           onChange={onChangeHandler}
-          value={data.street || ''}
+          value={data.street}
           type="text"
           placeholder="Street"
           required
         />
         <div className="multi-fields">
-          {/* City Dropdown */}
           <select
             name="city"
             onChange={onChangeHandler}
-            value={data.city || ''}
+            value={data.city}
             required
             className="bg-gray-800 text-white border rounded p-2"
           >
-            <option value="" disabled className="text-white">
+            <option value="" disabled>
               Select City
             </option>
-            <option className='bg-gray-800' value="city1">Chavakachcheri</option>
-            <option value="city2">Kalvayal</option>
-            <option value="city3">Meesalai</option>
-            <option value="city3">Sangaththanai</option>
-            <option value="city3">Nunavil</option>
-            <option value="city3">Kachchai</option>
-            <option value="city3">Kodikamam</option>
-            <option value="city3">Madduvil</option>
-            {/* Add more cities as needed */}
+            <option value="Chavakachcheri">Chavakachcheri</option>
+            <option value="Kalvayal">Kalvayal</option>
+            <option value="Meesalai">Meesalai</option>
+            <option value="Sangaththanai">Sangaththanai</option>
+            <option value="Nunavil">Nunavil</option>
+            <option value="Kachchai">Kachchai</option>
+            <option value="Kodikamam">Kodikamam</option>
+            <option value="Madduvil">Madduvil</option>
           </select>
 
-          {/* Province Dropdown */}
           <select
             name="province"
             onChange={onChangeHandler}
-            value={data.province || ''}
+            value={data.province}
             required
             className="bg-gray-800 text-white border rounded p-2"
           >
-            <option value="" disabled className="text-white">
+            <option value="" disabled>
               Select Province
             </option>
-            <option value="province1">Jaffna</option>
-            {/* Add more provinces as needed */}
+            <option value="Jaffna">Jaffna</option>
           </select>
         </div>
         <div className="multi-fields">
@@ -167,7 +196,7 @@ const PlaceOrder = () => {
         <input
           name="phone"
           onChange={onChangeHandler}
-          value={data.phone || ''}
+          value={data.phone}
           type="text"
           placeholder="Phone Number"
           required
@@ -214,9 +243,7 @@ const PlaceOrder = () => {
             </div>
             {error && <p className="error-message">{error}</p>}
           </div>
-          <button type="submit" className="proceed-button">
-            PROCEED TO PAYMENT
-          </button>
+          <button type="submit" className="proceed-button" disabled={loading}>{loading ? "Processing..." : "PROCEED TO PAYMENT"}</button>
         </div>
       </div>
     </form>

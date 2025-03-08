@@ -153,7 +153,7 @@ const Header = () => {
                     />
                     {isDropdownOpen && (
                       <ul className="profile-dropdown">
-                        <li onClick={() => navigate("/orders")}>
+                        <li onClick={() => navigate("/myorders")}>
                           <img src={assets.bag_icon} alt="Orders" />
                           <p>Orders</p>
                         </li>

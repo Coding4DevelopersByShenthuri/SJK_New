@@ -66,7 +66,7 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "service", element: <Service /> },
       { path: "verify", element: <Verify />},
-      { path: "/myorders", element: <MyOrders /> }
+      { path: "myorders", element: <MyOrders /> }
     ],
   },
 ]);
