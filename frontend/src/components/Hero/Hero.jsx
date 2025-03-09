@@ -26,7 +26,7 @@ const Hero = () => {
       buttonText: 'Discover Our Dishes',
     },
     {
-      imgSrc: '../src/assets/images/hero-slider-4.jpg',
+      imgSrc: '../src/assets/images/hero-slider-4.avif',
       subtitle: 'Fresh & Local',
       title: 'A Taste of Fresh Ingredients',
       text: 'Explore fresh, locally sourced ingredients for the ultimate experience',
@@ -40,7 +40,7 @@ const Hero = () => {
       buttonText: 'Reserve Your Table',
     },
     {
-      imgSrc: '../src/assets/images/hero-slider-9.webp',
+      imgSrc: '../src/assets/images/hero-slider-9.avif',
       subtitle: 'Bold & Flavorful',
       title: 'Discover Bold New Flavors',
       text: 'Embark on a taste adventure that will tantalize your senses',
@@ -61,7 +61,7 @@ const Hero = () => {
       buttonText: 'Book Your Visit',
     },
     {
-      imgSrc: '../src/assets/images/hero-slider-9.webp',
+      imgSrc: '../src/assets/images/hero-slider-19.avif',
       subtitle: 'Bold & Flavorful',
       title: 'Discover Bold New Flavors',
       text: 'Embark on a taste adventure that will tantalize your senses',
