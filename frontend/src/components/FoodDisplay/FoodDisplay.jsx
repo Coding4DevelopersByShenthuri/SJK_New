@@ -13,13 +13,13 @@ const FoodDisplay = ({ category = 'All' }) => {
     ) || [];
 
     // Determine displayed items
-    const displayedFoodList = showAll ? filteredFoodList : filteredFoodList.slice(0, 20);
+    const displayedFoodList = showAll ? filteredFoodList : filteredFoodList.slice(0, 40);
 
     // Dynamic title
     const dynamicTitle = `${category === 'All' ? 'Top Dishes' : category} for You Below!`;
 
     // Check if expand button is needed
-    const shouldShowExpandButton = filteredFoodList.length > 20;
+    const shouldShowExpandButton = filteredFoodList.length > 40;
 
     if (filteredFoodList.length === 0) {
         return (
